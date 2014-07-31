@@ -1,0 +1,18 @@
+
+<h1>{{ title }}</h1>
+<p>Welcome to {{ title }}</p>
+{{#if test}}
+    <p>{{ test }}</p>
+{{/if}}
+
+<ul>
+    {{#each users}}
+        <li>{{first_name}} {{last_name}}</li>
+    {{/each}}
+</ul>
+{{#unless session.user}}
+    <a href="/users/register">Register</a><br/>
+    <a href="/users/login">Login</a>
+{{else}}
+    <a href="/users/logout">Logout</a>
+{{/unless}}

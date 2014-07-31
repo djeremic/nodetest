@@ -1,0 +1,24 @@
+{
+  "name": "restaurant",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "supervisor ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "express": "~4.2.0",
+    "express-session": "^1.7.0",
+    "hjs": "~0.0.6",
+    "less-middleware": "1.0.x",
+    "lodash": "^2.4.1",
+    "morgan": "~1.0.0",
+    "password-hash": "^1.2.2",
+    "rand-token": "^0.2.1",
+    "sequelize": "^1.7.9",
+    "sqlite3": "^2.2.4",
+    "static-favicon": "~1.0.0"
+  }
+}
