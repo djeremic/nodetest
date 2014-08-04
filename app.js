@@ -9,8 +9,6 @@ var express = require('express')
 var exphbs  = require('express3-handlebars');
 var path = require('path');
 var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
@@ -44,7 +42,7 @@ db.serialize(function() {
 });
 
 app.use(favicon());
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -61,6 +59,7 @@ app.get('/', routes.index)
 app.post('/users/register', users.create)
 app.get('/users/register', users.register)
 app.post('/users/login', users.loginPost)
+app.post('/api/users/login', users.loginPost)
 app.get('/users/login', users.login)
 app.get('/users/logout', users.logout)
 app.get('/restaurants', restaurants.index);

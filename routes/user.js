@@ -1,3 +1,4 @@
+
 var db = require('../models');
 var randToken = require('rand-token');
 var passwordHash = require('password-hash');
@@ -12,15 +13,26 @@ exports.create = function(req, res) {
     user.password = passwordHash.generate(user.password);
 
     db.User.create(user).success(function() {
-        req.session.user = user;
-        res.redirect('/')
+        if(isAPIRequests(req)){
+            res.json({user: user});
+        } else {
+            req.session.user = user;
+            res.redirect('/')
+        }
     }).error(function(errors) {
         if(!arePasswordsSame) {
             errors.password.push("Passwords needs to be the same");
         }
-        console.log(errors);
-        res.render('users/register', {errors: errors});
+        if(isAPIRequests(req)){
+            res.json({errors: errors});
+        } else {
+            res.render('users/register', {errors: errors});
+        }
     })
+}
+
+function isAPIRequests(req){
+    return (req.path.indexOf('/api') == 0);
 }
 
 exports.register = function(req, res) {
@@ -44,15 +56,27 @@ exports.loginPost = function(req, res) {
         if(user != null){
             if(!passwordHash.verify(usr.password, user.password)){
                 var errors = {general: new Array("User not found")};
-                res.render('users/login', {errors: errors});
+                if(isAPIRequests(req)){
+                    res.json({errors: errors});
+                } else {
+                    res.render('users/login', {errors: errors});
+                }
             } else {
-                req.session.user = user;
-                res.redirect('/');
+                if(isAPIRequests(req)){
+                    res.json({user : user});
+                } else {
+                    req.session.user = user;
+                    res.redirect('/');
+                }
             }
         } else {
             console.log("user not found");
             var errors = {general: new Array("User not found")};
-            res.render('users/login', {errors: errors});
+            if(isAPIRequests(req)){
+                res.json({errors: errors});
+            } else {
+                res.render('users/login', {errors: errors});
+            }
         }
     })
 
@@ -66,13 +90,20 @@ function validateRegister(user, res){
     var errors = db.User.build(user).validate();
 
     if(errors && errors.size > 0){
-        console.log(errors);
-        res.render('users/register', {errors: errors});
+        if(isAPIRequests(req)){
+            res.json({errors: errors});
+        } else {
+            res.render('users/register', {errors: errors});
+        }
     }
 
     if(!arePasswordsSame) {
         var errors = {password: new Array("Passwords needs to be the same")};
-        res.render('users/register', {errors: errors});
+        if(isAPIRequests(req)){
+            res.json({errors: errors});
+        } else {
+            res.render('users/register', {errors: errors});
+        }
     }
 }
 
