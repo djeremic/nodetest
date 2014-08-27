@@ -27,6 +27,7 @@ $(document).ready(function(){
             infowindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
+            console.log(place);
             if (!place.geometry) {
                 return;
             }
@@ -59,6 +60,8 @@ $(document).ready(function(){
 
             $('#address').val(address);
             $('#name').val(place.name);
+            $('#phone').val(place.international_phone_number);
+            $('#website').val(place.website);
             if(place.geometry){
                 $('#latitude').val(place.geometry.location.k);
                 $('#longitude').val(place.geometry.location.B);
