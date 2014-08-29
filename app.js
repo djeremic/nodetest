@@ -2,6 +2,7 @@ var express = require('express')
     , routes  = require('./routes')
     , users    = require('./routes/user')
     , restaurants    = require('./routes/restaurant')
+    , tags    = require('./routes/tag')
     , http    = require('http')
     , path    = require('path')
     , db      = require('./models')
@@ -37,6 +38,8 @@ db.serialize(function() {
         db.run("CREATE TABLE Restaurants(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,address TEXT NOT NULL,longitude number NOT NULL,latitude number NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Users(id INTEGER PRIMARY KEY AUTOINCREMENT,first_name TEXT NOT NULL,last_name TEXT NOT NULL, password TEXT NOT NULL, token TEXT NOT NULL, createdAt date, updatedAt date,email TEXT NOT NULL)");
         db.run("INSERT INTO Users(first_name, last_name, email) VALUES('Drago', 'Jeremic', 'dragojeremic@gmail.com');");
+        db.run("CREATE TABLE Tags(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE RestaurantsTags(RestaurantId INTEGER, TagId INTEGER, createdAt date, updatedAt date)");
         db.close();
     }
 });
@@ -48,7 +51,9 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(expressSession({secret: 'sdfjkht45489rfsjfkdjh', maxAge: 3600000}));
+try {
+    app.use(expressSession({secret: 'sdfjkht45489rfsjfkdjh', maxAge: 3600000}));
+}catch(err){}
 
 app.use(function(req,res,next){
     res.locals.session = req.session;
@@ -65,6 +70,9 @@ app.get('/users/logout', users.logout)
 app.get('/restaurants', restaurants.index);
 app.get('/restaurants/add', restaurants.add);
 app.post('/restaurants/add', restaurants.addPost);
+app.get('/tags', tags.index);
+app.post('/tags/add', tags.add);
+app.post('/tags/find', tags.find);
 
 /// catch 404 and forward to error handler
 
