@@ -46,3 +46,44 @@ exports.index = function(req, res){
         })
     })
 }
+
+exports.usersRestaurants = function(req, res){
+    db.Restaurant.hasMany(db.User);
+    db.User.hasMany(db.Restaurant);
+
+    var usr = db.User.build(req.session.user);
+
+    usr.getRestaurants().success(function(restaurants) {
+        res.render('restaurants/my', {
+            title: 'My List',
+            restaurants: restaurants
+        })
+    })
+}
+
+exports.addToFavourite = function(req, res){
+    db.Restaurant.hasMany(db.User);
+    db.User.hasMany(db.Restaurant);
+
+    var usr = db.User.build(req.session.user);
+    var restaurant = db.Restaurant.build({id : req.param('id', null)});
+
+    usr.addRestaurant(restaurant).success(function() {
+        res.json();
+    })
+}
+
+exports.removeFromFavourite = function(req, res){
+    db.Restaurant.hasMany(db.User);
+    db.User.hasMany(db.Restaurant);
+
+    var usr = db.User.build(req.session.user);
+    var restaurant = db.Restaurant.build({id : req.param('id', null)});
+
+    restaurant.removeUser(usr).success(function() {
+        res.json({});
+    }).error(function(errors) {
+        res.json({errors: errors});
+    })
+}
+

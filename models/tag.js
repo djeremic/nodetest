@@ -3,7 +3,7 @@
  */
 module.exports = function(sequelize, DataTypes) {
     var Tag = sequelize.define('Tag', {
-        value: DataTypes.STRING
+        name: DataTypes.STRING
     }, {
         associate: function (models) {
             Tag.hasMany(models.Restautant)

@@ -1,7 +1,11 @@
-<h1>List of restaurants</h1>
+<h1>List of restaurants - {{session.user.first_name}}</h1>
 <ul>
     {{#each restaurants}}
-        <li>{{name}} : {{address}}</li>
+        <li>{{name}} : {{address}}
+            {{#if ../session.user}}
+                <a href="#" data-id="{{id}}" class="add-restaurant"> <span class="glyphicon glyphicon-plus"></span> Add to my favourites</a>
+            {{/if}}
+        </li>
     {{/each}}
 </ul>
 <a href="/restaurants/add">add new restaurant</a><br/>

@@ -28,6 +28,7 @@
                 <li><a href="/restaurants">Restaurants</a></li>
                 <li><a href="/contact">Contact</a></li>
                 {{#if session.user}}
+                    <li><a href="/my-restaurants">My Restaurants</a></li>
                     <li><a href="#">Welcome {{session.user.first_name}}</a></li>
                 {{/if}}
             </ul>
@@ -50,5 +51,6 @@
     <script src="/javascripts/custom/tags-controller.js"></script>
     <script src="/javascripts/custom/dynamic-fields.js"></script>
 {{/if}}
+<script src="/javascripts/custom/favourites.js"></script>
 </body>
 </html>
