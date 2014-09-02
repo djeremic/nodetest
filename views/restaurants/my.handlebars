@@ -1,0 +1,6 @@
+<h1>List of restaurants</h1>
+<ul>
+    {{#each restaurants}}
+        <li>{{name}} : {{address}} <a href="#" data-id="{{id}}" class="remove-restaurant"> <span class="glyphicon glyphicon-remove"></span> remove</a></li>
+    {{/each}}
+</ul>
