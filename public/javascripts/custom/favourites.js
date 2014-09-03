@@ -31,7 +31,7 @@ $(function() {
                 id: $(this).attr('data-id')
             },
             success: function (data) {
-                link.parent('li').remove();
+                link.parents('tr').first().remove();
             }
         });
     });

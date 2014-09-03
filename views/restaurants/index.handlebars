@@ -1,11 +1,26 @@
-<h1>List of restaurants - {{session.user.first_name}}</h1>
-<ul>
-    {{#each restaurants}}
-        <li>{{name}} : {{address}}
-            {{#if ../session.user}}
-                <a href="#" data-id="{{id}}" class="add-restaurant"> <span class="glyphicon glyphicon-plus"></span> Add to my favourites</a>
-            {{/if}}
-        </li>
-    {{/each}}
-</ul>
-<a href="/restaurants/add">add new restaurant</a><br/>
+<h1>List of restaurants</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each restaurants}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{address}}</td>
+                <td>
+                    {{#if ../session.user}}
+                        <a href="#" data-id="{{id}}" class="add-restaurant"> <span class="glyphicon glyphicon-plus"></span> Add to my favourites</a>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<a href="/restaurants/add" class="btn btn-default">add new restaurant</a><br/>

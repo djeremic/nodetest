@@ -1,6 +1,24 @@
 <h1>List of restaurants</h1>
-<ul>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
     {{#each restaurants}}
-        <li>{{name}} : {{address}} <a href="#" data-id="{{id}}" class="remove-restaurant"> <span class="glyphicon glyphicon-remove"></span> remove</a></li>
+        <tr>
+            <td>{{name}}</td>
+            <td>{{address}}</td>
+            <td>
+                {{#if ../session.user}}
+                    <a href="#" data-id="{{id}}" class="remove-restaurant"> <span class="glyphicon glyphicon-remove"></span> remove</a>
+                {{/if}}
+            </td>
+        </tr>
     {{/each}}
-</ul>
+    </tbody>
+</table>
