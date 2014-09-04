@@ -2,7 +2,9 @@ var express = require('express')
     , routes  = require('./routes')
     , users    = require('./routes/user')
     , restaurants    = require('./routes/restaurant')
+    , places    = require('./routes/place')
     , tags    = require('./routes/tag')
+    , descriptions    = require('./routes/desc')
     , http    = require('http')
     , path    = require('path')
     , db      = require('./models')
@@ -44,6 +46,10 @@ db.serialize(function() {
         db.run("CREATE TABLE Tags(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE RestaurantsTags(RestaurantId INTEGER, TagId INTEGER, createdAt date, updatedAt date)");
         db.run("CREATE TABLE RestaurantsUsers(RestaurantId INTEGER, UserId INTEGER, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Places(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, " +
+            "phone VARCHAR(255), website VARCHAR(255), " +
+            "longitude number NOT NULL, latitude number NOT NULL, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
         db.close();
     }
 });
@@ -80,6 +86,11 @@ app.delete('/restaurants/favourites/remove', restaurants.removeFromFavourite);
 app.get('/tags', tags.index);
 app.post('/tags/add', tags.add);
 app.post('/tags/find', tags.find);
+app.get('/places', places.index);
+app.get('/places/add', places.add);
+app.post('/places/add', places.addPost);
+app.post('/places/find', places.find);
+app.post('/descriptions/add', descriptions.addPost);
 /// catch 404 and forward to error handler
 
 app.use(function(req, res, next) {

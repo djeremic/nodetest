@@ -35,7 +35,7 @@ exports.addPost = function(req, res) {
 }
 
 exports.add = function(req, res) {
-    res.render('restaurants/add', { addRestaurant : true});
+    res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'} });
 }
 
 exports.index = function(req, res){

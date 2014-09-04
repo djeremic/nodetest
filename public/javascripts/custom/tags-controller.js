@@ -33,4 +33,13 @@ $(function() {
             selection = this.getSelection().slice();
         }
     );
+
+    var places = $('#places').magicSuggest({
+        name: 'places'
+        ,data: '/places/find'
+        ,renderer: function(data){
+            return data.name + ' - ' + data.address;
+        },
+        allowFreeEntries: false
+    });
 });
