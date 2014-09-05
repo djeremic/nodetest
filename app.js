@@ -49,7 +49,7 @@ db.serialize(function() {
         db.run("CREATE TABLE Places(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, " +
             "phone VARCHAR(255), website VARCHAR(255), " +
             "longitude number NOT NULL, latitude number NOT NULL, createdAt date, updatedAt date)");
-        db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
         db.close();
     }
 });

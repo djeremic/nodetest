@@ -3,11 +3,19 @@ var db = require('../models')
 exports.addPost = function(req, res) {
     var restaurant = req.param('restaurant', null);
     var tagIDs = req.param('tags', null);
-    var restModel = db.Restaurant.build(restaurant);
+    var placeIDs = req.param('places', null);
+    var descIDs = req.param('descriptions', null);
     var tags = [];
+    var places = [];
+    var descriptions = [];
 
     db.Restaurant.hasMany(db.Tag);
     db.Tag.hasMany(db.Restaurant);
+
+    db.Restaurant.hasMany(db.Place);
+    db.Place.hasMany(db.Restaurant);
+
+    db.Restaurant.hasMany(db.Description);
 
     var errors = db.Restaurant.build(restaurant).validate();
 
@@ -16,16 +24,29 @@ exports.addPost = function(req, res) {
         return;
     }
 
-
     if (tagIDs) {
         for (var i = 0; i < tagIDs.length; i++) {
             tags.push(db.Tag.build({id: parseInt(tagIDs[i])}));
         }
     }
 
+    if (placeIDs) {
+        for (var i = 0; i < placeIDs.length; i++) {
+            places.push(db.Place.build({id: parseInt(placeIDs[i])}));
+        }
+    }
+
+    if (descIDs) {
+        for (var i = 0; i < descIDs.length; i++) {
+            descriptions.push(db.Description.build({id: parseInt(descIDs[i])}));
+        }
+    }
+
 
     db.Restaurant.create(restaurant).success(function(restaurant) {
         if(tags.length > 0) restaurant.setTags(tags);
+        if(places.length > 0) restaurant.setPlaces(places);
+        if(descriptions.length > 0) restaurant.setDescriptions(descriptions);
         res.redirect('/restaurants')
     }).error(function(errors) {
         console.log(errors);

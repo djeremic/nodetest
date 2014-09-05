@@ -1,0 +1,67 @@
+<link rel='stylesheet' href='/stylesheets/gmaps.css' />
+<link rel='stylesheet' href='/stylesheets/magicsuggest.css' />
+
+<h1>Add new restaurant</h1>
+
+<div class="row">
+    <div class="col-lg-4">
+        <form id="register" action="/places/add" method="post" role="form">
+            <div class="form-group {{#if errors.name}}has-error error{{/if}}">
+                <label for="name" class="control-label">Name: </label>
+                <input type="text" id="name" name="place[name]" class="form-control"/>
+                {{#if errors.name}}<code>{{errors.name.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.address}}has-error error{{/if}}">
+                <label for="address" class="control-label">Address: </label>
+                <input type="text" id="address" name="place[address]" class="form-control"/>
+                {{#if errors.name}}<code>{{errors.address.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.phone}}has-error error{{/if}}">
+                <label for="phone" class="control-label">Phone: </label>
+                <input type="text" id="phone" name="place[phone]" class="form-control"/>
+                {{#if errors.phone}}<code>{{errors.phone.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.website}}has-error error{{/if}}">
+                <label for="website" class="control-label">Website: </label>
+                <input type="text" id="website" name="place[website]" class="form-control"/>
+                {{#if errors.website}}<code>{{errors.website.[0]}}</code>{{/if}}
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group {{#if errors.longitude}}has-error error{{/if}}">
+                        <label for="longitude" class="control-label">Longitude: </label>
+                        <input type="text" id="longitude" name="place[longitude]" class="form-control"/>
+                        {{#if errors.longitude}}<code>{{errors.longitude.[0]}}</code>{{/if}}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group {{#if errors.latitude}}has-error error{{/if}}">
+                        <label for="latitude" class="control-label">Latitude: </label>
+                        <input type="text" id="latitude" name="place[latitude]" class="form-control"/>
+                        {{#if errors.latitude}}<code>{{errors.latitude.[0]}}</code>{{/if}}
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-default">Save</button>
+        </form>
+    </div>
+
+    <div class="col-lg-8" id="map-wrapper">
+        <input id="pac-input" class="controls" type="text"
+               placeholder="Enter a location">
+        <div id="type-selector" class="controls">
+            <input type="radio" name="type" id="changetype-all" checked="checked">
+            <label for="changetype-all">All</label>
+
+            <input type="radio" name="type" id="changetype-establishment">
+            <label for="changetype-establishment">Establishments</label>
+
+            <input type="radio" name="type" id="changetype-geocode">
+            <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="map-canvas"></div>
+    </div>
+
+</div>
+
