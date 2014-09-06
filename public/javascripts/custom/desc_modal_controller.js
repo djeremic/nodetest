@@ -19,7 +19,7 @@ $(function(){
                 data : postData,
                 success:function(data, textStatus, jqXHR)
                 {
-                    success(data, textStatus, jqXHR);node./b
+                    success(data, textStatus, jqXHR);
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {

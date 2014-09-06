@@ -6,44 +6,75 @@
 <div class="row">
     <div class="col-lg-4">
         <form id="register" action="/restaurants/add" method="post" role="form">
+            <input type="hidden" name="restaurant[id]" value="{{restaurant.id}}"/>
             <div class="form-group {{#if errors.name}}has-error error{{/if}}">
                 <label for="name" class="control-label">Name: </label>
-                <input type="text" id="name" name="restaurant[name]" class="form-control"/>
+                <input type="text" id="name" name="restaurant[name]" class="form-control" value="{{restaurant.name}}"/>
                 {{#if errors.name}}<code>{{errors.name.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.address}}has-error error{{/if}}">
                 <label for="address" class="control-label">Address: </label>
-                <input type="text" id="address" name="restaurant[address]" class="form-control"/>
+                <input type="text" id="address" name="restaurant[address]" class="form-control" value="{{restaurant.address}}"/>
                 {{#if errors.name}}<code>{{errors.address.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.phone}}has-error error{{/if}}">
                 <label for="phone" class="control-label">Phone: </label>
-                <input type="text" id="phone" name="restaurant[phone]" class="form-control"/>
+                <input type="text" id="phone" name="restaurant[phone]" class="form-control" value="{{restaurant.phone}}"/>
                 {{#if errors.phone}}<code>{{errors.phone.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.website}}has-error error{{/if}}">
                 <label for="website" class="control-label">Website: </label>
-                <input type="text" id="website" name="restaurant[website]" class="form-control"/>
+                <input type="text" id="website" name="restaurant[website]" class="form-control" value="{{restaurant.website}}"/>
                 {{#if errors.website}}<code>{{errors.website.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.metro}}has-error error{{/if}}">
                 <label for="metro" class="control-label">Metro: </label>
-                <input type="text" id="metro" name="restaurant[metro]" class="form-control"/>
+                <input type="text" id="metro" name="restaurant[metro]" class="form-control" value="{{restaurant.metro}}"/>
                 {{#if errors.metro}}<code>{{errors.metro.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.opening_hours_en}}has-error error{{/if}}">
                 <label for="opening_hours_en" class="control-label">Opening Hours Eng: </label>
-                <input type="text" id="opening_hours_en" name="restaurant[opening_hours_en]" class="form-control"/>
+                <input type="text" id="opening_hours_en" name="restaurant[opening_hours_en]" class="form-control" value="{{restaurant.opening_hours_en}}"/>
                 {{#if errors.opening_hours_en}}<code>{{errors.opening_hours_en.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.opening_hours_fr}}has-error error{{/if}}">
                 <label for="opening_hours_fr" class="control-label">Opening Hours Fra: </label>
-                <input type="text" id="opening_hours_fr" name="restaurant[opening_hours_fr]" class="form-control"/>
+                <input type="text" id="opening_hours_fr" name="restaurant[opening_hours_fr]" class="form-control"  value="{{restaurant.opening_hours_fr}}"/>
                 {{#if errors.opening_hours_fr}}<code>{{errors.opening_hours_fr.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.kind_of_food_en}}has-error error{{/if}}">
+                <label for="kind_of_food_en" class="control-label">Kind of Food Eng: </label>
+                <input type="text" id="kind_of_food_en" name="restaurant[kind_of_food_en]" class="form-control" value="{{restaurant.kind_of_food_en}}"/>
+                {{#if errors.kind_of_food_en}}<code>{{errors.kind_of_food_en.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.kind_of_food_fr}}has-error error{{/if}}">
+                <label for="kind_of_food_fr" class="control-label">Kind of Food Fra: </label>
+                <input type="text" id="kind_of_food_fr" name="restaurant[kind_of_food_fr]" class="form-control" value="{{restaurant.kind_of_food_fr}}"/>
+                {{#if errors.kind_of_food_fr}}<code>{{errors.kind_of_food_fr.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.feeling_en}}has-error error{{/if}}">
+                <label for="feeling_en" class="control-label">Feeling Eng: </label>
+                <input type="text" id="feeling_en" name="restaurant[feeling_en]" class="form-control" value="{{restaurant.feeling_en}}"/>
+                {{#if errors.feeling_en}}<code>{{errors.feeling_en.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.feeling_fr}}has-error error{{/if}}">
+                <label for="feeling_fr" class="control-label">Feeling Fra: </label>
+                <input type="text" id="feeling_fr" name="restaurant[feeling_fr]" class="form-control" value="{{restaurant.feeling_fr}}"/>
+                {{#if errors.feeling_fr}}<code>{{errors.feeling_fr.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.dress_code_en}}has-error error{{/if}}">
+                <label for="dress_code_en" class="control-label">Dress Code Eng: </label>
+                <input type="text" id="dress_code_en" name="restaurant[dress_code_en]" class="form-control" value="{{restaurant.dress_code_en}}" />
+                {{#if errors.dress_code_en}}<code>{{errors.dress_code_en.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.dress_code_fr}}has-error error{{/if}}">
+                <label for="dress_code_fr" class="control-label">Dress Code Fra: </label>
+                <input type="text" id="dress_code_fr" name="restaurant[dress_code_fr]" class="form-control" value="{{restaurant.dress_code_fr}}"/>
+                {{#if errors.dress_code_fr}}<code>{{errors.dress_code_fr.[0]}}</code>{{/if}}
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="restaurant[booking]"> Booking
+                    <input type="checkbox" name="restaurant[booking]" {{#if restaurant.booking}}checked{{/if}}> Booking
                 </label>
             </div>
             <div class="radio">
@@ -64,6 +95,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Descriptions</div>
                 <div class="panel-body">
+                    {{#each restaurant.descriptions}}
+                        <div class="alert alert-success alert-dismissible row" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <div class="row"><span class="col-lg-2">{{title}}</span><span class="col-lg-9 ellipsis">{{desc_en}}</span></div>
+                            <input type="hidden" name="descriptions[]" value="{{id}}"/>
+                         </div>
+                    {{/each}}
                     <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal" id="add-desc">
                         <span class="glyphicon glyphicon-plus"></span> Add Description
                     </a>
@@ -75,6 +113,7 @@
                 <div id="places">
                     <input type="text" id="places" name="places" class="form-control"/>
                 </div>
+                <a href="/places/add" target="_blank">Add new place</a>
             </div>
             <div class="form-group">
                 <label for="tags">Tags: </label>
@@ -90,14 +129,14 @@
                 <div class="col-lg-6">
                     <div class="form-group {{#if errors.longitude}}has-error error{{/if}}">
                         <label for="longitude" class="control-label">Longitude: </label>
-                        <input type="text" id="longitude" name="restaurant[longitude]" class="form-control"/>
+                        <input type="text" id="longitude" name="restaurant[longitude]" class="form-control" value="{{restaurant.longitude}}"/>
                         {{#if errors.longitude}}<code>{{errors.longitude.[0]}}</code>{{/if}}
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group {{#if errors.latitude}}has-error error{{/if}}">
                         <label for="latitude" class="control-label">Latitude: </label>
-                        <input type="text" id="latitude" name="restaurant[latitude]" class="form-control"/>
+                        <input type="text" id="latitude" name="restaurant[latitude]" class="form-control" value="{{restaurant.latitude}}"/>
                         {{#if errors.latitude}}<code>{{errors.latitude.[0]}}</code>{{/if}}
                     </div>
                 </div>
@@ -126,3 +165,13 @@
 
 </div>
 
+<script type="text/javascript">
+        window.$editTags = [];
+        window.$editPlaces = [];
+        {{#each restaurant.tags}}
+            window.$editTags.push({'id': '{{id}}', 'name': '{{name}}'});
+        {{/each}}
+        {{#each restaurant.places}}
+            window.$editPlaces.push({'id': '{{id}}', 'name': '{{name}}'});
+        {{/each}}
+</script>

@@ -1,18 +1,20 @@
 
-<h1>{{ title }}</h1>
-<p>Welcome to {{ title }}</p>
-{{#if test}}
-    <p>{{ test }}</p>
-{{/if}}
+<h1>Restaurants</h1>
 
-<ul>
-    {{#each users}}
-        <li>{{first_name}} {{last_name}}</li>
-    {{/each}}
-</ul>
-{{#unless session.user}}
-    <a href="/users/register">Register</a><br/>
-    <a href="/users/login">Login</a>
-{{else}}
-    <a href="/users/logout">Logout</a>
-{{/unless}}
+<div class="row">
+    <div id="map_canvas" class="col-lg-8 img-rounded"></div>
+</div>
+
+<script src="/javascripts/jquery.ui.map.min.js"></script>
+<!--<script src="/javascripts/marker.with.label.min.js"></script>-->
+<script type="text/javascript">
+    $(function() {
+        $('#map_canvas').gmap().bind('init', function(ev, map) {
+            {{#each restaurants}}
+                $('#map_canvas').gmap('addMarker', {'position': '{{latitude}}, {{longitude}}', 'bounds': true}).click(function() {
+                    $('#map_canvas').gmap('openInfoWindow', {'content': '<div style="min-width:50px;min-height:30px;">{{name}}</div>'}, this);
+                });
+            {{/each}}
+        });
+    });
+</script>

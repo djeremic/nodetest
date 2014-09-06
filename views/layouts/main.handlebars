@@ -5,9 +5,7 @@
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    {{#if addRestaurant}}
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-    {{/if}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
@@ -22,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Paris Eats</a>
+            <a class="navbar-brand" href="/">Paris Eats</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -31,8 +29,10 @@
                 {{#if session.user}}
                     <li><a href="/my-restaurants">My Restaurants</a></li>
                     <li><a href="#">Welcome {{session.user.first_name}}</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
                 {{else}}
                     <li><a href="/users/login">Login</a></li>
+                    <li><a href="/users/register">Register</a></li>
                 {{/if}}
             </ul>
         </div><!--/.nav-collapse -->

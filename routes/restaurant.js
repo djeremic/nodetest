@@ -21,42 +21,69 @@ exports.addPost = function(req, res) {
 
     if (errors && errors.size > 0) {
         res.render('restaurants/add', {errors: errors, addRestaurant : true});
-        return;
-    }
+    } else {
+        if (tagIDs) {
+            for (var i = 0; i < tagIDs.length; i++) {
+                tags.push(db.Tag.build({id: parseInt(tagIDs[i])}));
+            }
+        }
 
-    if (tagIDs) {
-        for (var i = 0; i < tagIDs.length; i++) {
-            tags.push(db.Tag.build({id: parseInt(tagIDs[i])}));
+        if (placeIDs) {
+            for (var i = 0; i < placeIDs.length; i++) {
+                places.push(db.Place.build({id: parseInt(placeIDs[i])}));
+            }
+        }
+
+        if (descIDs) {
+            for (var i = 0; i < descIDs.length; i++) {
+                descriptions.push(db.Description.build({id: parseInt(descIDs[i])}));
+            }
+        }
+
+        if(restaurant.id == null || restaurant.id == '') {
+            db.Restaurant.create(restaurant).success(function (restaurant) {
+                if (tags.length > 0) restaurant.setTags(tags);
+                if (places.length > 0) restaurant.setPlaces(places);
+                if (descriptions.length > 0) restaurant.setDescriptions(descriptions);
+                res.redirect('/restaurants')
+            }).error(function (errors) {
+                console.log(errors);
+                res.render('restaurants/add', {errors: errors, addRestaurant: true});
+                return;
+            })
+        } else {
+            db.Restaurant.find(restaurant.id).success(function(model){
+                console.log(restaurant)
+                model.updateAttributes(restaurant).success(function() {
+                    model.setTags(tags);
+                    model.setPlaces(places);
+                    model.setDescriptions(descriptions);
+                    res.redirect('/restaurants')
+                })
+            });
         }
     }
-
-    if (placeIDs) {
-        for (var i = 0; i < placeIDs.length; i++) {
-            places.push(db.Place.build({id: parseInt(placeIDs[i])}));
-        }
-    }
-
-    if (descIDs) {
-        for (var i = 0; i < descIDs.length; i++) {
-            descriptions.push(db.Description.build({id: parseInt(descIDs[i])}));
-        }
-    }
-
-
-    db.Restaurant.create(restaurant).success(function(restaurant) {
-        if(tags.length > 0) restaurant.setTags(tags);
-        if(places.length > 0) restaurant.setPlaces(places);
-        if(descriptions.length > 0) restaurant.setDescriptions(descriptions);
-        res.redirect('/restaurants')
-    }).error(function(errors) {
-        console.log(errors);
-        res.render('restaurants/add', {errors: errors, addRestaurant : true});
-        return;
-    })
 }
 
 exports.add = function(req, res) {
     res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'} });
+}
+
+exports.edit = function(req, res) {
+    var id = req.params.id;
+    db.Restaurant.hasMany(db.Tag);
+    db.Tag.hasMany(db.Restaurant);
+
+    db.Restaurant.hasMany(db.Place);
+    db.Place.hasMany(db.Restaurant);
+
+    db.Restaurant.hasMany(db.Description);
+
+    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description]}).success(function(restaurant){
+        res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'}, restaurant : restaurant });
+    }).error(function(){
+        res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'} });
+    });
 }
 
 exports.index = function(req, res){

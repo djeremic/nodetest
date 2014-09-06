@@ -1,10 +1,10 @@
 var db = require('../models')
 
 exports.index = function(req, res){
-    db.User.findAll().success(function(users) {
+    db.Restaurant.findAll().success(function(restaurants) {
         res.render('index', {
             title: 'Express',
-            users: users
+            restaurants: restaurants
         })
     })
 }

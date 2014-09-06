@@ -34,24 +34,31 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        opening_hours_fr: { type: DataTypes.STRING,
+        opening_hours_fr: DataTypes.STRING,
+        kind_of_food_en: { type: DataTypes.STRING,
             validate: {
                 notNull: true,
                 notEmpty: true
             }
         },
+        kind_of_food_fr: DataTypes.STRING,
+        feeling_en: { type: DataTypes.STRING,
+            validate: {
+                notNull: true,
+                notEmpty: true
+            }
+        },
+        feeling_fr: DataTypes.STRING,
+        dress_code_en: { type: DataTypes.STRING,
+            validate: {
+                notNull: true,
+                notEmpty: true
+            }
+        },
+        dress_code_fr: DataTypes.STRING,
+
         booking: DataTypes.BOOLEAN,
         price_level: DataTypes.INTEGER,
-        know_en: DataTypes.TEXT,
-        know_fr: DataTypes.TEXT,
-        eat_en: DataTypes.TEXT,
-        eat_fr: DataTypes.TEXT,
-        drink_en: DataTypes.TEXT,
-        drink_fr: DataTypes.TEXT,
-        tip_en: DataTypes.TEXT,
-        tip_fr: DataTypes.TEXT,
-        gossip_en: DataTypes.TEXT,
-        gossip_fr: DataTypes.TEXT,
         longitude: { type: DataTypes.DECIMAL,
             validate: {
                 notNull: true,
