@@ -20,7 +20,7 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 
 var fs = require("fs");
-var file = "public/users.db";
+var file = "public/pariseats.db";
 var exists = fs.existsSync(file);
 
 var app = express();
@@ -40,16 +40,15 @@ db.serialize(function() {
         db.run("CREATE TABLE Restaurants(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(255) NOT NULL,address VARCHAR(255) NOT NULL, " +
             "phone VARCHAR(255) NOT NULL,website VARCHAR(255) NOT NULL, metro VARCHAR(255), opening_hours_en VARCHAR(255), opening_hours_fr VARCHAR(255), " +
             "kind_of_food_en VARCHAR(255) NOT NULL, kind_of_food_fr VARCHAR(255) NOT NULL, feeling_en VARCHAR(255) NOT NULL, feeling_fr VARCHAR(255) NOT NULL," +
-            "dress_code_en VARCHAR(255) NOT NULL, dress_code_fr VARCHAR(255) NOT NULL, " +
-            " booking INTEGER, price_level INTEGER, " +
+            "dress_code_en VARCHAR(255) NOT NULL, dress_code_fr VARCHAR(255) NOT NULL, go_for VARCHAR(255) NOT NULL," +
+            " booking_en VARCHAR(255), price_level INTEGER, title_en VARCHAR(255) NOT NULL," +
             "longitude number NOT NULL, latitude number NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Users(id INTEGER PRIMARY KEY AUTOINCREMENT,first_name TEXT NOT NULL,last_name TEXT NOT NULL, password TEXT NOT NULL, token TEXT NOT NULL, createdAt date, updatedAt date,email TEXT NOT NULL)");
-        db.run("INSERT INTO Users(first_name, last_name, email) VALUES('Drago', 'Jeremic', 'dragojeremic@gmail.com');");
         db.run("CREATE TABLE Tags(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE RestaurantsTags(RestaurantId INTEGER, TagId INTEGER, createdAt date, updatedAt date)");
         db.run("CREATE TABLE RestaurantsUsers(RestaurantId INTEGER, UserId INTEGER, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Places(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, " +
-            "phone VARCHAR(255), website VARCHAR(255), " +
+            "phone VARCHAR(255), type VARCHAR(255), website VARCHAR(255), " +
             "longitude number NOT NULL, latitude number NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
         db.close();
@@ -83,6 +82,7 @@ app.get('/restaurants', restaurants.index);
 app.get('/my-restaurants', restaurants.usersRestaurants);
 app.get('/restaurants/add', restaurants.add);
 app.get('/restaurants/edit/:id', restaurants.edit);
+app.get('/restaurants/view/:id', restaurants.find);
 app.post('/restaurants/add', restaurants.addPost);
 app.post('/restaurants/favourites/add', restaurants.addToFavourite);
 app.delete('/restaurants/favourites/remove', restaurants.removeFromFavourite);

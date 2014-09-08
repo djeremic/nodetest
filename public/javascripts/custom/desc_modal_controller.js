@@ -2,6 +2,8 @@
  * Created by drago.jeremic on 9/4/14.
  */
 $(function(){
+    $('textarea').jqte();
+
     var modal = $('#modal');
     var form = $('form#save-desc');
     var submiButton = $('#submit-button');

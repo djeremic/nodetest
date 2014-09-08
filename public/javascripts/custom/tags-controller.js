@@ -45,6 +45,12 @@ $( document ).ready(function() {
         },
         allowFreeEntries: false
     });
-
     places.setSelection(window.$editPlaces);
+
+    var goFor = $('#go_for').magicSuggest({
+        name: 'goForArray'
+        ,data: ['Breakfast', 'Lunch', 'Dinner', 'Drink'],
+        allowFreeEntries: false
+    });
+    goForsetSelection(window.window.$editGoFor);
 });

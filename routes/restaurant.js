@@ -8,6 +8,9 @@ exports.addPost = function(req, res) {
     var tags = [];
     var places = [];
     var descriptions = [];
+    console.log(req.param('goForArray', null))
+    restaurant.go_for = buildGoForString(req.param('goForArray', null));
+    console.log(restaurant.go_for)
 
     db.Restaurant.hasMany(db.Tag);
     db.Tag.hasMany(db.Restaurant);
@@ -45,7 +48,7 @@ exports.addPost = function(req, res) {
                 if (tags.length > 0) restaurant.setTags(tags);
                 if (places.length > 0) restaurant.setPlaces(places);
                 if (descriptions.length > 0) restaurant.setDescriptions(descriptions);
-                res.redirect('/restaurants')
+                res.redirect('/restaurants/view/'+restaurant.id)
             }).error(function (errors) {
                 console.log(errors);
                 res.render('restaurants/add', {errors: errors, addRestaurant: true});
@@ -58,7 +61,7 @@ exports.addPost = function(req, res) {
                     model.setTags(tags);
                     model.setPlaces(places);
                     model.setDescriptions(descriptions);
-                    res.redirect('/restaurants')
+                    res.redirect('/restaurants/view/'+restaurant.id)
                 })
             });
         }
@@ -135,3 +138,33 @@ exports.removeFromFavourite = function(req, res){
     })
 }
 
+function buildGoForString(goForArray){
+    var result = ''
+    if(goForArray != undefined && goForArray.length > 0){
+        for(var i  = 0; i < goForArray.length; i++){
+            if(i == 0){
+                result += goForArray[i];
+            } else if(i < goForArray.length - 2){
+                result += ', ' + goForArray[i];
+            } else if(i == goForArray.length - 1){
+                result += ' and ' + goForArray[i];
+            }
+        }
+    }
+    return result;
+}
+
+exports.find = function(req, res) {
+    var id = req.params.id;
+    db.Restaurant.hasMany(db.Tag);
+    db.Tag.hasMany(db.Restaurant);
+
+    db.Restaurant.hasMany(db.Place);
+    db.Place.hasMany(db.Restaurant);
+
+    db.Restaurant.hasMany(db.Description);
+
+    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description]}).success(function(restaurant){
+        res.render('restaurants/view', { addRestaurant : true, restaurant : restaurant });
+    });
+}

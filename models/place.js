@@ -2,6 +2,12 @@ var models = require('../models');
 
 module.exports = function(sequelize, DataTypes) {
     var Place = sequelize.define('Place', {
+        type: { type: DataTypes.STRING,
+            validate: {
+                notNull: true,
+                notEmpty: true
+            }
+        },
         name: { type: DataTypes.STRING,
             validate: {
                 notNull: true,

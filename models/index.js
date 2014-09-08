@@ -2,7 +2,7 @@ var fs        = require('fs')
     , path      = require('path')
     , Sequelize = require('sequelize')
     , lodash    = require('lodash')
-    , dbfile = "./public/users.db"
+    , dbfile = "./public/pariseats.db"
     , sequelize = new Sequelize('database_name', 'username', 'password', {
         dialect: "sqlite", // or 'sqlite', mysql', 'mariadb'
         storage:    dbfile

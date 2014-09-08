@@ -4,13 +4,18 @@
 <h1>Add new restaurant</h1>
 
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <form id="register" action="/restaurants/add" method="post" role="form">
             <input type="hidden" name="restaurant[id]" value="{{restaurant.id}}"/>
             <div class="form-group {{#if errors.name}}has-error error{{/if}}">
                 <label for="name" class="control-label">Name: </label>
                 <input type="text" id="name" name="restaurant[name]" class="form-control" value="{{restaurant.name}}"/>
                 {{#if errors.name}}<code>{{errors.name.[0]}}</code>{{/if}}
+            </div>
+            <div class="form-group {{#if errors.title_en}}has-error error{{/if}}">
+                <label for="title_en" class="control-label">Title: </label>
+                <input type="text" id="title_en" name="restaurant[title_en]" class="form-control" value="{{restaurant.title_en}}"/>
+                {{#if errors.name}}<code>{{errors.title_en.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.address}}has-error error{{/if}}">
                 <label for="address" class="control-label">Address: </label>
@@ -72,23 +77,29 @@
                 <input type="text" id="dress_code_fr" name="restaurant[dress_code_fr]" class="form-control" value="{{restaurant.dress_code_fr}}"/>
                 {{#if errors.dress_code_fr}}<code>{{errors.dress_code_fr.[0]}}</code>{{/if}}
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="restaurant[booking]" {{#if restaurant.booking}}checked{{/if}}> Booking
-                </label>
+            <div class="form-group">
+                <label for="go_for">Go For: </label>
+                <div id="go_for">
+                    <input type="text" id="go_for" name="goForArray" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group {{#if errors.booking_en}}has-error error{{/if}}">
+                <label for="booking_en" class="control-label">Booking: </label>
+                <input type="text" id="booking_en" name="restaurant[booking_en]" class="form-control" value="{{restaurant.booking_en}}"/>
+                {{#if errors.name}}<code>{{errors.booking_en.[0]}}</code>{{/if}}
             </div>
             <div class="radio">
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio1" value="1"> S
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio1" value="1">S &euro;(0-20)
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio2" value="2"> M
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio2" value="2">M &euro;(20-50)
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio3" value="3"> L
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio3" value="3">L &euro;(50-100)
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio4" value="4"> XL
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio4" value="4">XL &euro;(>100)
                 </label>
             </div>
 
@@ -145,7 +156,7 @@
         </form>
     </div>
 
-    <div class="col-lg-8" id="map-wrapper">
+    <div class="col-lg-7" id="map-wrapper">
         <input id="pac-input" class="controls" type="text"
                placeholder="Enter a location">
         <div id="type-selector" class="controls">
@@ -168,10 +179,17 @@
 <script type="text/javascript">
         window.$editTags = [];
         window.$editPlaces = [];
+        window.$editGoFor = [];
         {{#each restaurant.tags}}
             window.$editTags.push({'id': '{{id}}', 'name': '{{name}}'});
         {{/each}}
         {{#each restaurant.places}}
             window.$editPlaces.push({'id': '{{id}}', 'name': '{{name}}'});
         {{/each}}
+
+        try {
+            var goForString = '{{restaurant.go_for}}';
+            goForString = goForString.replace(' and ', ', ');
+            window.$editGoFor = goForString.split(', ');
+        } catch (error){}
 </script>

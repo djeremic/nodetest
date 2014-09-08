@@ -8,6 +8,12 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         },
+        title_en: { type: DataTypes.STRING,
+            validate: {
+                notNull: true,
+                notEmpty: true
+            }
+        },
         address: { type: DataTypes.STRING,
             validate: {
                 notNull: true,
@@ -56,8 +62,13 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         dress_code_fr: DataTypes.STRING,
-
-        booking: DataTypes.BOOLEAN,
+        go_for: { type: DataTypes.STRING,
+            validate: {
+                notNull: true,
+                notEmpty: true
+            }
+        },
+        booking_en: DataTypes.STRING,
         price_level: DataTypes.INTEGER,
         longitude: { type: DataTypes.DECIMAL,
             validate: {
