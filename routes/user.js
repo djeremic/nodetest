@@ -109,6 +109,7 @@ function validateRegister(user, res){
 
 exports.auth = function(req, res, next){
     if(req.header('token')){
+        var arePasswordsSame = req.param('confirmPassword', null) == user.password;
         db.User.find({
             where: {token : req.header('token')}
         }).success(function(user){
