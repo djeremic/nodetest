@@ -52,5 +52,5 @@ $( document ).ready(function() {
         ,data: ['Breakfast', 'Lunch', 'Dinner', 'Drink'],
         allowFreeEntries: false
     });
-    goForsetSelection(window.window.$editGoFor);
+    goFor.setValue(window.$editGoFor);
 });

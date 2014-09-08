@@ -62,6 +62,10 @@ exports.addPost = function(req, res) {
                     model.setPlaces(places);
                     model.setDescriptions(descriptions);
                     res.redirect('/restaurants/view/'+restaurant.id)
+                }).error(function (errors) {
+                    console.log(errors);
+                    res.render('restaurants/add', {errors: errors, addRestaurant: true});
+                    return;
                 })
             });
         }
