@@ -88,6 +88,7 @@ function isBlank(str) {
 
 function validateRegister(user, res){
     var errors = db.User.build(user).validate();
+    var arePasswordsSame = req.param('confirmPassword', null) == user.password;
 
     if(errors && errors.size > 0){
         if(isAPIRequests(req)){
@@ -109,7 +110,6 @@ function validateRegister(user, res){
 
 exports.auth = function(req, res, next){
     if(req.header('token')){
-        var arePasswordsSame = req.param('confirmPassword', null) == user.password;
         db.User.find({
             where: {token : req.header('token')}
         }).success(function(user){
