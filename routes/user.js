@@ -8,7 +8,7 @@ exports.create = function(req, res) {
     var arePasswordsSame = req.param('confirmPassword', null) == user.password;
     user.token = randToken.generate(32);
 
-    validateRegister(user, req);
+    validateRegister(user, req, res);
 
     user.password = passwordHash.generate(user.password);
 
@@ -86,7 +86,7 @@ function isBlank(str) {
     return (!str || /^\s*$/.test(str));
 }
 
-function validateRegister(user, res){
+function validateRegister(user, req, res){
     var errors = db.User.build(user).validate();
     var arePasswordsSame = req.param('confirmPassword', null) == user.password;
 
