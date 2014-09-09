@@ -20,19 +20,8 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        phone: { type: DataTypes.STRING,
-            validate: {
-                notNull: true,
-                notEmpty: true
-            }
-        },
-        website: { type: DataTypes.STRING,
-            validate: {
-                notNull: true,
-                notEmpty: true,
-                isUrl: true
-            }
-        },
+        phone: DataTypes.STRING,
+        website: DataTypes.STRING,
         longitude: { type: DataTypes.DECIMAL,
             validate: {
                 notNull: true,

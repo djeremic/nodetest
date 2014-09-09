@@ -49,7 +49,7 @@ $( document ).ready(function() {
 
     var goFor = $('#go_for').magicSuggest({
         name: 'goForArray'
-        ,data: ['Breakfast', 'Lunch', 'Dinner', 'Drink'],
+        ,data: ['Breakfast', 'Brunch', 'Lunch', 'Snack', 'Cocktails', 'Dinner', 'Late dinner', 'Special occasion'],
         allowFreeEntries: false
     });
     goFor.setValue(window.$editGoFor);

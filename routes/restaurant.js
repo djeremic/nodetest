@@ -8,23 +8,21 @@ exports.addPost = function(req, res) {
     var tags = [];
     var places = [];
     var descriptions = [];
-    console.log(req.param('goForArray', null))
     restaurant.go_for = buildGoForString(req.param('goForArray', null));
-    console.log(restaurant.go_for)
-
-    db.Restaurant.hasMany(db.Tag);
-    db.Tag.hasMany(db.Restaurant);
-
-    db.Restaurant.hasMany(db.Place);
-    db.Place.hasMany(db.Restaurant);
-
-    db.Restaurant.hasMany(db.Description);
 
     var errors = db.Restaurant.build(restaurant).validate();
 
     if (errors && errors.size > 0) {
         res.render('restaurants/add', {errors: errors, addRestaurant : true});
     } else {
+        db.Restaurant.hasMany(db.Tag);
+        db.Tag.hasMany(db.Restaurant);
+
+        db.Restaurant.hasMany(db.Place);
+        db.Place.hasMany(db.Restaurant);
+
+        db.Restaurant.hasMany(db.Description);
+
         if (tagIDs) {
             for (var i = 0; i < tagIDs.length; i++) {
                 tags.push(db.Tag.build({id: parseInt(tagIDs[i])}));

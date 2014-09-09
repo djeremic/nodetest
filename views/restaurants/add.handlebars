@@ -20,7 +20,7 @@
             <div class="form-group {{#if errors.address}}has-error error{{/if}}">
                 <label for="address" class="control-label">Address: </label>
                 <input type="text" id="address" name="restaurant[address]" class="form-control" value="{{restaurant.address}}"/>
-                {{#if errors.name}}<code>{{errors.address.[0]}}</code>{{/if}}
+                {{#if errors.address}}<code>{{errors.address.[0]}}</code>{{/if}}
             </div>
             <div class="form-group {{#if errors.phone}}has-error error{{/if}}">
                 <label for="phone" class="control-label">Phone: </label>
@@ -42,41 +42,41 @@
                 <input type="text" id="opening_hours_en" name="restaurant[opening_hours_en]" class="form-control" value="{{restaurant.opening_hours_en}}"/>
                 {{#if errors.opening_hours_en}}<code>{{errors.opening_hours_en.[0]}}</code>{{/if}}
             </div>
-            <div class="form-group {{#if errors.opening_hours_fr}}has-error error{{/if}}">
+            <!--<div class="form-group {{#if errors.opening_hours_fr}}has-error error{{/if}}">
                 <label for="opening_hours_fr" class="control-label">Opening Hours Fra: </label>
                 <input type="text" id="opening_hours_fr" name="restaurant[opening_hours_fr]" class="form-control"  value="{{restaurant.opening_hours_fr}}"/>
                 {{#if errors.opening_hours_fr}}<code>{{errors.opening_hours_fr.[0]}}</code>{{/if}}
-            </div>
+            </div>-->
             <div class="form-group {{#if errors.kind_of_food_en}}has-error error{{/if}}">
                 <label for="kind_of_food_en" class="control-label">Kind of Food Eng: </label>
                 <input type="text" id="kind_of_food_en" name="restaurant[kind_of_food_en]" class="form-control" value="{{restaurant.kind_of_food_en}}"/>
                 {{#if errors.kind_of_food_en}}<code>{{errors.kind_of_food_en.[0]}}</code>{{/if}}
             </div>
-            <div class="form-group {{#if errors.kind_of_food_fr}}has-error error{{/if}}">
+            <!--<div class="form-group {{#if errors.kind_of_food_fr}}has-error error{{/if}}">
                 <label for="kind_of_food_fr" class="control-label">Kind of Food Fra: </label>
                 <input type="text" id="kind_of_food_fr" name="restaurant[kind_of_food_fr]" class="form-control" value="{{restaurant.kind_of_food_fr}}"/>
                 {{#if errors.kind_of_food_fr}}<code>{{errors.kind_of_food_fr.[0]}}</code>{{/if}}
-            </div>
+            </div>-->
             <div class="form-group {{#if errors.feeling_en}}has-error error{{/if}}">
                 <label for="feeling_en" class="control-label">Feeling Eng: </label>
                 <input type="text" id="feeling_en" name="restaurant[feeling_en]" class="form-control" value="{{restaurant.feeling_en}}"/>
                 {{#if errors.feeling_en}}<code>{{errors.feeling_en.[0]}}</code>{{/if}}
             </div>
-            <div class="form-group {{#if errors.feeling_fr}}has-error error{{/if}}">
+            <!--<div class="form-group {{#if errors.feeling_fr}}has-error error{{/if}}">
                 <label for="feeling_fr" class="control-label">Feeling Fra: </label>
                 <input type="text" id="feeling_fr" name="restaurant[feeling_fr]" class="form-control" value="{{restaurant.feeling_fr}}"/>
                 {{#if errors.feeling_fr}}<code>{{errors.feeling_fr.[0]}}</code>{{/if}}
-            </div>
+            </div>-->
             <div class="form-group {{#if errors.dress_code_en}}has-error error{{/if}}">
                 <label for="dress_code_en" class="control-label">Dress Code Eng: </label>
                 <input type="text" id="dress_code_en" name="restaurant[dress_code_en]" class="form-control" value="{{restaurant.dress_code_en}}" />
                 {{#if errors.dress_code_en}}<code>{{errors.dress_code_en.[0]}}</code>{{/if}}
             </div>
-            <div class="form-group {{#if errors.dress_code_fr}}has-error error{{/if}}">
+            <!--<div class="form-group {{#if errors.dress_code_fr}}has-error error{{/if}}">
                 <label for="dress_code_fr" class="control-label">Dress Code Fra: </label>
                 <input type="text" id="dress_code_fr" name="restaurant[dress_code_fr]" class="form-control" value="{{restaurant.dress_code_fr}}"/>
                 {{#if errors.dress_code_fr}}<code>{{errors.dress_code_fr.[0]}}</code>{{/if}}
-            </div>
+            </div>-->
             <div class="form-group">
                 <label for="go_for">Go For: </label>
                 <div id="go_for">
@@ -86,7 +86,7 @@
             <div class="form-group {{#if errors.booking_en}}has-error error{{/if}}">
                 <label for="booking_en" class="control-label">Booking: </label>
                 <input type="text" id="booking_en" name="restaurant[booking_en]" class="form-control" value="{{restaurant.booking_en}}"/>
-                {{#if errors.name}}<code>{{errors.booking_en.[0]}}</code>{{/if}}
+                {{#if errors.booking}}<code>{{errors.booking_en.[0]}}</code>{{/if}}
             </div>
             <div class="radio">
                 <label class="radio-inline">
@@ -189,7 +189,9 @@
 
         try {
             var goForString = '{{restaurant.go_for}}';
-            goForString = goForString.replace(' and ', ', ');
-            window.$editGoFor = goForString.split(', ');
+            if(goForString != '') {
+                goForString = goForString.replace(' and ', ', ');
+                window.$editGoFor = goForString.split(', ');
+            }
         } catch (error){}
 </script>
