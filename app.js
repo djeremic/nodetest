@@ -37,7 +37,7 @@ var db = new sqlite3.Database(file);
 db.serialize(function() {
     if(!exists) {
         db.run("CREATE TABLE Restaurants(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(255) NOT NULL,address VARCHAR(255), " +
-            "phone VARCHAR(255),website VARCHAR(255), metro VARCHAR(255), opening_hours_en VARCHAR(255), opening_hours_fr VARCHAR(255), " +
+            "phone VARCHAR(255),website VARCHAR(255), metro VARCHAR(255), opening_hours_en TEXT, opening_hours_fr VARCHAR(255), " +
             "kind_of_food_en VARCHAR(255), kind_of_food_fr VARCHAR(255), feeling_en VARCHAR(255), feeling_fr VARCHAR(255)," +
             "dress_code_en VARCHAR(255), dress_code_fr VARCHAR(255), go_for VARCHAR(255)," +
             " booking_en VARCHAR(255), price_level INTEGER, title_en VARCHAR(255) NOT NULL," +

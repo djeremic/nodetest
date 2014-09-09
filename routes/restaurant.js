@@ -167,6 +167,6 @@ exports.find = function(req, res) {
     db.Restaurant.hasMany(db.Description);
 
     db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description]}).success(function(restaurant){
-        res.render('restaurants/view', { addRestaurant : true, restaurant : restaurant });
+        res.render('restaurants/view', {restaurant : restaurant });
     });
 }

@@ -4,7 +4,7 @@
 <h1>Add new restaurant</h1>
 
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-6">
         <form id="register" action="/restaurants/add" method="post" role="form">
             <input type="hidden" name="restaurant[id]" value="{{restaurant.id}}"/>
             <div class="form-group {{#if errors.name}}has-error error{{/if}}">
@@ -37,11 +37,14 @@
                 <input type="text" id="metro" name="restaurant[metro]" class="form-control" value="{{restaurant.metro}}"/>
                 {{#if errors.metro}}<code>{{errors.metro.[0]}}</code>{{/if}}
             </div>
-            <div class="form-group {{#if errors.opening_hours_en}}has-error error{{/if}}">
+            <div id="businessHoursContainer"></div>
+            <div class="clean">&nbsp;</div>
+            <input type="hidden" name="restaurant[opening_hours_en]" id="business-hours"/>
+            <!--<div class="form-group {{#if errors.opening_hours_en}}has-error error{{/if}}">
                 <label for="opening_hours_en" class="control-label">Opening Hours Eng: </label>
                 <input type="text" id="opening_hours_en" name="restaurant[opening_hours_en]" class="form-control" value="{{restaurant.opening_hours_en}}"/>
                 {{#if errors.opening_hours_en}}<code>{{errors.opening_hours_en.[0]}}</code>{{/if}}
-            </div>
+            </div>-->
             <!--<div class="form-group {{#if errors.opening_hours_fr}}has-error error{{/if}}">
                 <label for="opening_hours_fr" class="control-label">Opening Hours Fra: </label>
                 <input type="text" id="opening_hours_fr" name="restaurant[opening_hours_fr]" class="form-control"  value="{{restaurant.opening_hours_fr}}"/>
@@ -152,11 +155,11 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-default">Save</button>
+            <button class="btn btn-default" id="btn-submit">Save</button>
         </form>
     </div>
 
-    <div class="col-lg-7" id="map-wrapper">
+    <div class="col-lg-6" id="map-wrapper">
         <input id="pac-input" class="controls" type="text"
                placeholder="Enter a location">
         <div id="type-selector" class="controls">
