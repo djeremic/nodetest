@@ -2,12 +2,10 @@
  * Created by drago.jeremic on 8/28/14.
  */
 $( document ).ready(function() {
-    console.log(new Date())
     var ms = $('#magicsuggest').magicSuggest({
         name: 'tags'
         ,data: '/tags/find'
     });
-    console.log(window.$editTags)
     ms.setSelection(window.$editTags);
 
     var selection = ms.getSelection().slice();

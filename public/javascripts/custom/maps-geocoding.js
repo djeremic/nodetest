@@ -27,7 +27,7 @@ $(document).ready(function(){
             infowindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
-            console.log(place);
+            //console.log(place);
             if (!place.geometry) {
                 return;
             }

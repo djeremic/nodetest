@@ -4,7 +4,7 @@
 $(function(){
     var hoursWrapper = $('.hours-wrapper');
 
-    if(hoursWrapper != undefined){
+    if(hoursWrapper && hoursWrapper != undefined){
         var text = jQuery.parseJSON(hoursWrapper.text());
         hoursWrapper.empty();
         hoursWrapper.show();
@@ -35,7 +35,14 @@ $(function(){
             }
 
             if(text[i].isActive == true){
-                line += text[i].timeFrom + " - " + text[i].timeTill + '<br/>';
+                line += '(';
+                for(var j = 0; j < text[i].frames.length; j++) {
+                    line += text[i].frames[j].timeFrom + " - " + text[i].frames[j].timeTill;
+                    if(j < text[i].frames.length - 1){
+                        line += ', '
+                    }
+                }
+                line += ")</br/>"
             } else {
                 line += 'Closed<br/>';
             }

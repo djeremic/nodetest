@@ -10,11 +10,26 @@
  **/
 
 (function($) {
+    var frameTmpl = '<div class="operationTime"><input type="text" name="startTime" class="mini-time operationTimeFrom" value="00:00"/>' +
+        '<a href="#" class="remove-operation-time"> <span class="glyphicon glyphicon-minus"></span></a></div>' +
+        '</div>' +
+        '<div class="operationTime"><input type="text" name="endTime" class="mini-time operationTimeTill" value="00:00"/>' +
+        '<a href="#" class="add-operation-time"> <span class="glyphicon glyphicon-plus"></span></a>' +
+        '</div>'
     $.fn.businessHours = function(opts) {
         var defaults = {
             preInit: function() {
             },
             postInit: function() {
+                $('div.dayContainer').on("click",".add-operation-time", function(e){ //user click on remove text
+                    e.preventDefault();
+                    $(this).parents('div.dayContainer').first().append(frameTmpl);
+                })
+                $('div.dayContainer').on("click",".remove-operation-time", function(e){ //user click on remove text
+                    e.preventDefault();
+                    $(this).parents('div.dayContainer').find('div.operationTime').last().remove();
+                    $(this).parents('div.dayContainer').find('div.operationTime').last().remove();
+                })
             },
             checkedColorClass: "WorkingDayState",
             uncheckedColorClass: "RestDayState",
@@ -42,11 +57,13 @@
                 '<div class="weekday"></div>' +
                 '<div class="operationDayTimeContainer">' +
                 '<div class="operationTime"><input type="text" name="startTime" class="mini-time operationTimeFrom" value=""/></div>' +
-                '<div class="operationTime"><input type="text" name="endTime" class="mini-time operationTimeTill" value=""/></div>' +
+                '<div class="operationTime"><input type="text" name="endTime" class="mini-time operationTimeTill" value=""/>' +
+                '<a href="#" class="add-operation-time"> <span class="glyphicon glyphicon-plus"></span></a></div>' +
                 '</div></div>'
         };
 
         var container = $(this);
+
         var methods = {
             getValueOrDefault: function(val, defaultVal) {
                 return (jQuery.type(val) === "undefined" || val == null) ? defaultVal : val;
@@ -73,11 +90,21 @@
                         container.find(".operationState").each(function(num, item) {
                             var isWorkingDay = $(item).prop("checked");
                             var dayContainer = $(item).parents(".dayContainer");
+                            var startTimes = dayContainer.find("[name='startTime']");
+                            var endTimes = dayContainer.find("[name='endTime']");
+                            var frames = [];
+                            if(startTimes != undefined && startTimes.length > 0){
+                                for(var i = 0; i < startTimes.length; i++){
+                                    frames.push({
+                                        timeFrom: isWorkingDay ? $(startTimes[i]).val() : null,
+                                        timeTill: isWorkingDay ? $(endTimes[i]).val() : null
+                                    })
+                                }
+                            }
 
                             data.push({
                                 isActive: isWorkingDay,
-                                timeFrom: isWorkingDay ? dayContainer.find("[name='startTime']").val() : null,
-                                timeTill: isWorkingDay ? dayContainer.find("[name='endTime']").val() : null
+                                frames : frames
                             });
                         });
 
