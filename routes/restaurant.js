@@ -142,11 +142,12 @@ exports.removeFromFavourite = function(req, res){
 
 function buildGoForString(goForArray){
     var result = ''
+    console.log(goForArray)
     if(goForArray != undefined && goForArray.length > 0){
         for(var i  = 0; i < goForArray.length; i++){
             if(i == 0){
                 result += goForArray[i];
-            } else if(i < goForArray.length - 2){
+            } else if(i <= goForArray.length - 2){
                 result += ', ' + goForArray[i];
             } else if(i == goForArray.length - 1){
                 result += ' and ' + goForArray[i];

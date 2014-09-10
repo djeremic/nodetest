@@ -18,6 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         phone: DataTypes.STRING,
         website: DataTypes.STRING,
         metro: DataTypes.STRING,
+        opening_hours_frames: DataTypes.STRING,
         opening_hours_en: DataTypes.STRING,
         opening_hours_fr: DataTypes.STRING,
         kind_of_food_en: DataTypes.STRING,
@@ -29,6 +30,8 @@ module.exports = function(sequelize, DataTypes) {
         go_for: DataTypes.STRING,
         booking_en: DataTypes.STRING,
         price_level: DataTypes.INTEGER,
+        deleted: DataTypes.INTEGER,
+        closed: DataTypes.INTEGER,
         longitude: { type: DataTypes.DECIMAL,
             validate: {
                 notNull: true,

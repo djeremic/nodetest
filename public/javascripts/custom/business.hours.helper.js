@@ -6,7 +6,14 @@ $(function(){
 
     if(form && form != undefined) {
         var button = form.find('button#btn-submit');
-        var businessHoursManager = $("#businessHoursContainer").businessHours();
+        console.log(window.$operationTime);
+        if(window.$operationTime != undefined && window.$operationTime.length > 0) {
+            var businessHoursManager = $("#businessHoursContainer").businessHours({
+                operationTime: window.$operationTime
+            });
+        } else {
+            var businessHoursManager = $("#businessHoursContainer").businessHours();
+        }
         button.click(function (e) {
             e.preventDefault();
             $('#business-hours').val(JSON.stringify(businessHoursManager.serialize()));

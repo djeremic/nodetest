@@ -7,6 +7,8 @@
     <div class="col-lg-6">
         <form id="register" action="/restaurants/add" method="post" role="form">
             <input type="hidden" name="restaurant[id]" value="{{restaurant.id}}"/>
+            <input type="hidden" name="restaurant[deleted]" value="0"/>
+            <input type="hidden" name="restaurant[closed]" value="0"/>
             <div class="form-group {{#if errors.name}}has-error error{{/if}}">
                 <label for="name" class="control-label">Name: </label>
                 <input type="text" id="name" name="restaurant[name]" class="form-control" value="{{restaurant.name}}"/>
@@ -37,14 +39,16 @@
                 <input type="text" id="metro" name="restaurant[metro]" class="form-control" value="{{restaurant.metro}}"/>
                 {{#if errors.metro}}<code>{{errors.metro.[0]}}</code>{{/if}}
             </div>
-            <div id="businessHoursContainer"></div>
-            <div class="clean">&nbsp;</div>
-            <input type="hidden" name="restaurant[opening_hours_en]" id="business-hours"/>
-            <!--<div class="form-group {{#if errors.opening_hours_en}}has-error error{{/if}}">
-                <label for="opening_hours_en" class="control-label">Opening Hours Eng: </label>
+            <div class="form-group {{#if errors.opening_hours_en}}has-error error{{/if}}">
+                <label for="opening_hours_en" class="control-label">Opening Hours Eng <small style="color:#AAAAAA; font-weight:normal;">(Display to user)</small>: </label>
                 <input type="text" id="opening_hours_en" name="restaurant[opening_hours_en]" class="form-control" value="{{restaurant.opening_hours_en}}"/>
                 {{#if errors.opening_hours_en}}<code>{{errors.opening_hours_en.[0]}}</code>{{/if}}
-            </div>-->
+            </div>
+            <h5 style="font-weight:bold">Opening Hours Time Frames:</h5>
+            <div id="businessHoursContainer"></div>
+            <div class="clean">&nbsp;</div>
+            <input type="hidden" name="restaurant[opening_hours_frames]" id="business-hours"/>
+
             <!--<div class="form-group {{#if errors.opening_hours_fr}}has-error error{{/if}}">
                 <label for="opening_hours_fr" class="control-label">Opening Hours Fra: </label>
                 <input type="text" id="opening_hours_fr" name="restaurant[opening_hours_fr]" class="form-control"  value="{{restaurant.opening_hours_fr}}"/>
@@ -183,6 +187,10 @@
         window.$editTags = [];
         window.$editPlaces = [];
         window.$editGoFor = [];
+        window.$operationTime = [];
+        {{#if restaurant.opening_hours_frames}}
+            window.$operationTime = jQuery.parseJSON('{{{restaurant.opening_hours_frames}}}');
+        {{/if}}
         {{#each restaurant.tags}}
             window.$editTags.push({'id': '{{id}}', 'name': '{{name}}'});
         {{/each}}

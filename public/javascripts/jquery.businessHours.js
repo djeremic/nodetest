@@ -36,11 +36,11 @@
             colorBoxValContainerClass: "colorBoxContainer",
             weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             operationTime: [
-                {},
-                {},
-                {},
-                {},
-                {},
+                {isActive: true, frames: [{timeFrom:null, timeTill:null}]},
+                {isActive: true, frames: [{timeFrom:null, timeTill:null}]},
+                {isActive: true, frames: [{timeFrom:null, timeTill:null}]},
+                {isActive: true, frames: [{timeFrom:null, timeTill:null}]},
+                {isActive: true, frames: [{timeFrom:null, timeTill:null}]},
                 {isActive: false},
                 {isActive: false}
             ],
@@ -56,8 +56,8 @@
                 '<div data-original-title="" class="colorBox"><input type="checkbox" class="invisible operationState"/></div>' +
                 '<div class="weekday"></div>' +
                 '<div class="operationDayTimeContainer">' +
-                '<div class="operationTime"><input type="text" name="startTime" class="mini-time operationTimeFrom" value=""/></div>' +
-                '<div class="operationTime"><input type="text" name="endTime" class="mini-time operationTimeTill" value=""/>' +
+                '<div class="operationTime"><input type="text" name="startTime" class="mini-time operationTimeFrom" value="9:00"/></div>' +
+                '<div class="operationTime"><input type="text" name="endTime" class="mini-time operationTimeTill" value="18:00"/>' +
                 '<a href="#" class="add-operation-time"> <span class="glyphicon glyphicon-plus"></span></a></div>' +
                 '</div></div>'
         };
@@ -130,11 +130,25 @@
                     var isWorkingDay = $this.getValueOrDefault(day.isActive, options.defaultActive);
                     operationDayNode.find('.operationState').prop('checked', isWorkingDay);
 
-                    var timeFrom = $this.getValueOrDefault(day.timeFrom, options.defaultOperationTimeFrom);
-                    operationDayNode.find('[name="startTime"]').val(timeFrom);
+                    if(day.frames != undefined && day.frames[0] != undefined) {
+                        var timeFrom = $this.getValueOrDefault(day.frames[0].timeFrom, options.defaultOperationTimeFrom);
 
-                    var endTime = $this.getValueOrDefault(day.timeTill, options.defaultOperationTimeTill);
-                    operationDayNode.find('[name="endTime"]').val(endTime);
+                        operationDayNode.find('[name="startTime"]').val(timeFrom);
+                        var endTime = $this.getValueOrDefault(day.frames[0].timeTill, options.defaultOperationTimeTill);
+                        operationDayNode.find('[name="endTime"]').val(endTime);
+                    }
+
+                    if(day.frames != undefined && day.frames.length > 0) {
+                        for (var i = 1; i < day.frames.length; i++) {
+                            operationDayNode.first().append(frameTmpl);
+
+                            var timeFrom = $this.getValueOrDefault(day.frames[i].timeFrom, options.defaultOperationTimeFrom);
+
+                            operationDayNode.find('[name="startTime"]').last().val(timeFrom);
+                            var endTime = $this.getValueOrDefault(day.frames[i].timeTill, options.defaultOperationTimeTill);
+                            operationDayNode.find('[name="endTime"]').last().val(endTime);
+                        }
+                    }
                 });
 
                 container.find(".operationState").change(function() {
