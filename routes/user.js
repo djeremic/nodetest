@@ -78,8 +78,14 @@ exports.loginPost = function(req, res) {
                 res.render('users/login', {errors: errors});
             }
         }
+    }).error(function(err) {
+        var errors = {general: new Array("User not found")};
+        if(isAPIRequests(req)){
+            res.json({errors: errors});
+        } else {
+            res.render('users/login', {errors: errors});
+        }
     })
-
 }
 
 function isBlank(str) {

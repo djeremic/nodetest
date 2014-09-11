@@ -96,7 +96,10 @@ exports.index = function(req, res){
         res.render('restaurants/index', {
             title: 'Express',
             restaurants: restaurants
-        })
+        }).error(function (errors) {
+            console.log(errors);
+            res.render('restaurants/index', {errors: errors});
+        });
     })
 }
 
@@ -110,7 +113,10 @@ exports.usersRestaurants = function(req, res){
         res.render('restaurants/my', {
             title: 'My List',
             restaurants: restaurants
-        })
+        }).error(function (errors) {
+            console.log(errors);
+            res.render('restaurants/my', {errors: errors});
+        });
     })
 }
 
@@ -123,7 +129,10 @@ exports.addToFavourite = function(req, res){
 
     usr.addRestaurant(restaurant).success(function() {
         res.json();
-    })
+    }).error(function (errors) {
+        console.log(errors);
+        res.render('/', {errors: errors, addRestaurant: true});
+    });
 }
 
 exports.removeFromFavourite = function(req, res){
@@ -169,5 +178,8 @@ exports.find = function(req, res) {
 
     db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description]}).success(function(restaurant){
         res.render('restaurants/view', {restaurant : restaurant });
+    }).error(function (errors) {
+        console.log(errors);
+        res.render('/', {errors: errors, addRestaurant: true});
     });
 }
