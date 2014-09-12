@@ -93,6 +93,7 @@ app.get('/places/add', places.add);
 app.post('/places/add', places.addPost);
 app.post('/places/find', places.find);
 app.post('/descriptions/add', descriptions.addPost);
+app.get('/descriptions/find/:id', descriptions.find);
 /// catch 404 and forward to error handler
 
 app.use(function(req, res, next) {

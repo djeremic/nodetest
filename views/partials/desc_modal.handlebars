@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 <form id="save-desc" action="/descriptions/add" method="post" role="form">
+                    <input type="hidden" name="desc[id]" id="desc-id">
                     <div class="form-group">
                         <label for="title" class="control-label">Title: </label>
                         <input type="text" id="title" name="desc[title]" class="form-control" placeholder="e.g Know, Eat, Drink.."/>

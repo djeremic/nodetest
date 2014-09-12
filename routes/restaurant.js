@@ -54,7 +54,6 @@ exports.addPost = function(req, res) {
             })
         } else {
             db.Restaurant.find(restaurant.id).success(function(model){
-                console.log(restaurant)
                 model.updateAttributes(restaurant).success(function() {
                     model.setTags(tags);
                     model.setPlaces(places);
@@ -65,6 +64,10 @@ exports.addPost = function(req, res) {
                     res.render('restaurants/add', {errors: errors, addRestaurant: true});
                     return;
                 })
+            }).error(function (errors) {
+                console.log(errors);
+                res.render('restaurants/add', {errors: errors, addRestaurant: true});
+                return;
             });
         }
     }
@@ -84,7 +87,7 @@ exports.edit = function(req, res) {
 
     db.Restaurant.hasMany(db.Description);
 
-    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description]}).success(function(restaurant){
+    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
         res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'}, restaurant : restaurant });
     }).error(function(){
         res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'} });
@@ -151,7 +154,6 @@ exports.removeFromFavourite = function(req, res){
 
 function buildGoForString(goForArray){
     var result = ''
-    console.log(goForArray)
     if(goForArray != undefined && goForArray.length > 0){
         for(var i  = 0; i < goForArray.length; i++){
             if(i == 0){
@@ -176,7 +178,7 @@ exports.find = function(req, res) {
 
     db.Restaurant.hasMany(db.Description);
 
-    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description]}).success(function(restaurant){
+    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
         res.render('restaurants/view', {restaurant : restaurant });
     }).error(function (errors) {
         console.log(errors);

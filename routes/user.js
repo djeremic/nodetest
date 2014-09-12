@@ -122,16 +122,13 @@ exports.auth = function(req, res, next){
            if(user != null){
                 next();
            } else {
-               res.statusCode('401')
-               res.json({errors : 'Unauthorized'});
+               res.status('401').json({errors : 'Unauthorized'});
            }
         }).error(function(){
-            res.statusCode('401')
-            res.json({errors : 'Unauthorized'});
+            res.status('401').json({errors : 'Unauthorized'});
         });
     } else {
-        res.statusCode('401')
-        res.json({errors : 'Unauthorized'});
+        res.status('401').json({errors : 'Unauthorized'});
     }
 
 }

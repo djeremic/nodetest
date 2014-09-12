@@ -110,13 +110,13 @@
                 </label>
             </div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="desc-wr">
                 <div class="panel-heading">Descriptions</div>
                 <div class="panel-body">
                     {{#each restaurant.descriptions}}
                         <div class="alert alert-success alert-dismissible row" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <div class="row"><span class="col-lg-2">{{title}}</span><span class="col-lg-9 ellipsis">{{desc_en}}</span></div>
+                            <div class="row"><a href="#" class="edit-desc" data-id="{{id}}"><span class="col-lg-2">{{title}}</span><span class="col-lg-9 ellipsis">{{desc_en}}</span></a></div>
                             <input type="hidden" name="descriptions[]" value="{{id}}"/>
                          </div>
                     {{/each}}
