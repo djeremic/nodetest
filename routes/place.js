@@ -13,13 +13,29 @@ exports.addPost = function(req, res) {
         return;
     }
 
-    db.Place.create(placeReq).success(function(place) {
-        res.redirect('/places')
-    }).error(function(errors) {
-        console.log(errors);
-        res.render('places/add', {errors: errors, addRestaurant : true});
-        return;
-    })
+    if(placeReq.id == null || placeReq.id == '') {
+        db.Place.create(placeReq).success(function (place) {
+            res.redirect('/places')
+        }).error(function (errors) {
+            console.log(errors);
+            res.render('places/add', {errors: errors, addRestaurant: true});
+            return;
+        })
+    } else {
+        db.Place.find(placeReq.id).success(function(model){
+            model.updateAttributes(placeReq).success(function() {
+                res.redirect('/places');
+            }).error(function (errors) {
+                console.log(errors);
+                res.render('places/add', {errors: errors, addRestaurant: true});
+                return;
+            })
+        }).error(function (errors) {
+            console.log(errors);
+            res.render('places/add', {errors: errors, addRestaurant: true});
+            return;
+        });
+    }
 }
 
 exports.add = function(req, res) {
@@ -32,7 +48,10 @@ exports.index = function(req, res){
             title: 'Places',
             places: places
         })
-    })
+    }).error(function(error){
+        console.log(error);
+        res.render('places/index');
+    });
 }
 
 exports.find = function(req, res){
@@ -48,5 +67,15 @@ exports.find = function(req, res){
     }).error(function(errors){
         res.renderJson({errors: errors});
     })
+}
+
+exports.edit = function(req, res) {
+    var id = req.params.id;
+
+    db.Place.find({where: {id: id}}).success(function(place){
+        res.render('places/add', { addRestaurant : true, place : place });
+    }).error(function(){
+        res.render('places/add', { addRestaurant : true});
+    });
 }
 

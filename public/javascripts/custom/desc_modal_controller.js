@@ -34,7 +34,7 @@ $(function(){
 
     var success = function(data, textStatus, jqXHR){
         form.find('input').val('');
-        form.find('textarea').val('');
+        form.find('textarea').jqteVal('');
         var dataId = + data.description.id;
         var editMode = false;
         $('#desc-wr a.edit-desc').each(function( index ){

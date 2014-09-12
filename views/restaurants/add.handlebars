@@ -55,7 +55,7 @@
                 {{#if errors.opening_hours_fr}}<code>{{errors.opening_hours_fr.[0]}}</code>{{/if}}
             </div>-->
             <div class="form-group {{#if errors.kind_of_food_en}}has-error error{{/if}}">
-                <label for="kind_of_food_en" class="control-label">Kind of Food Eng: </label>
+                <label for="kind_of_food_en" class="control-label">Cuisine Eng: </label>
                 <input type="text" id="kind_of_food_en" name="restaurant[kind_of_food_en]" class="form-control" value="{{restaurant.kind_of_food_en}}"/>
                 {{#if errors.kind_of_food_en}}<code>{{errors.kind_of_food_en.[0]}}</code>{{/if}}
             </div>
@@ -97,16 +97,16 @@
             </div>
             <div class="radio">
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio1" value="1">S &euro;(0-20)
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio1" value="1" {{#isSame restaurant.price_level 1}}checked{{/isSame}}>S &euro;(0-20)
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio2" value="2">M &euro;(20-50)
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio2" value="2" {{#isSame restaurant.price_level 2}}checked{{/isSame}}>M &euro;(20-50)
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio3" value="3">L &euro;(50-100)
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio3" value="3" {{#isSame restaurant.price_level 3}}checked{{/isSame}}>L &euro;(50-100)
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="restaurant[price_level]" id="inlineRadio4" value="4">XL &euro;(>100)
+                    <input type="radio" name="restaurant[price_level]" id="inlineRadio4" value="4" {{#isSame restaurant.price_level 4}} checked{{/isSame}}>XL &euro;(>100)
                 </label>
             </div>
 
@@ -116,7 +116,7 @@
                     {{#each restaurant.descriptions}}
                         <div class="alert alert-success alert-dismissible row" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <div class="row"><a href="#" class="edit-desc" data-id="{{id}}"><span class="col-lg-2">{{title}}</span><span class="col-lg-9 ellipsis">{{desc_en}}</span></a></div>
+                            <div class="row"><a href="#" class="edit-desc" data-id="{{id}}"><span class="col-lg-2">{{title}}</span><span class="col-lg-9 ellipsis">{{{desc_en}}}</span></a></div>
                             <input type="hidden" name="descriptions[]" value="{{id}}"/>
                          </div>
                     {{/each}}

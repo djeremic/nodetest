@@ -9,7 +9,7 @@
         <p><strong>Metro: </strong>{{restaurant.metro}}</p>
         <p><strong>Opening Hours: </strong>{{restaurant.opening_hours_en}}</p>
         <p><strong>Opening Hours Time Slots: </strong><span class="hours-wrapper">{{restaurant.opening_hours_frames}}</span></p>
-        <p><strong>Kind of Food: </strong>{{restaurant.kind_of_food_en}}</p>
+        <p><strong>Cuisine: </strong>{{restaurant.kind_of_food_en}}</p>
         <p><strong>Feeling: </strong>{{restaurant.feeling_en}}</p>
         <p><strong>Go For: </strong>{{restaurant.go_for}}</p>
         <p><strong>Booking: </strong>{{restaurant.booking_en}}</p>
@@ -20,7 +20,7 @@
         {{/each}}
         <h3>Places: </h3>
         {{#each restaurant.places}}
-            <p><strong>{{name}}: </strong>{{address}}</p>
+            <p>{{type}} - <strong>{{name}}: </strong>{{address}}</p>
         {{/each}}
 
     </div>

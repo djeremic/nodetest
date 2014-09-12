@@ -1,14 +1,13 @@
 <h1>List of restaurants</h1>
 
+<a href="/restaurants/add" class="btn btn-default">add new restaurant</a><br/>
 <table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Address</th>
-{{#if session.user}}
             <th></th>
             <th></th>
-{{/if}}
         </tr>
     </thead>
     <tbody>
@@ -16,18 +15,16 @@
             <tr>
                 <td>{{name}}</td>
                 <td>{{address}}</td>
-                {{#if ../session.user}}
+
                     <td>
                         <a href="/restaurants/edit/{{id}}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
                     </td>
                     <td>
                          <a href="#" data-id="{{id}}" class="add-restaurant"> <span class="glyphicon glyphicon-plus"></span> Add to my favourites</a>
                     </td>
-                {{/if}}
+
             </tr>
         {{/each}}
     </tbody>
 </table>
-{{#if session.user}}
-    <a href="/restaurants/add" class="btn btn-default">add new restaurant</a><br/>
-{{/if}}
+<a href="/restaurants/add" class="btn btn-default">add new restaurant</a><br/>

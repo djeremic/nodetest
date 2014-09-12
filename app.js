@@ -23,11 +23,15 @@ var fs = require("fs");
 var file = "public/pariseats.db";
 var exists = fs.existsSync(file);
 
-var app = express();
+var app = express(),
+    hbs;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    helpers: require("./public/javascripts/helpers.js").helpers,
+}));
 app.set('view engine', 'handlebars');
 
 var sqlite3 = require("sqlite3").verbose();
@@ -92,6 +96,7 @@ app.get('/places', places.index);
 app.get('/places/add', places.add);
 app.post('/places/add', places.addPost);
 app.post('/places/find', places.find);
+app.get('/places/edit/:id', places.edit);
 app.post('/descriptions/add', descriptions.addPost);
 app.get('/descriptions/find/:id', descriptions.find);
 /// catch 404 and forward to error handler

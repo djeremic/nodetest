@@ -99,11 +99,11 @@ exports.index = function(req, res){
         res.render('restaurants/index', {
             title: 'Express',
             restaurants: restaurants
-        }).error(function (errors) {
-            console.log(errors);
-            res.render('restaurants/index', {errors: errors});
-        });
-    })
+        })
+    }).error(function (errors) {
+        console.log(errors);
+        res.render('restaurants/index', {errors: errors});
+    });
 }
 
 exports.usersRestaurants = function(req, res){
@@ -116,11 +116,11 @@ exports.usersRestaurants = function(req, res){
         res.render('restaurants/my', {
             title: 'My List',
             restaurants: restaurants
-        }).error(function (errors) {
-            console.log(errors);
-            res.render('restaurants/my', {errors: errors});
-        });
-    })
+        })
+    }).error(function (errors) {
+        console.log(errors);
+        res.render('restaurants/my', {errors: errors});
+    });
 }
 
 exports.addToFavourite = function(req, res){
