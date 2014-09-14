@@ -16,13 +16,15 @@
                 <td>{{name}}</td>
                 <td>{{address}}</td>
 
-                    <td>
-                        <a href="/restaurants/edit/{{id}}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
-                    </td>
-                    <td>
-                         <a href="#" data-id="{{id}}" class="add-restaurant"> <span class="glyphicon glyphicon-plus"></span> Add to my favourites</a>
-                    </td>
-
+                <td>
+                    <a href="/restaurants/edit/{{id}}"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
+                </td>
+                <!--<td>
+                     <a href="#" data-id="{{id}}" class="add-restaurant"> <span class="glyphicon glyphicon-plus"></span> Add to my favourites</a>
+                </td>-->
+                <td>
+                    <a href="#" data-id="{{id}}" data-url="/restaurants/delete" class="delete-link"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+                </td>
             </tr>
         {{/each}}
     </tbody>

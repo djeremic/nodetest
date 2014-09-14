@@ -30,7 +30,7 @@ var app = express(),
 app.set('views', path.join(__dirname, 'views'))
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
-    helpers: require("./public/javascripts/helpers.js").helpers,
+    helpers: require("./public/javascripts/helpers.js").helpers
 }));
 app.set('view engine', 'handlebars');
 
@@ -87,6 +87,7 @@ app.get('/restaurants/add', restaurants.add);
 app.get('/restaurants/edit/:id', restaurants.edit);
 app.get('/restaurants/view/:id', restaurants.find);
 app.post('/restaurants/add', restaurants.addPost);
+app.delete('/restaurants/delete', restaurants.delete);
 app.post('/restaurants/favourites/add', restaurants.addToFavourite);
 app.delete('/restaurants/favourites/remove', restaurants.removeFromFavourite);
 app.get('/tags', tags.index);

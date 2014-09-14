@@ -87,7 +87,7 @@ exports.edit = function(req, res) {
 
     db.Restaurant.hasMany(db.Description);
 
-    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
+    db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
         res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'}, restaurant : restaurant });
     }).error(function(){
         res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'} });
@@ -95,7 +95,7 @@ exports.edit = function(req, res) {
 }
 
 exports.index = function(req, res){
-    db.Restaurant.findAll().success(function(restaurants) {
+    db.Restaurant.findAll({where: {deleted: 0}}).success(function(restaurants) {
         res.render('restaurants/index', {
             title: 'Express',
             restaurants: restaurants
@@ -178,10 +178,26 @@ exports.find = function(req, res) {
 
     db.Restaurant.hasMany(db.Description);
 
-    db.Restaurant.find({where: {id: id},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
+    db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
         res.render('restaurants/view', {restaurant : restaurant });
     }).error(function (errors) {
         console.log(errors);
         res.render('/', {errors: errors, addRestaurant: true});
+    });
+}
+
+exports.delete = function(req, res) {
+    var id = req.param('id', null);
+
+    db.Restaurant.find({where: {id: id, deleted : 0}}).success(function(restaurant){
+        restaurant.updateAttributes({deleted: 1}).success(function(){
+            res.json();
+        }).error(function (errors) {
+            console.log(errors);
+            res.json({errors: errors});
+        });
+    }).error(function (errors) {
+        console.log(errors);
+        res.json({errors: errors});
     });
 }

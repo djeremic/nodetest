@@ -4,7 +4,7 @@
 $(function(){
     var hoursWrapper = $('.hours-wrapper');
 
-    if(hoursWrapper && hoursWrapper != undefined){
+    if(hoursWrapper && hoursWrapper != undefined && hoursWrapper.text() != ''){
         var text = jQuery.parseJSON(hoursWrapper.text());
         hoursWrapper.empty();
         hoursWrapper.show();
