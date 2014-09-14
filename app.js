@@ -30,7 +30,8 @@ var app = express(),
 app.set('views', path.join(__dirname, 'views'))
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
-    helpers: require("./public/javascripts/helpers.js").helpers
+    helpers: require("./public/javascripts/helpers.js").helpers,
+    partialsDir: "views/partials/"
 }));
 app.set('view engine', 'handlebars');
 
@@ -74,6 +75,19 @@ app.use(function(req,res,next){
     next();
 });
 
+var passport = require('passport')
+    ,FacebookStrategy = require('passport-facebook').Strategy;
+
+passport.use(new FacebookStrategy({
+        clientID: 1506984952881668,
+        clientSecret: '51d5a888fbcffc436288d3f33b09529c',
+        callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        users.facebookLogin(accessToken, refreshToken, profile, done);
+    }
+));
+
 app.get('/', routes.index)
 app.post('/users/register', users.create)
 app.get('/users/register', users.register)
@@ -100,6 +114,10 @@ app.post('/places/find', places.find);
 app.get('/places/edit/:id', places.edit);
 app.post('/descriptions/add', descriptions.addPost);
 app.get('/descriptions/find/:id', descriptions.find);
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { successRedirect: '/',
+        failureRedirect: '/login' }));
 /// catch 404 and forward to error handler
 
 app.use(function(req, res, next) {

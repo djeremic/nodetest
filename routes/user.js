@@ -62,10 +62,10 @@ exports.loginPost = function(req, res) {
                     res.render('users/login', {errors: errors});
                 }
             } else {
+                req.session.user = user;
                 if(isAPIRequests(req)){
                     res.json({user : user});
                 } else {
-                    req.session.user = user;
                     res.redirect('/');
                 }
             }
@@ -130,5 +130,8 @@ exports.auth = function(req, res, next){
     } else {
         res.status('401').json({errors : 'Unauthorized'});
     }
+}
 
+exports.facebookLogin = function(accessToken, refreshToken, profile, done){
+    console.log(profile);
 }
