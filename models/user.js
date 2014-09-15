@@ -32,7 +32,8 @@ module.exports = function(sequelize, Sequelize) {
                 notNull : true,
                 notEmpty : true
             }
-        }
+        },
+        facebook_id: Sequelize.STRING
     }, {
         associate: function (models) {
             User.hasMany(models.Restaurants);
