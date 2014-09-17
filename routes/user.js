@@ -62,10 +62,10 @@ exports.loginPost = function(req, res) {
                     res.render('users/login', {errors: errors});
                 }
             } else {
+                req.session.user = user;
                 if(isAPIRequests(req)){
                     res.json({user : user});
                 } else {
-                    req.session.user = user;
                     res.redirect('/');
                 }
             }
@@ -130,5 +130,43 @@ exports.auth = function(req, res, next){
     } else {
         res.status('401').json({errors : 'Unauthorized'});
     }
+}
 
+exports.facebookLogin = function(accessToken, refreshToken, profile, done, req){
+    console.log(profile);
+    var token = randToken.generate(32);
+    var user = {
+        token : token,
+        facebook_id: profile.id,
+        first_name: profile.name.givenName,
+        last_name: profile.name.familyName,
+        email: profile.email,
+        password: passwordHash.generate(token),
+        role: 'user'
+    }
+
+    db.User.find({
+        where: {facebook_id: user.facebook_id}
+    }).success(function(userModel){
+        console.log(userModel);
+        if(userModel == null){
+            db.User.create(user).success(function(userModel2){
+                req.session.user = userModel2;
+                done(null, userModel2);
+            }).error(function(err){
+                console.log(err)
+                done(null, null)
+            });
+        } else {
+            req.session.user = userModel;
+            done(null, userModel);
+        }
+    }).error(function(err){
+        done(null, null)
+    });
+
+}
+
+exports.fbSuccess = function(req, res, next){
+    res.render('users/fbSuccess');
 }

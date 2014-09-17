@@ -1,0 +1,28 @@
+<div class="modal fade" id="login-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+                <form id="register" action="/api/users/login" role="form">
+                    <div class="form-group {{#if errors.email}}has-error error{{/if}}">
+                        <label class="control-label" for="email">Email: </label>
+                        <input type="email" class="form-control" id="email" name="user[email]" />
+                        {{#if errors.email}}<span class="cos">{{errors.email.[0]}}</span>{{/if}}
+                    </div>
+                    <div class="form-group {{#if errors.password}}has-error error{{/if}}">
+                        <label class="control-label" for="password">Password: </label>
+                        <input type="password" class="form-control" id="password" name="user[password]" />
+                        {{#if errors.password}}<span class="cos">{{errors.password.[0]}}</span>{{/if}}
+                    </div>
+                    <a href="/auth/facebook" target="_blank" onclick="return windowpop(this.href, 545, 433)">Login with Facebook</a>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit-modal">Login</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
