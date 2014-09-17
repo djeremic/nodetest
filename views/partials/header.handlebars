@@ -7,14 +7,33 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Paris Eats</a>
+            <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Paris Eats"></a>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="/restaurants">Restaurants</a></li>
-                <li><a href="/places">Places</a></li>
+            <ul class="small hidden-sm hidden-print">
+                <li>
+                    <a href="" class="fb"></a>
+                    <a href="" class="twitter"></a>
+                    <a href="" class="gplus"></a>
+                    <a href="" class="t"></a>
+                    <a href="" class="photo"></a>
+                    <a href="" class="email"></a>
+                </li>
+                {{#if session.user}}
+                    <li><a href="/users/logout">logout</a></li>
+                {{else}}
+                    <li><a href="#" class="login-modal">login</a> or <a href="/users/register">register</a></li>
+                {{/if}}
+                <li><a href="#">about us</a></li>
+                <li><a href="#">press</a></li>
+            </ul>
+            <ul class="nav navbar-nav big">
+                <li><a href="#">CREATE YOUR MAP</a></li>
+                <li><a href="#">COUP DE COEUR</a></li>
+                <li><a href="#">BEST-OFF</a></li>
+                <li class="active"><a href="/">TASTE MAKERS</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
+<div style="clear:both;"></div>

@@ -4,28 +4,34 @@
         <h4><i>MARIE ALINE</i></h4>
         <p>PARIS EATS EDITOR IN CHIEF IDENTIFIED HER FAVOURITE LOCATIONS</p>
     </div>
-    <a href="#" class="home-link-1" data-toggle="popover" data-content="<h4>Blé Sucré</h4> <p>7 Rue Antoine Vollon, 75012 Paris</p> <p>01 43 40 77 73</p>"></a>
-    <a href="#" class="home-link-2" data-toggle="popover"></a>
-    <a href="#" class="home-link-3"></a>
-    <a href="#" class="home-link-4"></a>
-    <a href="#" class="home-link-5"></a>
-    <a href="#" class="home-link-6"></a>
-    <a href="#" class="home-link-7"></a>
-    <a href="#" class="home-link-8"></a>
-    <a href="#" class="home-link-9"></a>
-    <a href="#" class="home-link-10"></a>
-    <a href="#" class="home-link-11"></a>
-    <a href="#" class="home-link-12"></a>
-    <a href="#" class="home-link-13"></a>
-    <a href="#" class="home-link-14"></a>
-    <a href="#" class="home-link-15"></a>
-    <a href="#" class="home-link-16"></a>
-    <a href="#" class="home-link-17"></a>
-    <a href="#" class="home-link-18"></a>
-    <a href="#" class="home-link-19"></a>
-    <a href="#" class="home-link-20"></a>
-    <a href="#" class="home-link-21"></a>
-    <a href="#" class="home-link-22"></a>
-    <a href="#" class="home-link-23"></a>
+    <a href="#" class="home-link-1" data-toggle="popover" data-content="<h4>Blé Sucré</h4> <p>7 Rue Antoine Vollon, 75012 Paris</p> <p>01 43 40 77 73</p>
+        {{#if session.user}}
+            <p><a class='btn btn-info add-restaurant' data-id='1'>ADD TO MY LIST</a></p>
+        {{else}}
+            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+        {{/if}}
+    "></a>
+    <a href="#" class="home-link-2" data-toggle="popover" data-content="<h4>Beillevaire</h4> <p>1 rue Marsoulan 75012 Paris</p> <p>01 43 43 69 21</p>"></a>
+    <a href="#" class="home-link-3" data-toggle="popover" data-content="<h4>Boulangerie Tembely</h4> <p>33 Rue Myrha, 75018 Paris</p> <p>09 54 43 29 58</p>"></a>
+    <a href="#" class="home-link-4" data-toggle="popover" data-content="<h4>Le Petit Bleu</h4> <p>4 rue Auguste Vacquerie, 75016 Paris</p> <p>01 42 59 27 01</p>"></a>
+    <a href="#" class="home-link-5" data-toggle="popover" data-content="<h4>Pages</h4> <p>7 Rue Antoine Vollon, 75012 Paris</p> <p>01 47 20 74 94</p>"></a>
+    <a href="#" class="home-link-6" data-toggle="popover" data-content="<h4>Yam’tcha</h4> <p>4 rue Sauval, 75001 Paris</p> <p>01 40 26 08 07</p>"></a>
+    <a href="#" class="home-link-7" data-toggle="popover" data-content="<h4>La Boucherie des Provinces</h4> <p>20 Rue Aligre, 75012 Paris</p> <p>01 43 43 91 64</p>"></a>
+    <a href="#" class="home-link-8" data-toggle="popover" data-content="<h4>Lao Douang Chan</h4> <p>161, avenue de Choisy 75013 Paris</p> <p>01 44 24 80 80</p>"></a>
+    <a href="#" class="home-link-9" data-toggle="popover" data-content="<h4>Roseval</h4> <p>1 Rue d'Eupatoria, 75020 Paris</p> <p>09 53 56 24 14</p>"></a>
+    <a href="#" class="home-link-10" data-toggle="popover" data-content="<h4>Abri</h4> <p>92 Rue du Faubourg Poissonnière, 75010 Paris</p> <p>01 83 97 00 00</p>"></a>
+    <a href="#" class="home-link-11" data-toggle="popover" data-content="<h4>ChezAline</h4> <p>85 Rue de la Roquette, 75011 Paris</p> <p>75003 Paris</p>"></a>
+    <a href="#" class="home-link-12" data-toggle="popover" data-content="<h4>Mary Celeste</h4> <p>1 rue Commines</p> <p>01 43 40 77 73</p>"></a>
+    <a href="#" class="home-link-13" data-toggle="popover" data-content="<h4>L’épicerie des Saints-Pères</h4> <p>23 Rue des Saints-Pères, 75006 Paris</p> <p>01 49 27 97 49</p>"></a>
+    <a href="#" class="home-link-14" data-toggle="popover" data-content="<h4>Délices d’Orient</h4> <p>46 Avenue Emile Zola, 75015 Paris</p> <p>01 45 77 66 81</p>"></a>
+    <a href="#" class="home-link-15" data-toggle="popover" data-content="<h4>Chipotle</h4> <p>Centre Commercial Beaugrenelle 1 Rue Linois, 75015 Paris</p> <p>01 45 78 17 49</p>"></a>
+    <a href="#" class="home-link-16" data-toggle="popover" data-content="<h4>Parisian Pub</h4> <p>7 Rue Linois, 75015 Paris</p> <p>01 45 77 91 40</p>"></a>
+    <a href="#" class="home-link-17" data-toggle="popover" data-content="<h4>Marché de la rue Gros</h4> <p>37 rue Gros 75016 Paris</p> <p></p>"></a>
+    <a href="#" class="home-link-18" data-toggle="popover" data-content="<h4>Fromages et ramages</h4> <p>22 Rue Ramey, 75018 Paris</p> <p>01 42 23 42 59</p>"></a>
+    <a href="#" class="home-link-19" data-toggle="popover" data-content="<h4>Coretta</h4> <p>151 bis Rue Cardinet, 75017 Paris</p> <p>01 42 26 55 55</p>"></a>
+    <a href="#" class="home-link-20" data-toggle="popover" data-content="<h4>Aki</h4> <p>11 Rue Sainte-Anne, 75001 Paris</p> <p>01 42 97 54 27</p>"></a>
+    <a href="#" class="home-link-21" data-toggle="popover" data-content="<h4>Helmut New Cake</h4> <p>28 Rue Vignon, 75009 Paris</p> <p>09 81 31 28 31</p>"></a>
+    <a href="#" class="home-link-22" data-toggle="popover" data-content="<h4>La Pizzeria di Rebellato</h4> <p>138 rue de la Pompe</p> <p>01 44 05 08 08</p>"></a>
+    <a href="#" class="home-link-23" data-toggle="popover" data-content="<h4>L’escale</h4> <p>1, rue des Deux Ponts 75004 Paris</p> <p>01 43 54 94 23</p>"></a>
 </div>
 

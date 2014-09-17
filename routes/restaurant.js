@@ -42,6 +42,7 @@ exports.addPost = function(req, res) {
         }
 
         if(restaurant.id == null || restaurant.id == '') {
+            console.log(restaurant);
             db.Restaurant.create(restaurant).success(function (restaurant) {
                 if (tags.length > 0) restaurant.setTags(tags);
                 if (places.length > 0) restaurant.setPlaces(places);
@@ -115,7 +116,8 @@ exports.usersRestaurants = function(req, res){
     usr.getRestaurants().success(function(restaurants) {
         res.render('restaurants/my', {
             title: 'My List',
-            restaurants: restaurants
+            restaurants: restaurants,
+            layout: 'friendly'
         })
     }).error(function (errors) {
         console.log(errors);
@@ -131,7 +133,7 @@ exports.addToFavourite = function(req, res){
     var restaurant = db.Restaurant.build({id : req.param('id', null)});
 
     usr.addRestaurant(restaurant).success(function() {
-        res.json();
+        res.json({});
     }).error(function (errors) {
         console.log(errors);
         res.render('/', {errors: errors, addRestaurant: true});

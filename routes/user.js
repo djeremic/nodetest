@@ -45,7 +45,7 @@ exports.login = function(req, res) {
 
 exports.logout = function(req, res) {
     req.session.user = null;
-    res.render('users/login');
+    res.redirect('/');
 }
 
 exports.loginPost = function(req, res) {
@@ -140,7 +140,7 @@ exports.facebookLogin = function(accessToken, refreshToken, profile, done, req){
         facebook_id: profile.id,
         first_name: profile.name.givenName,
         last_name: profile.name.familyName,
-        email: profile.email,
+        email: profile.emails[0].value,
         password: passwordHash.generate(token),
         role: 'user'
     }

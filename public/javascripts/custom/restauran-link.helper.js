@@ -8,4 +8,7 @@ $(function(){
     $('.img-wrapper a').popover({placement : 'top', template: template, html: true});
     $("[data-toggle='tooltip']").tooltip();
     $('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
+    $('.img-wrapper a [data-toggle="popover"]').click(function(){
+        $('.img-wrapper a[data-toggle="popover"]').not(this).popover('hide'); //all but this
+    });
 })

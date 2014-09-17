@@ -10,6 +10,7 @@ $(function(){
         loginForm.find('input').val('');
         loginModal.find('.alert').remove();
         loginModal.modal();
+        $('.img-wrapper a[data-toggle="popover"]').popover('hide');
     })
 
     $('body').on("click","button#submit-modal", function(sb){

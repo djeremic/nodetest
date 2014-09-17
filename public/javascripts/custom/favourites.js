@@ -2,12 +2,12 @@
  * Created by drago.jeremic on 9/2/14.
  */
 $(function() {
-    var add_link      = $(".add-restaurant"); //Add button class
     var remove_link      = $(".remove-restaurant"); //Add button class
     var delete_link = $(".delete-link");
 
-    $(add_link).click(function(e){
+    $('body').on("click",".add-restaurant", function(e){
         e.preventDefault();
+        $(this).hide();
         $.ajax({
             url: "/restaurants/favourites/add",
             dataType: "json",
@@ -15,8 +15,13 @@ $(function() {
             data: {
                 id: $(this).attr('data-id')
             },
-            success: function (data) {
-                //alert('success');
+            success: function (data, textStatus, jqXHR) {
+                $('.img-wrapper a[data-toggle="popover"]').popover('hide');
+                window.location = '/my-restaurants'
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log(errorThrown)
+                $('.img-wrapper a[data-toggle="popover"]').popover('hide');
             }
         });
     });
