@@ -30,10 +30,10 @@
             <ul class="nav navbar-nav big">
                 <li><a href="#">CREATE YOUR MAP</a></li>
                 <li><a href="#">COUP DE COEUR</a></li>
-                <li><a href="#">BEST-OFF</a></li>
-                <li class="active"><a href="/">TASTE MAKERS</a></li>
+                <li {{#if bestof}}class="active"{{/if}}><a href="/best-of">BEST-OF</a></li>
+                <li {{#if home}}class="active"{{/if}}><a href="/">TASTE MAKERS</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
-<div style="clear:both;"></div>
+<div style="clear:both; height:50px;"></div>

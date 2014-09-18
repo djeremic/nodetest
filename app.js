@@ -98,6 +98,7 @@ passport.use(new FacebookStrategy({
 ));
 
 app.get('/', routes.index)
+app.get('/best-of', routes.bestOf)
 app.post('/users/register', users.create)
 app.get('/users/register', users.register)
 app.post('/users/login', users.loginPost)
