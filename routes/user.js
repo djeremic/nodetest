@@ -36,11 +36,11 @@ function isAPIRequests(req){
 }
 
 exports.register = function(req, res) {
-    res.render('users/register');
+    res.render('users/register', {layout: 'friendly'});
 }
 
 exports.login = function(req, res) {
-    res.render('users/login');
+    res.render('users/login', {layout: 'friendly'});
 }
 
 exports.logout = function(req, res) {
@@ -129,6 +129,15 @@ exports.auth = function(req, res, next){
         });
     } else {
         res.status('401').json({errors : 'Unauthorized'});
+    }
+}
+
+exports.admin = function(req, res, next){
+    if(req.session.user == null || req.session.user == undefined || req.session.user.role != 'admin'){
+        res.status(404);
+        res.redirect('/unauthorized')
+    } else {
+        next();
     }
 }
 

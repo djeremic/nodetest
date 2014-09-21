@@ -107,23 +107,23 @@ app.get('/users/login', users.login)
 app.get('/users/logout', users.logout)
 app.get('/restaurants', restaurants.index);
 app.get('/my-restaurants', restaurants.usersRestaurants);
-app.get('/restaurants/add', restaurants.add);
-app.get('/restaurants/edit/:id', restaurants.edit);
+app.get('/restaurants/add', users.admin, restaurants.add);
+app.get('/restaurants/edit/:id', users.admin, restaurants.edit);
 app.get('/restaurants/view/:id', restaurants.find);
-app.post('/restaurants/add', restaurants.addPost);
-app.delete('/restaurants/delete', restaurants.delete);
+app.post('/restaurants/add', users.admin, restaurants.addPost);
+app.delete('/restaurants/delete', users.admin, restaurants.delete);
 app.post('/restaurants/favourites/add', restaurants.addToFavourite);
 app.delete('/restaurants/favourites/remove', restaurants.removeFromFavourite);
 app.get('/tags', tags.index);
 app.post('/tags/add', tags.add);
 app.post('/tags/find', tags.find);
 app.get('/places', places.index);
-app.get('/places/add', places.add);
+app.get('/places/add', users.admin, places.add);
 app.post('/places/add', places.addPost);
 app.post('/places/find', places.find);
-app.get('/places/edit/:id', places.edit);
-app.post('/descriptions/add', descriptions.addPost);
-app.get('/descriptions/find/:id', descriptions.find);
+app.get('/places/edit/:id',users.admin,  places.edit);
+app.post('/descriptions/add', users.admin, descriptions.addPost);
+app.get('/descriptions/find/:id', users.admin, descriptions.find);
 app.get('/auth/facebook', passport.authenticate('facebook', { display: 'popup', scope: [ 'email'], failureRedirect: '/' }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { successRedirect: '/users/fbSuccess',
