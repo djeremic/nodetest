@@ -1,0 +1,13 @@
+<div class="img-wrapper">
+    <img src="/images/coup-de-coeur/coup-de-coeur-blend.jpg" />
+
+    <a href="#" class="coup-de-coeur-4" data-toggle="popover" data-content="<h4>The burger at Blend</h4> <p>1 Bd des filles du Calvaire 75003 Paris</p> <p><a href='http://www.blendhamburger.com'>blendhamburger.com</a></p>
+        {{#if session.user}}
+            <p><a class='btn btn-info add-restaurant' data-id='107'>ADD TO MY LIST</a></p>
+        {{else}}
+            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+        {{/if}}
+    "></a>
+</div>
+
+{{> carousel-coup-de-coeur}}

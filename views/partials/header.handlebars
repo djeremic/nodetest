@@ -29,7 +29,8 @@
             </ul>
             <ul class="nav navbar-nav big">
                 <li><a href="#">CREATE YOUR MAP</a></li>
-                <li><a href="#">COUP DE COEUR</a></li>
+                <li {{#if scenarious}}class="active"{{/if}}><a href="/coup-de-coeur-abri">SCENARIOUS</a></li>
+                <li {{#if coeur}}class="active"{{/if}}><a href="/coup-de-coeur-abri">COUP DE COEUR</a></li>
                 <li {{#if bestof}}class="active"{{/if}}><a href="/best-of">BEST-OF</a></li>
                 <li {{#if home}}class="active"{{/if}}><a href="/">TASTE MAKERS</a></li>
             </ul>

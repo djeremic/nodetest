@@ -1,0 +1,29 @@
+<div class="img-wrapper">
+    <img src="/images/best-of/best-of-croissants.jpg" />
+
+    <a href="#" class="best-of-croissants-1" data-toggle="popover" data-content="<h4>Blé Sucré</h4> <p>7 Rue Antoine Vollon, 75012 Paris, France</p> <p>+33 1 43 40 77 73</p> <p><a href='http://www.blesucre.fr'>blesucre.fr</a></p>
+        {{#if session.user}}
+            <p><a class='btn btn-info add-restaurant' data-id='21'>ADD TO MY LIST</a></p>
+        {{else}}
+            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+        {{/if}}
+    "></a>
+
+    <a href="#" class="best-of-croissants-2" data-toggle="popover" data-content="<h4>134 RDT</h4> <p>134 rue de Turenne 75003 Paris</p>
+        {{#if session.user}}
+            <p><a class='btn btn-info add-restaurant' data-id='111'>ADD TO MY LIST</a></p>
+        {{else}}
+            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+        {{/if}}
+    "></a>
+
+    <a href="#" class="best-of-croissants-3" data-toggle="popover" data-content="<h4>Sébastien Gaudard</h4> <p>22 Rue des Martyrs, 75009 Paris, France</p><p>+33 1 71 18 24 70</p> <p><a href='http://www.sebastiengaudard.fr'>sebastiengaudard.fr</a></p>
+        {{#if session.user}}
+            <p><a class='btn btn-info add-restaurant' data-id='78'>ADD TO MY LIST</a></p>
+        {{else}}
+            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+        {{/if}}
+    "></a>
+</div>
+
+{{> carousel-bestof}}

@@ -1,0 +1,17 @@
+<div class="img-wrapper">
+    <img src="/images/best-of/best-of-breads.jpg" />
+
+    <a href="#" class="best-of-breads-1" data-toggle="popover" data-content="<h4>La tradition de 134 RDT</h4> <p>134 rue de Turenne 75003 Paris</p>
+        {{#if session.user}}
+            <p><a class='btn btn-info add-restaurant' data-id='111'>ADD TO MY LIST</a></p>
+        {{else}}
+            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+        {{/if}}
+    "></a>
+
+    <a href="#" class="best-of-breads-2" data-toggle="popover" data-content="<h4>Le pain bûcheron de la Boulangerie Rue Ordener</h4> <p>119 rue Ordener 75018 Paris</p>"></a>
+
+    <a href="#" class="best-of-breads-3" data-toggle="popover" data-content="<h4>La baguette blanche de la boulangerie rue de la tour d’auvergne</h4> <p>28 rue de la tour d’auvergne 75009 Paris</p>"></a>
+</div>
+
+{{> carousel-bestof}}

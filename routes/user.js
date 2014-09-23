@@ -2,6 +2,7 @@
 var db = require('../models');
 var randToken = require('rand-token');
 var passwordHash = require('password-hash');
+var mailchimp = require('../externals/mailchimp');
 
 exports.create = function(req, res) {
     var user = req.param('user', null);
@@ -13,6 +14,7 @@ exports.create = function(req, res) {
     user.password = passwordHash.generate(user.password);
 
     db.User.create(user).success(function() {
+        mailchimp.addSubscriber(user.email);
         if(isAPIRequests(req)){
             res.json({user: user});
         } else {
