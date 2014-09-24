@@ -163,6 +163,7 @@ exports.facebookLogin = function(accessToken, refreshToken, profile, done, req){
         if(userModel == null){
             db.User.create(user).success(function(userModel2){
                 req.session.user = userModel2;
+                mailchimp.addSubscriber(userModel2.email);
                 done(null, userModel2);
             }).error(function(err){
                 console.log(err)

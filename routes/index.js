@@ -89,6 +89,19 @@ exports.coupDeCoeurNanashi = function(req, res){
     })
 }
 
+exports.scenariousDrunk = function(req, res){
+    res.render('routes/scenarios-drunk', {
+        layout: 'friendly',
+        scenarious: true
+    })
+}
+
+exports.scenariousQuestion = function(req, res){
+    res.render('routes/scenarios-pop-up-question', {
+        layout: 'friendly',
+        scenarious: true
+    })
+}
 
 
 

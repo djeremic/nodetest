@@ -59,7 +59,7 @@ db.serialize(function() {
     }
 });
 
-app.use(favicon());
+app.use(favicon(__dirname + '/public/favicon.ico'));
 //app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -110,6 +110,8 @@ app.get('/coup-de-coeur-blend', routes.coupDeCoeurBlend)
 app.get('/coup-de-coeur-clint', routes.coupDeCoeurClint)
 app.get('/coup-de-coeur-marie-celeste', routes.coupDeCoeurCeleste)
 app.get('/coup-de-coeur-nanashi', routes.coupDeCoeurNanashi)
+app.get('/scenarios-drunk', routes.scenariousDrunk)
+app.get('/scenarios-pop-up-question', routes.scenariousQuestion)
 app.post('/users/register', users.create)
 app.get('/users/register', users.register)
 app.post('/users/login', users.loginPost)
