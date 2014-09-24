@@ -1,5 +1,12 @@
 <h1>Register</h1>
 
+{{#if errors.general}}
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        {{{errors.general.[0]}}}
+    </div>
+{{/if}}
+
 <div class="row">
     <div class="col-lg-4">
         <form id="register" action="/users/register" method="post">

@@ -8,29 +8,44 @@ exports.create = function(req, res) {
     var user = req.param('user', null);
     var arePasswordsSame = req.param('confirmPassword', null) == user.password;
     user.token = randToken.generate(32);
+    user.role = 'user';
 
-    validateRegister(user, req, res);
+    if(validateRegister(user, req, res)) {
 
-    user.password = passwordHash.generate(user.password);
+        user.password = passwordHash.generate(user.password);
 
-    db.User.create(user).success(function() {
-        mailchimp.addSubscriber(user.email);
-        if(isAPIRequests(req)){
-            res.json({user: user});
-        } else {
-            req.session.user = user;
-            res.redirect('/')
-        }
-    }).error(function(errors) {
-        if(!arePasswordsSame) {
-            errors.password.push("Passwords needs to be the same");
-        }
-        if(isAPIRequests(req)){
-            res.json({errors: errors});
-        } else {
-            res.render('users/register', {errors: errors});
-        }
-    })
+        db.User.find({
+            where: {email: user.email, facebook_id: null}
+        }).success(function(userResult){
+            if(userResult != undefined || userResult != null){
+                var errors = {general: new Array("User already exists, please <a href='/users/login'>login</a> to your account")};
+                if(isAPIRequests(req)){
+                    res.json({errors: errors});
+                } else {
+                    res.render('users/register', {errors: errors, layout: 'friendly'});
+                }
+            } else {
+                db.User.create(user).success(function () {
+                    mailchimp.addSubscriber(user.email);
+                    if (isAPIRequests(req)) {
+                        res.json({user: user});
+                    } else {
+                        req.session.user = user;
+                        res.redirect('/')
+                    }
+                }).error(function (errors) {
+                    if (!arePasswordsSame) {
+                        errors.general.push("Passwords needs to be the same");
+                    }
+                    if (isAPIRequests(req)) {
+                        res.json({errors: errors});
+                    } else {
+                        res.render('users/register', {errors: errors, layout: 'friendly'});
+                    }
+                })
+            }
+        }).error(function (errors) {});
+    }
 }
 
 function isAPIRequests(req){
@@ -102,8 +117,9 @@ function validateRegister(user, req, res){
         if(isAPIRequests(req)){
             res.json({errors: errors});
         } else {
-            res.render('users/register', {errors: errors});
+            res.render('users/register', {errors: errors, layout: 'friendly'});
         }
+        return false;
     }
 
     if(!arePasswordsSame) {
@@ -113,7 +129,10 @@ function validateRegister(user, req, res){
         } else {
             res.render('users/register', {errors: errors});
         }
+        return false;
     }
+
+    return true;
 }
 
 exports.auth = function(req, res, next){
