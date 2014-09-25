@@ -2,6 +2,7 @@ var express = require('express')
     , http    = require('http')
     , path    = require('path')
     , db      = require('./models')
+    , users = require('./routes/user')
 
 var exphbs  = require('express3-handlebars');
 var path = require('path');
