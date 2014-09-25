@@ -1,7 +1,8 @@
 exports.index = function(req, res){
     res.render('routes/index', {
         layout: 'friendly',
-        home: true
+        home: true,
+        marie: true
     })
 }
 

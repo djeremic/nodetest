@@ -1,8 +1,13 @@
-html{min-height:100%;}
+@font-face {
+  font-family: FuturaExtended;
+  src: url('../fonts/FuturaExtended.ttf');
+}
+html{min-height:100%; font: 14px FuturaLight, Helvetica, Arial, sans-serif;}
 body{
+  font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
   padding-top: 70px;
   display: block;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
   color: #000;
   height:100%;
   background: url('img/body-back.jpg') no-repeat bottom center;
@@ -86,6 +91,8 @@ body{
 
     }
   }
+  .close{font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;}
+
 }
 
 .navbar-fixed-top{background:#fff;}
@@ -95,8 +102,10 @@ body{
   .container-inner{width: 980px;padding: 0 39px;}
 }
 
-.popover{
+.popover{border:0;box-shadow: 3px 3px 3px #888888;
   h1,h2,h3,h4,p,a{text-align: center;}
+  .close{color:#5bc0de;font-weight:bold;font-size:18px;opacity:1;}
+  .close:hover{color:#428bca;}
 }
 
 ul.small{clear: all; color: #535252;list-style: none;margin-top: 10px;overflow: auto;
@@ -134,3 +143,7 @@ ul.big{clear: all; color: #000000;list-style: none;margin-top: 10px;float: right
   text-align: center;
   color: #e64121;
 }
+
+span.success{color:#689f5b; background-color:#e8f0e5; padding:10px 15px;display:inline-block;}
+
+.slider .active div.inner-text{color:#000 !important;}

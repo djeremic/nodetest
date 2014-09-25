@@ -60,4 +60,8 @@ module.exports = function (app) {
     //API
     app.get('/api/restaurants', api.index);
     app.get('/api/restaurants/:id', api.find);
+
+    app.get('/api/users/restaurants', api.userList);
+    app.post('/api/users/restaurants/:id', api.addToFavourite);
+    app.delete('/api/users/restaurants/:id', api.removeFromFavourite);
 }

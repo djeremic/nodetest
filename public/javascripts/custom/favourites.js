@@ -7,6 +7,7 @@ $(function() {
 
     $('body').on("click",".add-restaurant", function(e){
         e.preventDefault();
+        var $paragraph = $(this).parents('p').first();
         $(this).hide();
         $.ajax({
             url: "/restaurants/favourites/add",
@@ -16,11 +17,9 @@ $(function() {
                 id: $(this).attr('data-id')
             },
             success: function (data, textStatus, jqXHR) {
-                $('.img-wrapper a[data-toggle="popover"]').popover('hide');
-                window.location = '/my-restaurants'
+                $paragraph.append('<span class="success">ADDED TO LIST</span>')
             },
             error: function(jqXHR, textStatus, errorThrown){
-                console.log(errorThrown)
                 $('.img-wrapper a[data-toggle="popover"]').popover('hide');
             }
         });
