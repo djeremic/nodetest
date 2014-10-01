@@ -64,4 +64,6 @@ module.exports = function (app) {
     app.get('/api/users/restaurants', api.userList);
     app.post('/api/users/restaurants/:id', api.addToFavourite);
     app.delete('/api/users/restaurants/:id', api.removeFromFavourite);
+
+    app.get('/maps', routes.maps);
 }

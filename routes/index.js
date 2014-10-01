@@ -1,3 +1,5 @@
+var db = require('../models');
+
 exports.index = function(req, res){
     res.render('routes/index', {
         layout: 'friendly',
@@ -104,6 +106,18 @@ exports.scenariousQuestion = function(req, res){
     })
 }
 
+
+exports.maps = function(req, res){
+    db.Restaurant.findAll({where: {deleted: 0}, limit: 5}).success(function(restaurants) {
+        res.render('index', {
+            title: 'Express',
+            restaurants: restaurants
+        })
+    }).error(function (errors) {
+        console.log(errors);
+        res.render('index', {errors: errors});
+    });
+}
 
 
 
