@@ -28,7 +28,7 @@
                 <li><a href="#">press</a></li>
             </ul>
             <ul class="nav navbar-nav big">
-                <li><a href="#">CREATE YOUR MAP</a></li>
+                <li {{#if map}}class="active"{{/if}}><a href="/map">CREATE YOUR MAP</a></li>
                 <li {{#if scenarious}}class="active"{{/if}}><a href="/scenarios-drunk">SCENARIOS</a></li>
                 <li {{#if coeur}}class="active"{{/if}}><a href="/coup-de-coeur-abri">COUP DE COEUR</a></li>
                 <li {{#if bestof}}class="active"{{/if}}><a href="/best-of">BEST-OF</a></li>

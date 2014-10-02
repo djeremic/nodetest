@@ -10,6 +10,7 @@ var users    = require('../routes/user')
     , api    = require('../routes/api')
     , routes = require('../routes/index')
     , users = require('../routes/user')
+    , map = require('../routes/map')
     , errors = require('../routes/errors')
 
 
@@ -65,5 +66,6 @@ module.exports = function (app) {
     app.post('/api/users/restaurants/:id', api.addToFavourite);
     app.delete('/api/users/restaurants/:id', api.removeFromFavourite);
 
-    app.get('/maps', routes.maps);
+    app.get('/map', map.start);
+    app.get('/map/choose-map', map.choose);
 }
