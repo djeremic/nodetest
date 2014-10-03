@@ -65,3 +65,6 @@ node_modules
 *.db
 public/pariseats.db
 public/users.db
+
+uploads
+public/uploads

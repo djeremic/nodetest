@@ -1,10 +1,18 @@
 <h1>CHOOSE MAP</h1>
 
+{{#if error}}
+    <div class="alert alert-danger">
+        <p>{{error}}</p>
+    </div>
+{{/if}}
+
 <div class="row" style="margin-top:50px;text-align: center;">
-    <form action="/map/choose" method="post" role="form">
+    <form action="/map/choose-map" method="post" role="form">
+        <input type="hidden" name="map[status]" value="pending" />
+        <input type="hidden" name="map[id]" value="{{map.id}}" />
         <div class="col-lg-4" style="text-align:left;">
             <label class="radio-inline">
-                <input type="radio" value="minimal" name="map">
+                <input type="radio" value="minimal" name="map[map]">
                 minimal
                 <img src="/images/maps/small/minimal.jpg" style="margin-top:10px;margin-left: -30px;border:1px solid #cccccc" class="img-rounded-20"/>
             </label>
@@ -12,14 +20,14 @@
         </div>
         <div class="col-lg-4">
             <label class="radio-inline" style="text-align:left;">
-                <input type="radio" value="basic" name="map">
+                <input type="radio" value="basic" name="map[map]">
                 basic
                 <img src="/images/maps/small/basic.jpg" style="margin-top:10px;margin-left: -30px;border:1px solid #cccccc" class="img-rounded-20"/>
             </label>
         </div>
         <div class="col-lg-4">
             <label class="radio-inline" style="text-align:left;">
-                <input type="radio" value="graphic" name="map">
+                <input type="radio" value="graphic" name="map[map]">
                 graphic
                 <img src="/images/maps/small/graphic.jpg" style="margin-top:10px;margin-left: -30px;border:1px solid #cccccc" class="img-rounded-20"/>
             </label>

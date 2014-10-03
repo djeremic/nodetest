@@ -1,0 +1,21 @@
+<h1>List of places</h1>
+
+<a href="/arrondisements/add" class="btn btn-default">add new arrondisement</a><br/>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each arrondisements}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<a href="/arrondisements/add" class="btn btn-default">add new arrondisement</a><br/>

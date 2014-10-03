@@ -11,7 +11,10 @@ var users    = require('../routes/user')
     , routes = require('../routes/index')
     , users = require('../routes/user')
     , map = require('../routes/map')
+    , landmark = require('../routes/landmark')
+    , arrondisement = require('../routes/arrondisement')
     , errors = require('../routes/errors')
+    , fs = require("fs");
 
 
 module.exports = function (app) {
@@ -68,4 +71,20 @@ module.exports = function (app) {
 
     app.get('/map', map.start);
     app.get('/map/choose-map', map.choose);
+    app.post('/map/choose-map', map.choosePost);
+    app.get('/map/:id/landmarks', map.landmarks);
+    app.post('/map/landmarks', map.landmarksPost);
+    app.get('/map/:id/upload', map.upload);
+    app.post('/map/upload', map.uploadPost);
+    app.get('/map/:id/view', map.view);
+
+    app.get('/landmarks', landmark.index);
+    app.get('/landmarks/add', landmark.add);
+    app.post('/landmarks/add', landmark.addPost);
+    app.get('/landmarks/edit/:id', landmark.edit);
+
+    app.get('/arrondisements', arrondisement.index);
+    app.get('/arrondisements/add', arrondisement.add);
+    app.post('/arrondisements/add', arrondisement.addPost);
+    app.get('/arrondisements/edit/:id', arrondisement.edit);
 }

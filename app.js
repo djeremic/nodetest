@@ -10,6 +10,7 @@ var favicon = require('static-favicon');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
+var multer  = require('multer');
 
 var fs = require("fs");
 var file = "public/pariseats.db";
@@ -17,6 +18,8 @@ var exists = fs.existsSync(file);
 
 var app = express(),
     hbs;
+
+app.use(multer({ dest: './public/uploads/'}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -49,6 +52,9 @@ db.serialize(function() {
         db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
         db.close();
     }
+    db.run("CREATE TABLE if not exists Maps(id INTEGER PRIMARY KEY AUTOINCREMENT, UserId INTEGER, map Text NOT NULL, status TEXT NOT NULL, photo TEXT, createdAt date, updatedAt date)");
+    db.run("CREATE TABLE if not exists Landmarks(id INTEGER PRIMARY KEY AUTOINCREMENT, name Text, createdAt date, updatedAt date, longitude number NOT NULL, latitude number NOT NULL)");
+    db.run("CREATE TABLE if not exists Arrondisements(id INTEGER PRIMARY KEY AUTOINCREMENT, name Text, createdAt date, updatedAt date, longitude number NOT NULL, latitude number NOT NULL)");
 });
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
