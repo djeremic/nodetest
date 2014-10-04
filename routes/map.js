@@ -6,9 +6,26 @@ var fs = require("fs");
 
 exports.start = function(req, res){
     if(req.session.user){
-        res.render('maps/loged', {
-            layout: 'friendly',
-            map: true
+        db.User.hasMany(db.Restaurant)
+        db.Restaurant.hasMany(db.User)
+        user = db.User.build(req.session.user);
+        user.getRestaurants().success(function(restaurants) {
+            if(restaurants && restaurants.length > 0){
+                res.render('maps/loged', {
+                    layout: 'friendly',
+                    map: true
+                })
+            } else {
+                res.render('maps/norestaurants', {
+                    layout: 'friendly',
+                    map: true
+                })
+            }
+        }).error(function(error){
+            res.render('maps/loged', {
+                layout: 'friendly',
+                map: true
+            })
         })
     } else {
         res.render('maps/unloged', {
@@ -59,52 +76,63 @@ exports.choosePost = function(req, res){
 
 exports.landmarks = function(req, res){
     var id = req.params.id;
-    res.render('maps/landmarks', {
-        layout: 'friendly',
-        id: id,
-        map: true
-    })
+    if(!req.session.user){
+        res.redirect("/map")
+    } else {
+        res.render('maps/landmarks', {
+            layout: 'friendly',
+            id: id,
+            map: true
+        })
+    }
 }
 
 exports.landmarksPost = function(req, res){
     var map = req.param('map', null);
-    var lndmrkIDs = req.param('landmarks', null);
-    var arrondIDs = req.param('arrondisements', null);
-    var lndmrks = [];
-    var arronds = [];
+    if(!req.session.user){
+        res.redirect("/map")
+    } else {
+        var lndmrkIDs = req.param('landmarks', null);
+        var arrondIDs = req.param('arrondisements', null);
+        var lndmrks = [];
+        var arronds = [];
 
-    db.Map.hasMany(db.Landmark);
-    db.Landmark.hasMany(db.Map);
+        db.Map.hasMany(db.Landmark);
+        db.Landmark.hasMany(db.Map);
 
-    db.Map.hasMany(db.Arrondisement);
-    db.Arrondisement.hasMany(db.Map);
+        db.Map.hasMany(db.Arrondisement);
+        db.Arrondisement.hasMany(db.Map);
 
-    if (lndmrkIDs) {
-        for (var i = 0; i < lndmrkIDs.length; i++) {
-            lndmrks.push(db.Landmark.build({id: parseInt(lndmrkIDs[i])}));
+        if (lndmrkIDs) {
+            for (var i = 0; i < lndmrkIDs.length; i++) {
+                lndmrks.push(db.Landmark.build({id: parseInt(lndmrkIDs[i])}));
+            }
         }
-    }
 
-    if (arrondIDs) {
-        for (var i = 0; i < arrondIDs.length; i++) {
-            arronds.push(db.Arrondisement.build({id: parseInt(arrondIDs[i])}));
+        if (arrondIDs) {
+            for (var i = 0; i < arrondIDs.length; i++) {
+                arronds.push(db.Arrondisement.build({id: parseInt(arrondIDs[i])}));
+            }
         }
+        var mapModel = db.Map.build(map);
+
+        if (lndmrks.length > 0) mapModel.setLandmarks(lndmrks);
+        if (arronds.length > 0) mapModel.setArrondisements(arronds);
+        res.redirect('/map/' + map.id + '/upload');
     }
-    var mapModel = db.Map.build(map);
-
-    if (lndmrks.length > 0) mapModel.setLandmarks(lndmrks);
-    if (arronds.length > 0) mapModel.setArrondisements(arronds);
-    res.redirect('/map/'+map.id+'/upload');
-
 }
 
 exports.upload = function(req, res){
     var id = req.params.id;
-    res.render('maps/upload', {
-        layout: 'friendly',
-        id: id,
-        map: true
-    })
+    if(!req.session.user){
+        res.redirect("/map")
+    } else {
+        res.render('maps/upload', {
+            layout: 'friendly',
+            id: id,
+            map: true
+        })
+    }
 }
 
 exports.uploadPost = function(req, res){
