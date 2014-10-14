@@ -3,7 +3,7 @@
         <p>{{error}}</p>
     </div>
 {{else}}
-    <div class="row" style="margin-top:50px;">
+    <div class="row" style="margin-top:100px;">
         <div class="col-lg-2">
 
         </div>
@@ -12,7 +12,7 @@
                 <div id="map_canvas" class="col-lg-12 img-rounded">
                 </div>
             </div>
-            <div id="map-list">
+            <!--<div id="map-list">
                 <img src="/images/logo.png" alt="Paris Eats">
                 <ul>
                     {{#each map.restaurants}}
@@ -22,7 +22,7 @@
                         </li>
                     {{/each}}
                 </ul>
-            </div>
+            </div>-->
             <img src="/uploads/{{map.photo}}" width="150" style="position:absolute;bottom: -20px;right: -20px;">
         </div>
     </div>
@@ -38,7 +38,7 @@
         function initialize() {
             var mapOptions = {
                 zoom: 12,
-                center: new google.maps.LatLng(48.858887, 2.347425),
+                center: new google.maps.LatLng(48.857984, 2.309080),
                 disableDefaultUI: true,
                 navigationControl: false,
                 mapTypeControl: false,
@@ -48,7 +48,7 @@
                 disableDoubleClickZoom: true,
                 draggable: false
             };
-            var srcImage = "/images/overmap1.jpg";
+            var srcImage = "/images/middle.jpg";
 
             var map = new google.maps.Map(document.getElementById('map_canvas'),
                     mapOptions);
@@ -65,30 +65,57 @@
             var pinColor = "FE7569";
             var i = 1;
 
+            var latlngbounds = new google.maps.LatLngBounds();
+
             var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
                     new google.maps.Size(40, 37),
                     new google.maps.Point(0, 0),
                     new google.maps.Point(12, 35));
 
+            {{#each map.landmarks}}
+                var position = new google.maps.LatLng({{latitude}}, {{longitude}});
+                var marker = new google.maps.Marker({
+                    position: position,
+                    icon: '/images/landmarks/landmark{{id}}.png',
+                    map: map
+                });
+
+                latlngbounds.extend(position);
+            {{/each}}
+
+            {{#each map.arrondisements}}
+                var position = new google.maps.LatLng({{latitude}}, {{longitude}});
+                var marker = new google.maps.Marker({
+                    position: position,
+                    icon: '/images/arrondisements/arrondisement{{id}}.png',
+                    map: map
+                });
+                latlngbounds.extend(position);
+            {{/each}}
+
             {{#each map.restaurants}}
+                var position = new google.maps.LatLng({{latitude}}, {{longitude}});
                 var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + i + "|" + pinColor,
                         new google.maps.Size(21, 34),
                         new google.maps.Point(0,0),
                         new google.maps.Point(10, 34));
 
                 var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng({{latitude}}, {{longitude}}),
+                    position: position,
                     icon: pinImage,
                     shadow: pinShadow,
+                    zIndex:999,
                     map: map
                 });
+                latlngbounds.extend(position);
                 i++;
             {{/each}}
 
+            map.setCenter(latlngbounds.getCenter());
+            map.fitBounds(latlngbounds);
 
-
-            var swBound = new google.maps.LatLng(48.82023, 2.20967);
-            var neBound = new google.maps.LatLng(48.90605, 2.43077);
+            var swBound = new google.maps.LatLng(48.790371, 2.176772);
+            var neBound = new google.maps.LatLng(48.925138, 2.441345);
             var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
             overlay = new USGSOverlay(bounds, srcImage, map);
