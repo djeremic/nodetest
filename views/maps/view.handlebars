@@ -12,7 +12,7 @@
                 <div id="map_canvas" class="col-lg-12 img-rounded">
                 </div>
             </div>
-            <!--<div id="map-list">
+            <div id="map-list">
                 <img src="/images/logo.png" alt="Paris Eats">
                 <ul>
                     {{#each map.restaurants}}
@@ -22,7 +22,7 @@
                         </li>
                     {{/each}}
                 </ul>
-            </div>-->
+            </div>
             <img src="/uploads/{{map.photo}}" width="150" style="position:absolute;bottom: -20px;right: -20px;">
         </div>
     </div>
@@ -45,6 +45,7 @@
                 scaleControl: false,
                 panControl: false,
                 zoomControl: false,
+                scrollwheel: false,
                 disableDoubleClickZoom: true,
                 draggable: false
             };
@@ -52,21 +53,8 @@
 
             var map = new google.maps.Map(document.getElementById('map_canvas'),
                     mapOptions);
-
-            var goldStar = {
-                path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-                fillColor: 'yellow',
-                fillOpacity: 0.8,
-                scale: 1,
-                strokeColor: 'gold',
-                strokeWeight: 14
-            };
-
             var pinColor = "FE7569";
             var i = 1;
-
-            var latlngbounds = new google.maps.LatLngBounds();
-
             var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
                     new google.maps.Size(40, 37),
                     new google.maps.Point(0, 0),
@@ -79,8 +67,6 @@
                     icon: '/images/landmarks/landmark{{id}}.png',
                     map: map
                 });
-
-                latlngbounds.extend(position);
             {{/each}}
 
             {{#each map.arrondisements}}
@@ -90,7 +76,6 @@
                     icon: '/images/arrondisements/arrondisement{{id}}.png',
                     map: map
                 });
-                latlngbounds.extend(position);
             {{/each}}
 
             {{#each map.restaurants}}
@@ -107,12 +92,16 @@
                     zIndex:999,
                     map: map
                 });
-                latlngbounds.extend(position);
                 i++;
             {{/each}}
 
-            map.setCenter(latlngbounds.getCenter());
-            map.fitBounds(latlngbounds);
+            /*var latlngbounds = new google.maps.LatLngBounds();
+            latlngbounds.extend(new google.maps.LatLng(48.897691, 2.249165));
+            latlngbounds.extend(new google.maps.LatLng(48.822250, 2.263241));
+            latlngbounds.extend(new google.maps.LatLng(48.828353, 2.409497));
+            latlngbounds.extend(new google.maps.LatLng(48.893965, 2.404049));
+             map.setCenter(latlngbounds.getCenter());
+             map.fitBounds(latlngbounds);*/
 
             var swBound = new google.maps.LatLng(48.790371, 2.176772);
             var neBound = new google.maps.LatLng(48.925138, 2.441345);
