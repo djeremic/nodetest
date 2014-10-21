@@ -2,10 +2,10 @@
  * Created by drago.jeremic on 9/9/14.
  */
 $(function(){
-    var form = $('form#register');
+    var form = $('form#add-restaurant');
 
     if(form && form != undefined) {
-        var button = form.find('button#btn-submit');
+        var button = form.find('button#btn-submit-add-restaurant');
         console.log(window.$operationTime);
         if(window.$operationTime != undefined && window.$operationTime.length > 0) {
             var businessHoursManager = $("#businessHoursContainer").businessHours({
