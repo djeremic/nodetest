@@ -87,4 +87,14 @@ $(function(){
 
     })
 
+    $('div#desc-wr').on("click","a#add-desc", function(e) { //user click on remove text
+        e.preventDefault();
+        modal.modal('show');
+        form.find('input#desc-id').val('');
+        form.find('input#title').val('');
+        form.find('textarea#desc_en').jqteVal('');
+    });
+
+
+
 });
