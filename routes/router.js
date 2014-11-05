@@ -32,7 +32,6 @@ module.exports = function (app) {
     app.post('/users/register', users.create)
     app.get('/users/register', users.register)
     app.post('/users/login', users.loginPost)
-    app.post('/api/users/login', users.loginPost)
     app.get('/users/login', users.login)
     app.get('/users/logout', users.logout)
     app.get('/restaurants', restaurants.index);
@@ -64,4 +63,8 @@ module.exports = function (app) {
     app.get('/api/users/restaurants', api.userList);
     app.post('/api/users/restaurants/:id', api.addToFavourite);
     app.delete('/api/users/restaurants/:id', api.removeFromFavourite);
+
+    app.post('/api/users/login', users.loginPost);
+    app.post('/api/users/register', users.create);
+    app.post('/api/users/login-fb', users.facebookLoginAPI);
 }
