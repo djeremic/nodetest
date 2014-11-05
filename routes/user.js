@@ -6,6 +6,7 @@ var mailchimp = require('../externals/mailchimp');
 
 exports.create = function(req, res) {
     var user = req.param('user', null);
+    console.log(req.body);
     var arePasswordsSame = req.param('confirmPassword', null) == user.password;
     user.token = randToken.generate(32);
     user.role = 'user';

@@ -11,9 +11,15 @@ var users    = require('../routes/user')
     , routes = require('../routes/index')
     , users = require('../routes/user')
     , errors = require('../routes/errors')
+    ,bodyParser = require('body-parser');
+
+
 
 
 module.exports = function (app) {
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
+
     app.get('/', routes.index)
     app.get('/best-of', routes.bestOf)
     app.get('/best-of-frites', routes.bestOfFrites)
@@ -64,4 +70,6 @@ module.exports = function (app) {
     app.get('/api/users/restaurants', api.userList);
     app.post('/api/users/restaurants/:id', api.addToFavourite);
     app.delete('/api/users/restaurants/:id', api.removeFromFavourite);
+
+    app.post('/api/users/register', users.create)
 }
