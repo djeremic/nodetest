@@ -163,6 +163,33 @@ exports.admin = function(req, res, next){
     }
 }
 
+exports.facebookLoginAPI = function(req, res, next){
+    var user = req.param('user', null);
+    var token = randToken.generate(32);
+    user.token = token;
+    user.password = passwordHash.generate(token);
+    user.role = 'user';
+    console.log(user);
+
+    db.User.find({
+        where: {facebook_id: user.facebook_id}
+    }).success(function(userModel){
+        if(userModel == null){
+            db.User.create(user).success(function(userModel2){
+                mailchimp.addSubscriber(userModel2.email);
+                res.json({user: userModel2});
+            }).error(function(err){
+                console.log(err);
+                res.json({errors: err});
+            });
+        } else {
+            res.json({user: userModel});
+        }
+    }).error(function(err){
+        res.json({errors: err});
+    });
+}
+
 exports.facebookLogin = function(accessToken, refreshToken, profile, done, req){
     console.log(profile);
     var token = randToken.generate(32);

@@ -16,30 +16,30 @@
 <div id="body-wr">
     <div class="navbar main-nav">
         <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="glyphicon glyphicon-align-justify"></i></a>
-        <nav id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-                <li class="sidebar-brand">
-                    <a href="#top">Start Bootstrap</a>
-                </li>
-                <li>
-                    <a href="#top">Home</a>
-                </li>
-                <li>
-                    <a href="#about">About</a>
-                </li>
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-                <li>
-                    <a href="#portfolio">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="pull-right user-settings">
+            {{#if session.user}}
+                Hi {{session.user.first_name}} , <a href="/users/logout">logout</a>
+            {{else}}
+                Hi, <a href="#" class="login-modal">login</a> <span class="glyphicon glyphicon-user"></span>
+            {{/if}}
+        </div>
     </div>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
+            <li class="sidebar-brand">
+                <a href="/">ParisEats</a>
+            </li>
+            <li {{#if home}}class="active"{{/if}}><a href="/">TASTE MAKERS</a></li>
+            <li {{#if bestof}}class="active"{{/if}}><a href="/best-of">BEST-OF</a></li>
+            <li {{#if coeur}}class="active"{{/if}}><a href="/coup-de-coeur-abri">COUP DE COEUR</a></li>
+            <li {{#if scenarious}}class="active"{{/if}}><a href="/scenarios-drunk">SCENARIOS</a></li>
+            <li><a href="#">CREATE YOUR MAP</a></li>
+            <hr style="border-top: 1px solid red;margin-left: 20px;margin-right: 20px"/>
+            <li><a href="#">ABOUT US</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+    </nav>
     {{{body}}}
 </div>
 
@@ -58,7 +58,29 @@
         dots: false,
         infinite: false,
         slidesToShow: slidesToShow,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: slidesToShow,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
     });
 
     $("#menu-close").click(function(e) {
