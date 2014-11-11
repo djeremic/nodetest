@@ -1,13 +1,15 @@
-<div class="img-wrapper" style="margin-left:150px;">
-    <img src="/images/coup-de-coeur/coup-de-coeur-marie-celeste.jpg" />
+<div class="img-wrapper">
+    <div class="link-wr">
+        <img src="/images/coup-de-coeur/coup-de-coeur-marie-celeste.jpg" />
 
-    <a href="#" class="coup-de-coeur-6" data-toggle="popover" data-content="<h4>Mary Celeste</h4> <p>1 rue Commines 75003 Paris</p> <p><a href='http://www.lemaryceleste.com'>www.lemaryceleste.com</a></p>
-        {{#if session.user}}
-            <p><a class='btn btn-info add-restaurant' data-id='116'>ADD TO MY LIST</a></p>
-        {{else}}
-            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
-        {{/if}}
-    "></a>
+        <a href="#" class="coup-de-coeur-6" data-toggle="popover" data-content="<h4>Mary Celeste</h4> <p>1 rue Commines 75003 Paris</p> <p><a href='http://www.lemaryceleste.com'>www.lemaryceleste.com</a></p>
+            {{#if session.user}}
+                <p><a class='btn btn-info add-restaurant' data-id='116'>ADD TO MY LIST</a></p>
+            {{else}}
+                <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+            {{/if}}
+        "></a>
+    </div>
 </div>
 
 {{> carousel-coup-de-coeur}}

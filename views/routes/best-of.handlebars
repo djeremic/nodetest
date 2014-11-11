@@ -1,26 +1,28 @@
 <div class="img-wrapper row">
-    <img src="/images/best-of/best-of-back.jpg" />
-    <a href="#" class="best-of-link-1" data-toggle="popover" data-content="<h4>L’aller Retour</h4> <p>5 Rue Charles-François Dupuis, 75003 Paris, France</p> <p>+33 1 42 78 01 21</p>
-        {{#if session.user}}
-            <p><a class='btn btn-info add-restaurant' data-id='102'>ADD TO MY LIST</a></p>
-        {{else}}
-            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
-        {{/if}}
-    "></a>
-    <a href="#" class="best-of-link-2" data-toggle="popover" data-content="<h4>L’opportun</h4> <p>64 Bd Edgar Quinet 75014 Paris</p> <p>+33 1 43 20 26 89</p>
-        {{#if session.user}}
-            <p><a class='btn btn-info add-restaurant' data-id='6'>ADD TO MY LIST</a></p>
-        {{else}}
-            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
-        {{/if}}
-    "></a>
-    <a href="#" class="best-of-link-3" data-toggle="popover" data-content="<h4>La boucherie des Provinces</h4> <p>20 Rue Aligre, 75012 Paris, France</p> <p>+33 1 43 43 91 64</p>
-        {{#if session.user}}
-            <p><a class='btn btn-info add-restaurant' data-id='24'>ADD TO MY LIST</a></p>
-        {{else}}
-            <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
-        {{/if}}
-    "></a>
+    <div class="link-wr">
+        <img src="/images/best-of/best-of-stakes.jpg" />
+        <a href="#" class="best-of-link-1" data-toggle="popover" data-content="<h4>L’aller Retour</h4> <p>5 Rue Charles-François Dupuis, 75003 Paris, France</p> <p>+33 1 42 78 01 21</p>
+            {{#if session.user}}
+                <p><a class='btn btn-info add-restaurant' data-id='102'>ADD TO MY LIST</a></p>
+            {{else}}
+                <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+            {{/if}}
+        "></a>
+        <a href="#" class="best-of-link-2" data-toggle="popover" data-content="<h4>L’opportun</h4> <p>64 Bd Edgar Quinet 75014 Paris</p> <p>+33 1 43 20 26 89</p>
+            {{#if session.user}}
+                <p><a class='btn btn-info add-restaurant' data-id='6'>ADD TO MY LIST</a></p>
+            {{else}}
+                <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+            {{/if}}
+        "></a>
+        <a href="#" class="best-of-link-3" data-toggle="popover" data-content="<h4>La boucherie des Provinces</h4> <p>20 Rue Aligre, 75012 Paris, France</p> <p>+33 1 43 43 91 64</p>
+            {{#if session.user}}
+                <p><a class='btn btn-info add-restaurant' data-id='24'>ADD TO MY LIST</a></p>
+            {{else}}
+                <p><a href='#' class='btn btn-info login-modal'>ADD TO MY LIST</a></p>
+            {{/if}}
+        "></a>
+    </div>
 </div>
 
 {{> carousel-bestof}}
