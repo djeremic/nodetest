@@ -1,4 +1,5 @@
 var db = require('../models')
+var myCache = require('../routes/cache')
 
 exports.addPost = function(req, res) {
     var restaurant = req.param('restaurant', null);
@@ -41,12 +42,19 @@ exports.addPost = function(req, res) {
             }
         }
 
+        var cachedRestaurants = getRestauranstFromCash();
+
         if(restaurant.id == null || restaurant.id == '') {
             console.log(restaurant);
             db.Restaurant.create(restaurant).success(function (restaurant) {
                 if (tags.length > 0) restaurant.setTags(tags);
                 if (places.length > 0) restaurant.setPlaces(places);
                 if (descriptions.length > 0) restaurant.setDescriptions(descriptions);
+                if(cachedRestaurants != null){
+                    cachedRestaurants.push(restaurant);
+                    myCache.del("restaurants")
+                    myCache.set("restaurants", cachedRestaurants, 0);
+                }
                 res.redirect('/restaurants/view/'+restaurant.id)
             }).error(function (errors) {
                 console.log(errors);
@@ -59,6 +67,16 @@ exports.addPost = function(req, res) {
                     model.setTags(tags);
                     model.setPlaces(places);
                     model.setDescriptions(descriptions);
+                    if(cachedRestaurants != null){
+
+                        cachedRestaurants.forEach(function(cachedRestaurant, index){
+                            if(cachedRestaurant.id == restaurant.id){
+                                cachedRestaurants[index] = restaurant;
+                            }
+                        })
+                        myCache.del("restaurants")
+                        myCache.set("restaurants", cachedRestaurants, 0);
+                    }
                     res.redirect('/restaurants/view/'+restaurant.id)
                 }).error(function (errors) {
                     console.log(errors);
@@ -202,4 +220,13 @@ exports.delete = function(req, res) {
         console.log(errors);
         res.json({errors: errors});
     });
+}
+
+function getRestauranstFromCash(){
+    var cashedRestaurants = myCache.get("restaurants");
+    if(cashedRestaurants != null && cashedRestaurants.restaurants != null){
+        return cashedRestaurants.restaurants;
+    } else {
+        return null;
+    }
 }

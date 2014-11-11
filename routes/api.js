@@ -2,15 +2,22 @@
  * Created by Drago on 24.9.2014.
  */
 var db = require('../models')
+var myCache = require('../routes/cache')
 
 exports.index = function(req, res){
-    fillDependences();
-    db.Restaurant.findAll({where: {deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurants) {
-        res.json(restaurants);
-    }).error(function (errors) {
-        res.status(500);
-        res.json({errors: errors});
-    });
+    var cashedRestaurants = myCache.get("restaurants");
+    if(cashedRestaurants != null && cashedRestaurants.restaurants != null){
+        res.json(cashedRestaurants.restaurants);
+    } else {
+        fillDependences();
+        db.Restaurant.findAll({where: {deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurants) {
+            myCache.set("restaurants", restaurants, 0);
+            res.json(restaurants);
+        }).error(function (errors) {
+            res.status(500);
+            res.json({errors: errors});
+        });
+    }
 }
 
 exports.find = function(req, res) {
