@@ -3,6 +3,7 @@ var db = require('../models');
 var randToken = require('rand-token');
 var passwordHash = require('password-hash');
 var mailchimp = require('../externals/mailchimp');
+var graph = require('fbgraph');
 
 exports.create = function(req, res) {
     var user = req.param('user', null);
@@ -163,31 +164,48 @@ exports.admin = function(req, res, next){
 }
 
 exports.facebookLoginAPI = function(req, res, next){
-    var user = req.param('user', null);
-    var token = randToken.generate(32);
-    user.token = token;
-    user.password = passwordHash.generate(token);
-    user.role = 'user';
-    console.log(user);
+    var accessToken = req.param('accessToken', null);
+    var facebook_id = req.param('facebook_id', null);
 
-    db.User.find({
-        where: {facebook_id: user.facebook_id}
-    }).success(function(userModel){
-        console.log(userModel);
-        if(userModel == null){
-            db.User.create(user).success(function(userModel2){
-                mailchimp.addSubscriber(userModel2.email);
-                res.json({user: user});
-            }).error(function(err){
-                console.log(err);
-                res.json({errors: err});
-            });
+    graph.setAccessToken(accessToken);
+    graph.get("me", function(errors, response) {
+        console.log(response);
+        if(errors){
+            res.status('500').json({errors: errors});
         } else {
-            res.json({user: userModel});
+            if(response.id != facebook_id){
+                res.status('403').json({errors: "Access token doesn't match facebook id"});
+            } else {
+                db.User.find({
+                    where: {facebook_id: facebook_id}
+                }).success(function(userModel){
+                    if(userModel == null){
+                        var token = randToken.generate(32);
+                        var user = {
+                            token : token,
+                            facebook_id: response.id,
+                            first_name: response.first_name,
+                            last_name: response.last_name,
+                            email: response.email,
+                            password: passwordHash.generate(token),
+                            role: 'user'
+                        }
+                        db.User.create(user).success(function(userModel2){
+                            mailchimp.addSubscriber(userModel2.email);
+                            res.json({user: userModel2});
+                        }).error(function(err){
+                            console.log(err);
+                            res.json({errors: err});
+                        });
+                    } else {
+                        res.json({user: userModel});
+                    }
+                }).error(function(err){
+                    res.status('500').json({errors: err});
+                })
+            }
         }
-    }).error(function(err){
-        res.json({errors: err});
-    });
+    })
 }
 
 exports.facebookLogin = function(accessToken, refreshToken, profile, done, req){

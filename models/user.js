@@ -33,6 +33,7 @@ module.exports = function(sequelize, Sequelize) {
                 notEmpty : true
             }
         },
+        role: Sequelize.STRING,
         facebook_id: Sequelize.STRING
     }, {
         associate: function (models) {
