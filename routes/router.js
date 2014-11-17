@@ -53,6 +53,7 @@ module.exports = function (app) {
     app.get('/places/edit/:id', users.admin, places.edit);
     app.post('/descriptions/add', users.admin, descriptions.addPost);
     app.get('/descriptions/find/:id', users.admin, descriptions.find);
+    app.get('/descriptions/clean', descriptions.clean);
     app.get('/users/fbSuccess', users.fbSuccess);
     app.get('/unauthorized', errors.unauthorized)
 
