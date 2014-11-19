@@ -22,6 +22,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         phone: DataTypes.STRING,
         website: DataTypes.STRING,
+        description_en: DataTypes.TEXT,
         longitude: { type: DataTypes.DECIMAL,
             validate: {
                 notNull: true,

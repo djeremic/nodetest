@@ -44,7 +44,7 @@ exports.find = function(req, res) {
 exports.clean = function(req, res) {
     var errors = 0;
     db.Description.findAll(
-        {where: ["desc_en LIKE '<!--%'"]}
+        {where: ["desc_en LIKE '%<!--%'"]}
     ).success(function(descriptions){
             var chainer = new Sequelize.Utils.QueryChainer;
             console.log("size: " + descriptions.length)
