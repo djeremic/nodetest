@@ -11,6 +11,7 @@ var users    = require('../routes/user')
     , routes = require('../routes/index')
     , users = require('../routes/user')
     , errors = require('../routes/errors')
+    , rates = require('../routes/rate')
 
 
 module.exports = function (app) {
@@ -68,4 +69,7 @@ module.exports = function (app) {
     app.post('/api/users/login', users.loginPost);
     app.post('/api/users/register', users.create);
     app.post('/api/users/login-fb', users.facebookLoginAPI);
+
+    app.post('/api/rates/add', rates.add);
+    app.get('/api/rates', rates.find);
 }

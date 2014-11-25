@@ -47,6 +47,7 @@ db.serialize(function() {
             "phone VARCHAR(255), type VARCHAR(255), website VARCHAR(255), " +
             "longitude number NOT NULL, latitude number NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Rates(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, UserId INTEGER, food INTEGER, service INTEGER, fun INTEGER, createdAt date, updatedAt date)");
         db.close();
     }
 });
