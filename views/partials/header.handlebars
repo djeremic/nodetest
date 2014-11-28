@@ -1,40 +1,38 @@
 <div class="navbar navbar-fixed-top" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Paris Eats"></a>
+        <div class="row">
+            <div class="col-xs-2">
+                <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="glyphicon glyphicon-align-justify"></i></a>
+                <nav id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
+                        <li class="sidebar-brand">
+                            <a href="/">ParisEats</a>
+                        </li>
+                        <li {{#if home}}class="active"{{/if}}><a href="/">TASTE MAKERS</a></li>
+                        <li {{#if bestof}}class="active"{{/if}}><a href="/best-of">BEST-OF</a></li>
+                        <li {{#if coeur}}class="active"{{/if}}><a href="/coup-de-coeur-abri">COUP DE COEUR</a></li>
+                        <li {{#if scenarious}}class="active"{{/if}}><a href="/scenarios-drunk">SCENARIOS</a></li>
+                        <li><a href="#">CREATE YOUR MAP</a></li>
+                        <hr style="border-top: 1px solid red;margin-left: 20px;margin-right: 20px"/>
+                        <li><a href="#">ABOUT US</a></li>
+                        <li><a href="#">CONTACT US</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-xs-9">
+                <a href="/"><img src="/images/logo_dark.png" alt="ParisEats.com"/></a>
+                <div class="pull-right user-settings">
+                    {{#if session.user}}
+                        Hi {{session.user.first_name}} , <a href="/users/logout">logout</a>
+                    {{else}}
+                        Hi, <a href="#" class="login-modal">login</a> <span class="glyphicon glyphicon-user"></span>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-xs-1">
+
+            </div>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="small hidden-sm hidden-print">
-                <li>
-                    <a href="" class="fb"></a>
-                    <a href="" class="twitter"></a>
-                    <a href="" class="gplus"></a>
-                    <a href="" class="t"></a>
-                    <a href="" class="photo"></a>
-                    <a href="" class="email"></a>
-                </li>
-                {{#if session.user}}
-                    <li>{{session.user.first_name}} {{session.user.last_name}}, <a href="/users/logout">logout</a></li>
-                {{else}}
-                    <li><a href="#" class="login-modal">login</a> or <a href="/users/register">register</a></li>
-                {{/if}}
-                <li><a href="#">about us</a></li>
-                <li><a href="#">press</a></li>
-            </ul>
-            <ul class="nav navbar-nav big">
-                <li><a href="#">CREATE YOUR MAP</a></li>
-                <li {{#if scenarious}}class="active"{{/if}}><a href="/scenarios-drunk">SCENARIOS</a></li>
-                <li {{#if coeur}}class="active"{{/if}}><a href="/coup-de-coeur-abri">COUP DE COEUR</a></li>
-                <li {{#if bestof}}class="active"{{/if}}><a href="/best-of">BEST-OF</a></li>
-                <li {{#if home}}class="active"{{/if}}><a href="/">TASTE MAKERS</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
     </div>
 </div>
-<div style="clear:both; height:50px;"></div>

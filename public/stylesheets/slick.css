@@ -24,13 +24,13 @@
 /* Icons */
 @font-face { font-family: "slick"; src: url("./fonts/slick.eot"); src: url("./fonts/slick.eot?#iefix") format("embedded-opentype"), url("./fonts/slick.woff") format("woff"), url("./fonts/slick.ttf") format("truetype"), url("./fonts/slick.svg#slick") format("svg"); font-weight: normal; font-style: normal; }
 /* Arrows */
-.slick-prev, .slick-next { position: absolute; display: block; height: 53px; width: 30px; line-height: 0; font-size: 0; cursor: pointer; background: transparent; color: transparent; top: 50%; margin-top: -26px; padding: 0; border: none; outline: none; background-image: url('img/arrows.png');}
+.slick-prev, .slick-next { position: absolute; display: block; height: 54px; width: 54px; line-height: 0; font-size: 0; cursor: pointer; background: transparent; color: transparent; top: 50%; margin-top: -26px; padding: 0; border: none; outline: none; background-image: url('img/arrows.png');}
 .slick-prev.slick-disabled {background-position: top left !important;}
 .slick-next.slick-disabled {background-position: top right !important;}
 
-.slick-prev, .slick-prev:hover { left: -25px; background-position: bottom left;}
+.slick-prev, .slick-prev:hover { left: 10px; background-position: bottom left;}
 
-.slick-next, .slick-next:hover { right: -25px; background-position: bottom right;}
+.slick-next, .slick-next:hover { right: 10px; background-position: bottom right;}
 
 /* Dots */
 .slick-slider { margin-bottom: 30px; }
