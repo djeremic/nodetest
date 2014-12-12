@@ -7,8 +7,7 @@ $(function() {
 
     $('body').on("click",".add-restaurant", function(e){
         e.preventDefault();
-        var $paragraph = $(this).parents('p').first();
-        $(this).hide();
+        var link = $(this);
         $.ajax({
             url: "/restaurants/favourites/add",
             dataType: "json",
@@ -17,7 +16,30 @@ $(function() {
                 id: $(this).attr('data-id')
             },
             success: function (data, textStatus, jqXHR) {
-                $paragraph.append('<span class="success">ADDED TO LIST</span>')
+                link.text('Added to list');
+                link.removeClass("add-restaurant")
+                link.addClass("delete-restaurant")
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                $('.img-wrapper a[data-toggle="popover"]').popover('hide');
+            }
+        });
+    });
+
+    $('body').on("click",".delete-restaurant", function(e){
+        e.preventDefault();
+        var link = $(this);
+        $.ajax({
+            url: "/restaurants/favourites/remove",
+            dataType: "json",
+            type: 'DELETE',
+            data: {
+                id: $(this).attr('data-id')
+            },
+            success: function (data, textStatus, jqXHR) {
+                link.text('Add to your list');
+                link.removeClass("delete-restaurant")
+                link.addClass("add-restaurant")
             },
             error: function(jqXHR, textStatus, errorThrown){
                 $('.img-wrapper a[data-toggle="popover"]').popover('hide');

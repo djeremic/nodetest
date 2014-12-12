@@ -104,6 +104,13 @@ exports.scenariousQuestion = function(req, res){
     })
 }
 
+exports.gregory = function(req, res){
+    res.render('routes/gregory', {
+        layout: 'final',
+        scenarious: true
+    })
+}
+
 
 
 

@@ -1,0 +1,39 @@
+<div class="top row" style="background: url('/images/top/gregory-top.png') top left 60% no-repeat transparent;">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-9 masters">
+        <h1>MY PARIS HOTSPOTS</h1>
+        <h4>BY GREGORY MARCHAND</h4>
+    </div>
+    <div class="col-xs-1"></div>
+</div>
+<div class="row restaurant-carousel">
+    <div class="col-md-2 hidden-xs hidden-sm"></div>
+    <div class="slider multiple-items col-md-8 col-xs-12 col-sm-12">
+        <div>
+            <h2>1. LE FRENCHIE</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie nibh non sapien ultrices, eu commodo metus cursus. Cras ut ultrices turpis. Cras quis tincidunt arcu. Cras finibus lacus at libero mollis dignissim. Curabitur dapibus vehicula arcu at ultrices. Suspendisse imperdiet velit turpis, id varius justo accumsan id. In lobortis convallis lobortis. Aliquam cursus luctus est et consequat.</p>
+            {{#if session.user}}
+                <a class='add-restaurant' data-id='6'>Add to your list</a>
+            {{else}}
+                <a href='#' class='login-modal'>Add to your list</a>
+            {{/if}}
+        </div>
+        <div>
+            <h2>1. LE FRENCHIE</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie nibh non sapien ultrices, eu commodo metus cursus. Cras ut ultrices turpis. Cras quis tincidunt arcu. Cras finibus lacus at libero mollis dignissim. Curabitur dapibus vehicula arcu at ultrices. Suspendisse imperdiet velit turpis, id varius justo accumsan id. In lobortis convallis lobortis. Aliquam cursus luctus est et consequat.</p>
+        </div>
+    </div>
+    <div class="col-md-2 hidden-xs hidden-sm"></div>
+</div>
+
+<script src="/javascripts/slick.min.js"></script>
+<link rel='stylesheet' href='/stylesheets/slick.css' />
+<script src="/javascripts/custom/favourites.js"></script>
+<script type="text/javascript">
+    $('.multiple-items').slick({
+        dots: true,
+        infinite: false,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    });
+</script>

@@ -3,7 +3,7 @@
   src: url('../fonts/FuturaExtended.ttf');
 }
 html{min-height:100%; font: 14px FuturaLight, Helvetica, Arial, sans-serif;}
-body{background: black;}
+body{background: black;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;}
 
 .navbar{padding-top:10px;//background-color: rgba(0,0,0,0.7);
   .user-settings{color:#e3412a; line-height: 49px;
@@ -24,18 +24,25 @@ body{background: black;}
     p{padding-top:10px; color: #a6a5a5;}
   }
   form{text-align: left;}
+  button.close{color:#e64121;}
 }
 
 .top{
-  background: url('/images/homepage/top.png') top left 60% no-repeat transparent;
   .content {
     min-height: 585px;
     text-align: left;
     position:relative;
     img.application{position:absolute;bottom:0;right:-20px;}
+    h1,h2,h3,h4{color:#e64121; text-shadow: 1px 1px 5px #000;}
+    h1{padding: 220px 0 50px 0;text-align: left;line-height: 1.2;font-size:36px;}
   }
-  h1,h2,h3,h4{color:#e64121; text-shadow: 1px 1px 5px #000;}
-  h1{padding: 220px 0 50px 0;text-align: left;line-height: 1.2;font-size:36px;}
+  .masters{
+    text-align: center;
+    min-height: 585px;
+    h1,h2,h3,h4{color:#fff; text-shadow: 1px 1px 5px #000;text-align: center;}
+    h1{padding: 350px 0 0 0;line-height: 1.2;font-size:36px;}
+  }
+
 }
 
 .carousel-wrapper{
@@ -63,5 +70,12 @@ body{background: black;}
   margin: 0;
 }
 
-//:nth-child(1) a{margin-right:5px;}
-//.slick-active:nth-child(2) a{margin-left:5px;}
+.restaurant-carousel{background:#fff;padding:20px;text-align:center;
+  h2{color:#e64125;}
+  p{margin:20px 80px;text-align: justify;text-justify: inter-word;}
+  a{color:#e64125; text-align: center; padding-top: 60px;overflow: none;display: inline-block;cursor:pointer;
+    &.add-restaurant{background:url('img/like.png') top center no-repeat transparent !important;}
+    &.login-modal{background:url('img/like.png') top center no-repeat transparent !important;}
+    &.delete-restaurant{background:url('img/liked.png') top center no-repeat transparent !important;}
+  }
+}

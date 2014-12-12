@@ -16,7 +16,8 @@ var users    = require('../routes/user')
 
 module.exports = function (app) {
     app.get('/', routes.index)
-    app.get('/best-of', routes.bestOf)
+    app.get('/gregory', routes.gregory)
+    /*app.get('/best-of', routes.bestOf)
     app.get('/best-of-frites', routes.bestOfFrites)
     app.get('/best-of-chinese', routes.bestOfChinese)
     app.get('/best-of-croissants', routes.bestOfCroissants)
@@ -29,7 +30,7 @@ module.exports = function (app) {
     app.get('/coup-de-coeur-marie-celeste', routes.coupDeCoeurCeleste)
     app.get('/coup-de-coeur-nanashi', routes.coupDeCoeurNanashi)
     app.get('/scenarios-drunk', routes.scenariousDrunk)
-    app.get('/scenarios-pop-up-question', routes.scenariousQuestion)
+    app.get('/scenarios-pop-up-question', routes.scenariousQuestion)*/
     app.post('/users/register', users.create)
     app.get('/users/register', users.register)
     app.post('/users/login', users.loginPost)

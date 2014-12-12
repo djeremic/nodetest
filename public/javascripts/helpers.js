@@ -11,6 +11,19 @@
                 } else {
                     return '';
                 }
+            },
+            isInArray: function(lvalue, rvalue, options){
+                if (arguments.length < 3)
+                    throw new Error("Handlebars Helper equal needs 2 parameters");
+                if(lvalue != null && lvalue.length > 0){
+                    for(var i = 0; i < lvalue.length; i++){
+                        if(lvalue[i] == rvalue){
+                            return true;
+                        }
+                    }
+                } else {
+                    return false;
+                }
             }
         };
         /************* END HELPERS *************/
