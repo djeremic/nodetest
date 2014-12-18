@@ -5,7 +5,7 @@ $(function(){
     var loginModal = $('#login-modal');
     var loginForm = loginModal.find('form');
 
-    $('body').on("click",".login-modal", function(e){ //user click on remove text
+    $('body').on("click",".login-modal", function(e){
         e.preventDefault();
         loginForm.find('input').val('');
         loginModal.find('.alert').remove();

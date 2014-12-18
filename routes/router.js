@@ -17,6 +17,8 @@ var users    = require('../routes/user')
 module.exports = function (app) {
     app.get('/', routes.index)
     app.get('/gregory', routes.gregory)
+    app.get('/tony', routes.tony)
+    app.get('/terms', routes.terms)
     /*app.get('/best-of', routes.bestOf)
     app.get('/best-of-frites', routes.bestOfFrites)
     app.get('/best-of-chinese', routes.bestOfChinese)

@@ -111,6 +111,19 @@ exports.gregory = function(req, res){
     })
 }
 
+exports.tony = function(req, res){
+    res.render('routes/tony', {
+        layout: 'final',
+        scenarious: true
+    })
+}
+
+exports.terms = function(req, res){
+    res.render('static/terms', {
+        layout: 'final'
+    })
+}
+
 
 
 
