@@ -1,43 +1,86 @@
-<div class="top row" style="background: url('/images/homepage/top.jpg') top center no-repeat transparent;">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-9 content">
-        <div id="header-wr">
-            <h1>DISCOVER THE BEST<br/>
-                KEPT SECRETS<br/>
-                OF PARIS FOODIE<br/>
-                SCENE</h1>
-            <a href="#"><img src="/images/homepage/app-store.png"></a>
+<div class="top row" style="background: url('/images/homepage/top.jpg') top center no-repeat #000;">
+    <div class="container">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-9 content">
+            <div id="header-wr">
+                <h1>DISCOVER THE BEST<br/>
+                    KEPT SECRETS<br/>
+                    OF PARIS FOODIE<br/>
+                    SCENE</h1>
+                <a href="#"><img src="/images/homepage/app-store.png"></a>
+            </div>
+            <img src="/images/homepage/iphone-app.png" class="application"/>
         </div>
-        <img src="/images/homepage/iphone-app.png" class="application"/>
-    </div>
-    <div class="col-xs-1"></div>
-</div>
-<div class="row carousel-wrapper">
-    <div class="slider multiple-items">
-        <div><a href="/gregory">
-            <img src="/images/homepage/greg.jpg"/>
-            <div class="inner-text">
-                <h2>GREGORY MARCHAND</h2>
-                <h4>picks</h4>
-            </div>
-        </a></div>
-        <div><a href="/tony"><img src="/images/homepage/toni.jpg"/>
-            <div class="inner-text">
-                <h2>TONY CHAMBERS</h2>
-                <h4>recommends</h4>
-            </div>
-        </a></div>
+        <div class="col-xs-1"></div>
     </div>
 </div>
-<div class="row bottom">
-    <h2>ABOUT US</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a neque sed risus pellentesque pharetra sed eu libero. Phasellus facilisis ornare massa sit amet semper. Vivamus iaculis, elit in ornare tincidunt, nulla turpis consectetur quam, eget dapibus nisl nisi sed tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam ut ultricies sapien. Donec varius dolor id quam posuere maximus. Morbi aliquam sit amet nisl sit amet aliquet. Sed nec convallis eros. Vestibulum diam est, aliquet eget orci non, vestibulum sagittis odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec suscipit ullamcorper consectetur.
-    </p>
+<div class="container">
+    <div class="row carousel-wrapper">
+        <div class="slider multiple-items">
+            <div><a href="/gregory">
+                <img src="/images/homepage/greg.jpg"/>
+                <div class="inner-text">
+                    <h2>GREGORY MARCHAND</h2>
+                    <h4>picks</h4>
+                </div>
+            </a></div>
+            <div><a href="/tony"><img src="/images/homepage/toni.jpg"/>
+                <div class="inner-text">
+                    <h2>TONY CHAMBERS</h2>
+                    <h4>recommends</h4>
+                </div>
+            </a></div>
+        </div>
+    </div>
+    <div class="row bottom">
+        <div class="col-xs-1 col-lg-2"></div>
+        <div class="col-xs-10 col-lg-8">
+            <h2>ABOUT US</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a neque sed risus pellentesque pharetra sed eu libero. Phasellus facilisis ornare massa sit amet semper. Vivamus iaculis, elit in ornare tincidunt, nulla turpis consectetur quam, eget dapibus nisl nisi sed tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam ut ultricies sapien. Donec varius dolor id quam posuere maximus. Morbi aliquam sit amet nisl sit amet aliquet. Sed nec convallis eros. Vestibulum diam est, aliquet eget orci non, vestibulum sagittis odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec suscipit ullamcorper consectetur.
+            </p>
+
+            <p style="color: #e64121; margin-top:50px;">Be the first to know about latest updates. Subscribe to our mailing list</p>
+
+            <div id="submit-wr" style="padding:10px 0px; margin:0 40px 10px 40px;">
+                <form role="form" id="subscribe"  action="/subscribe">
+                    <div class="form-group">
+                        <div class="input-group input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Email address is invalid" required name="email">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-warning" type="submit" id="subscribe-button">Submit</button>
+                            </span>
+                        </div>
+                        <span class="help-block with-errors">Enter your email address</span>
+                    </div>
+                </form>
+            </div>
+            <p style="font-size: 14px">We promise not to spam</p>
+        </div>
+        <div class="col-xs-1 col-lg-2"></div>
+    </div>
 </div>
 
+<script>
+    window.ParsleyConfig = {
+        errorClass: 'has-error',
+        successClass: 'has-success',
+        classHandler: function(ParsleyField) {
+            return ParsleyField.$element.parents('.form-group');
+        },
+        errorsContainer: function(ParsleyField) {
+            return ParsleyField.$element.parents('.form-group');
+        },
+        errorsWrapper: '<span class="help-block">',
+        errorTemplate: '<div></div>'
+    };
+</script>
+<script src="/javascripts/parsley.min.js"></script>
 <script src="/javascripts/slick.min.js"></script>
+<script src="/javascripts/custom/subscribe.js"></script>
 <link rel='stylesheet' href='/stylesheets/slick.css' />
 <script type="text/javascript">
+    //$('form#subscribe').parsley();
     $('.multiple-items').slick({
         dots: false,
         infinite: false,

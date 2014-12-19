@@ -3,7 +3,7 @@
   src: url('../fonts/FuturaExtended.ttf');
 }
 html{min-height:100%; font: 14px FuturaLight, Helvetica, Arial, sans-serif;}
-body{background: black;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
+body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
   h1, h2, h3, h4 {
     color: #e64121;
   }
@@ -35,6 +35,7 @@ body{background: black;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
 
 
 .top{
+  background: #000;
   .content {
     min-height: 585px;
     text-align: left;
@@ -60,7 +61,11 @@ body{background: black;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
     text-align: center;
     min-height: 585px;
     h1,h2,h3,h4{color:#fff; text-align: center;}
-    h1{padding: 350px 0 0 0;line-height: 1.2;font-size:36px;}
+    h1{padding: 450px 0 0 0;line-height: 1.2;font-size:36px;}
+    a{color: #e64121;text-decoration: none; font-size: 18px;padding-left: 30px; line-height: 20px;
+      &.author{background: url('/images/top/author.png') left center no-repeat transparent;}
+      &.map{background: url('/images/top/map.png') left center no-repeat transparent;}
+    }
   }
 
 }
@@ -89,12 +94,12 @@ body{background: black;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
     display: block;
     img{width: 100%}
   }
-  a:hover h2, a:hover h4{text-decoration:underline !important;}
+  a:hover img{opacity: 0.8;}
   margin: 0;
 }
 
 .restaurant-carousel{background:#fff;padding:20px;text-align:center;
-  h2{color:#e64125;}
+  h2{color:#e64125;font-size:48px;padding-top:30px;}
   p{margin:20px 80px;text-align: justify;text-justify: inter-word;}
   a{color:#e64125; text-align: center; padding-top: 60px;overflow: none;display: inline-block;cursor:pointer;
     &.add-restaurant{background:url('img/like.png') top center no-repeat transparent !important;}
@@ -105,14 +110,18 @@ body{background: black;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
 
 div.bottom{
   background: #fff;
-  padding:20px 300px;
   text-align: center;
   h1,h2,h3,h4{color:#e64121; text-align: center;padding:20px 0;}
+  h2{font-size:48px;}
+  p{font-size: 20px;color: #747373;}
 }
 
-@media only screen and (min-width: 480px) and (max-width: 959px) {
-  .container {
+@media only screen and (min-width: 480px) and (max-width: 981px) {
+  .container, .navbar {
     width: 100% !important;
   }
-  .navbar{width:100%;}
 }
+
+.btn-warning{background: #e64125 !important;opacity: 1 !important;}
+.btn-warning:hover{background: #e64125 !important;opacity: 1 !important;}
+.btn-warning:visited{background: #e64125 !important;opacity: 1 !important;}

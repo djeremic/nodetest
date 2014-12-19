@@ -247,3 +247,13 @@ exports.facebookLogin = function(accessToken, refreshToken, profile, done, req){
 exports.fbSuccess = function(req, res, next){
     res.render('users/fbSuccess');
 }
+
+exports.subscribe = function(req, res, next){
+    try {
+        var email = req.body.email;
+        mailchimp.addSubscriber(email);
+        res.json({success: 'success'});
+    } catch (error){
+        res.status('500').json({errors: "error"});
+    }
+}

@@ -60,6 +60,7 @@ module.exports = function (app) {
     app.get('/descriptions/clean', descriptions.clean);
     app.get('/users/fbSuccess', users.fbSuccess);
     app.get('/unauthorized', errors.unauthorized)
+    app.post('/subscribe', users.subscribe)
 
     //API
     app.get('/api/restaurants', api.index);

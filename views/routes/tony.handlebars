@@ -1,88 +1,94 @@
-<div class="top row" style="background: url('/images/top/tony_map.png') center center no-repeat transparent;">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-9 masters">
-        <h1>MY PARIS HOTSPOTS</h1>
-        <h4>BY GREGORY MARCHAND</h4>
-        <img src="/images/top/tony_map.png" width="150px"/>
+<div class="top row" style="background: url('/images/top/tony.png') center center no-repeat #000000;">
+    <div class="container">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-9 masters">
+            <h1>MY PARIS HOTSPOTS</h1>
+            <h4>BY GREGORY MARCHAND</h4>
+            <a href="#" class="author" data-img="/images/top/tony.png">Back to Author</a>
+            <a href="#" class="map" data-img="/images/top/tony_map.png">see the map</a>
+        </div>
+        <div class="col-xs-1"></div>
     </div>
-    <div class="col-xs-1"></div>
 </div>
-<div class="row restaurant-carousel">
-    <div class="col-md-2 hidden-xs hidden-sm"></div>
-    <div class="slider multiple-items col-md-8 col-xs-12 col-sm-12">
-        <div>
-            <h2>&nbsp;</h2>
-            <p><b>The city of lights opened my eyes to many possibilities in the world of art, design, and architecture. Paris is really a second home for me after London. I am easily in Paris at least six times a year, traveling back and forth on Eurostar.</b></p>
+<div class="container">
+    <div class="row restaurant-carousel">
+        <div class="col-md-2 hidden-xs hidden-sm"></div>
+        <div class="slider multiple-items col-md-8 col-xs-12 col-sm-12">
+            <div>
+                <h2>&nbsp;</h2>
+                <p><b>The city of lights opened my eyes to many possibilities in the world of art, design, and architecture. Paris is really a second home for me after London. I am easily in Paris at least six times a year, traveling back and forth on Eurostar.</b></p>
+            </div>
+            <div>
+                <h2>1. Hôtel du Nell</h2>
+                <p>The hotel is an intimate venue designed by Wilmotte and located on rue du Conservatoire, a small street that is both away from the hustle of Paris and right in the heart of it. When I stay there, I can go to all my appointments by foot. And I love walking. During fashion week, if you are a bit claustrophobic, this is the great address.  And the restaurant La Régalade Conservatoire is excellent!</p>
+                {{#if session.user}}
+                    <a class='add-restaurant' data-id='219'>Add to your list</a>
+                {{else}}
+                    <a href='#' class='login-modal'>Add to your list</a>
+                {{/if}}
+            </div>
+            <div>
+                <h2>2. Wallpaper Store - La Jeune Rue</h2>
+                <p>La Jeune Rue is one of the projects demonstrating that Paris is still on the move ! It's very exciting. The combination of the best food and one of the most beautiful design projects has been a dream for Wallpaper for some time.  We will open our first Wallpaper shop in Paris here.</p>
+            </div>
+            <div>
+                <h2>3. Brasserie Thoumieux</h2>
+                <p>It feels like home in this Parisian brasserie. I always order the squid carbonara.</p>
+                {{#if session.user}}
+                    <a class='add-restaurant' data-id='209'>Add to your list</a>
+                {{else}}
+                    <a href='#' class='login-modal'>Add to your list</a>
+                {{/if}}
+            </div>
+            <div>
+                <h2>4. La Kiss Room at La Perle</h2>
+                <p>I used to go to La Perle quite often.  The spot where John Galliano had his ‘scandal’. I recently went back to see a crazy project called The Kiss Room. The invention of Matthias Kiss, a decorator, who designed a one room hotel in the storeroom of the bar that you can reserve for one night during its run of 1000 Nights (opened January 2014). In a room of 10m2, the reflection of 1000 mirrors creates a surreal Lynchian effect.</p>
+            </div>
+            <div>
+                <h2>5. Galerie Kreo</h2>
+                <p>Here we see that design is always at the frontier of art. It's very inspiring. And they just opened in London.</p>
+            </div>
+            <div>
+                <h2>6. L'institut du monde arabe</h2>
+                <p>Like the Louvre’s Pyramid and La Défense, this place was a revelation for me. In the late 80s, early 90’s, while London was sleeping Paris was wide awake, architecturally speaking. This is a magnificent example.  The building’s unveiling showcased all that was technically and architectually possible, and in the heart of a city as historic as Paris.</p>
+            </div>
+            <div>
+                <h2>7. L'institut du monde arabe</h2>
+                <p>Like the Louvre’s Pyramid and La Défense, this place was a revelation for me. In the late 80s, early 90’s, while London was sleeping Paris was wide awake, architecturally speaking. This is a magnificent example.  The building’s unveiling showcased all that was technically and architectually possible, and in the heart of a city as historic as Paris.</p>
+            </div>
+            <div>
+                <h2>8. Le centre Georges Pompidou</h2>
+                <p>The Pompidou was another revelation for me. Beyond the colorful structure, what I still enjoy most today is the portrait of President Pompidou by Vasarely. The kinetic motion of this piece was another example of things happening in Paris that did not exist in London in the late 80’s and early 90’s. Today, it's the opposite: London is on the move and Paris is more like an old friend who does not change. And that's reassuring.</p>
+            </div>
+            <div>
+                <h2>9. Galerie Patrick Seguin</h2>
+                <p>Patrick is a real specialist of Jean Prouvé and has a galerie just behind Bastille. I was with him in Epinay as Wallpaper launched a special issue in October on the 100 most important people in design. Patrick is one of them.  With Don Perignon as the sponsor we spent two fabulous days in Champagne with Richard Geoffroy, the chef de cave, and ten design stars drinking champagne of course…</p>
+            </div>
+            <div>
+                <h2>10. Vélib'</h2>
+                <p>Ohhh ! Vélib’ bikes! Another interplanetary revolution that started in Paris ! It’s really a life changer. Now that they are in London, I use them when it's not raining or when I'm not too drunk ... bien sur. Merci, Velib!</p>
+            </div>
+            <div>
+                <h2>11. Petit h (Hèrmes)</h2>
+                <p>Pantin is a pretty tough neighborhood and yet very prestigious people have set up home there. It's funny to see such a suburb transforming itself. The creation studio of Petit h is magical. Pascale Mussard, the Art director, recycles anything that is not used by Hermes to make toys for children. She gave me a slightly bizarre animal for my daughter born last year. It's soft and very expressive.</p>
+            </div>
+            <div>
+                <h2>12. La Foundation Cartier</h2>
+                <p>I always think of this place when I am in Paris, though I rarely find the time to make it there. I like to think of the gardens that are just as interesting as the exhibitions and the building, celebrating its 20th anniversary this year, in addition to 30 years of the Foundation!</p>
+            </div>
+            <div>
+                <h2>13. Le quartier Beaugrenelle</h2>
+                <p>I have always wanted to get lost in this neighborhood. Unfortunately, I’ve never managed to get out of  the taxi, and just passed by. I love the buildings here, that many might find very ugly. I used to live in this kind of brutalist architecture in London and my friends did not understand how I could be someone with good taste and live there. It amused me a lot.</p>
+            </div>
         </div>
-        <div>
-            <h2>1. Hôtel du Nell</h2>
-            <p>The hotel is an intimate venue designed by Wilmotte and located on rue du Conservatoire, a small street that is both away from the hustle of Paris and right in the heart of it. When I stay there, I can go to all my appointments by foot. And I love walking. During fashion week, if you are a bit claustrophobic, this is the great address.  And the restaurant La Régalade Conservatoire is excellent!</p>
-            {{#if session.user}}
-                <a class='add-restaurant' data-id='219'>Add to your list</a>
-            {{else}}
-                <a href='#' class='login-modal'>Add to your list</a>
-            {{/if}}
-        </div>
-        <div>
-            <h2>2. Wallpaper Store - La Jeune Rue</h2>
-            <p>La Jeune Rue is one of the projects demonstrating that Paris is still on the move ! It's very exciting. The combination of the best food and one of the most beautiful design projects has been a dream for Wallpaper for some time.  We will open our first Wallpaper shop in Paris here.</p>
-        </div>
-        <div>
-            <h2>3. Brasserie Thoumieux</h2>
-            <p>It feels like home in this Parisian brasserie. I always order the squid carbonara.</p>
-            {{#if session.user}}
-                <a class='add-restaurant' data-id='209'>Add to your list</a>
-            {{else}}
-                <a href='#' class='login-modal'>Add to your list</a>
-            {{/if}}
-        </div>
-        <div>
-            <h2>4. La Kiss Room at La Perle</h2>
-            <p>I used to go to La Perle quite often.  The spot where John Galliano had his ‘scandal’. I recently went back to see a crazy project called The Kiss Room. The invention of Matthias Kiss, a decorator, who designed a one room hotel in the storeroom of the bar that you can reserve for one night during its run of 1000 Nights (opened January 2014). In a room of 10m2, the reflection of 1000 mirrors creates a surreal Lynchian effect.</p>
-        </div>
-        <div>
-            <h2>5. Galerie Kreo</h2>
-            <p>Here we see that design is always at the frontier of art. It's very inspiring. And they just opened in London.</p>
-        </div>
-        <div>
-            <h2>6. L'institut du monde arabe</h2>
-            <p>Like the Louvre’s Pyramid and La Défense, this place was a revelation for me. In the late 80s, early 90’s, while London was sleeping Paris was wide awake, architecturally speaking. This is a magnificent example.  The building’s unveiling showcased all that was technically and architectually possible, and in the heart of a city as historic as Paris.</p>
-        </div>
-        <div>
-            <h2>7. L'institut du monde arabe</h2>
-            <p>Like the Louvre’s Pyramid and La Défense, this place was a revelation for me. In the late 80s, early 90’s, while London was sleeping Paris was wide awake, architecturally speaking. This is a magnificent example.  The building’s unveiling showcased all that was technically and architectually possible, and in the heart of a city as historic as Paris.</p>
-        </div>
-        <div>
-            <h2>8. Le centre Georges Pompidou</h2>
-            <p>The Pompidou was another revelation for me. Beyond the colorful structure, what I still enjoy most today is the portrait of President Pompidou by Vasarely. The kinetic motion of this piece was another example of things happening in Paris that did not exist in London in the late 80’s and early 90’s. Today, it's the opposite: London is on the move and Paris is more like an old friend who does not change. And that's reassuring.</p>
-        </div>
-        <div>
-            <h2>9. Galerie Patrick Seguin</h2>
-            <p>Patrick is a real specialist of Jean Prouvé and has a galerie just behind Bastille. I was with him in Epinay as Wallpaper launched a special issue in October on the 100 most important people in design. Patrick is one of them.  With Don Perignon as the sponsor we spent two fabulous days in Champagne with Richard Geoffroy, the chef de cave, and ten design stars drinking champagne of course…</p>
-        </div>
-        <div>
-            <h2>10. Vélib'</h2>
-            <p>Ohhh ! Vélib’ bikes! Another interplanetary revolution that started in Paris ! It’s really a life changer. Now that they are in London, I use them when it's not raining or when I'm not too drunk ... bien sur. Merci, Velib!</p>
-        </div>
-        <div>
-            <h2>11. Petit h (Hèrmes)</h2>
-            <p>Pantin is a pretty tough neighborhood and yet very prestigious people have set up home there. It's funny to see such a suburb transforming itself. The creation studio of Petit h is magical. Pascale Mussard, the Art director, recycles anything that is not used by Hermes to make toys for children. She gave me a slightly bizarre animal for my daughter born last year. It's soft and very expressive.</p>
-        </div>
-        <div>
-            <h2>12. La Foundation Cartier</h2>
-            <p>I always think of this place when I am in Paris, though I rarely find the time to make it there. I like to think of the gardens that are just as interesting as the exhibitions and the building, celebrating its 20th anniversary this year, in addition to 30 years of the Foundation!</p>
-        </div>
-        <div>
-            <h2>13. Le quartier Beaugrenelle</h2>
-            <p>I have always wanted to get lost in this neighborhood. Unfortunately, I’ve never managed to get out of  the taxi, and just passed by. I love the buildings here, that many might find very ugly. I used to live in this kind of brutalist architecture in London and my friends did not understand how I could be someone with good taste and live there. It amused me a lot.</p>
-        </div>
+        <div class="col-md-2 hidden-xs hidden-sm"></div>
     </div>
-    <div class="col-md-2 hidden-xs hidden-sm"></div>
 </div>
 
 <script src="/javascripts/slick.min.js"></script>
 <link rel='stylesheet' href='/stylesheets/slick.css' />
 <script src="/javascripts/custom/favourites.js"></script>
+<script src="/javascripts/custom/image-tougle.js"></script>
 <script type="text/javascript">
     $('.multiple-items').slick({
         dots: true,
