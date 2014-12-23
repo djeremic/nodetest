@@ -9,7 +9,7 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
   }
 }
 
-.navbar{padding-top:0px;position: absolute; top: 0;left: 50%;z-index:1000;
+.navbar{padding-top:0px;position: absolute; top: 0;left: 50%;z-index:1000;margin:10px 0 0 0;width: 100%;
   transform: translate(-50%, 0);
   .container{padding-top:10px;}
   .user-settings{color:#e3412a; line-height: 49px;
@@ -61,11 +61,13 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
     text-align: center;
     min-height: 585px;
     h1,h2,h3,h4{color:#fff; text-align: center;}
-    h1{padding: 450px 0 0 0;line-height: 1.2;font-size:36px;}
+    h1{padding: 410px 0 0 0;line-height: 1.2;font-size:36px;}
+    h4{padding-bottom: 30px;}
     a{color: #e64121;text-decoration: none; font-size: 18px;padding-left: 30px; line-height: 20px;
       &.author{background: url('/images/top/author.png') left center no-repeat transparent;}
       &.map{background: url('/images/top/map.png') left center no-repeat transparent;}
     }
+    a:hover{color: #000;}
   }
 
 }
@@ -98,9 +100,9 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
   margin: 0;
 }
 
-.restaurant-carousel{background:#fff;padding:20px;text-align:center;
+.restaurant-carousel{background:#fff;padding:20px 0;text-align:center;
   h2{color:#e64125;font-size:48px;padding-top:30px;}
-  p{margin:20px 80px;text-align: justify;text-justify: inter-word;}
+  p{margin:20px 80px;text-align: center;font-size: 18px;}
   a{color:#e64125; text-align: center; padding-top: 60px;overflow: none;display: inline-block;cursor:pointer;
     &.add-restaurant{background:url('img/like.png') top center no-repeat transparent !important;}
     &.login-modal{background:url('img/like.png') top center no-repeat transparent !important;}
@@ -109,6 +111,7 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
 }
 
 div.bottom{
+  margin-top: 100px;
   background: #fff;
   text-align: center;
   h1,h2,h3,h4{color:#e64121; text-align: center;padding:20px 0;}

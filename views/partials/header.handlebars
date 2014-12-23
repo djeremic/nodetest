@@ -1,25 +1,25 @@
-<div class="navbar" role="navigation">
-    <div class="container">
+<div class="navbar row" role="navigation">
+    <!--<div class="container">-->
         <div class="row">
-            <div class="col-xs-2">
-                <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="glyphicon glyphicon-align-justify"></i></a>
+            <div class="col-xs-2 col-lg-3">
+                <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
                 <nav id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
                         <li class="sidebar-brand">
-                            <a href="/">ParisEats</a>
+                            <a href="/">HOME</a>
                         </li>
                         <li {{#if home}}class="active"{{/if}}><a href="/gregory">GREGORY MARCHAND</a></li>
                         <li {{#if bestof}}class="active"{{/if}}><a href="/tony">TONY CHAMBERS</a></li>
                         <!--<li><a href="#">CREATE YOUR MAP</a></li>-->
                         <hr style="border-top: 1px solid red;margin-left: 20px;margin-right: 20px"/>
-                        <li><a href="/terms">TERMS OF USAGE</a></li>
-                        <li><a href="#">ABOUT US</a></li>
-                        <li><a href="#">CONTACT US</a></li>
+                        <li><a href="/terms">TERMS OF SERVICE</a></li>
+                        <!--<li><a href="#">ABOUT US</a></li>
+                        <li><a href="#">CONTACT US</a></li>-->
                     </ul>
                 </nav>
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-9 col-lg-8">
                 <a href="/"><img src="/images/logo_dark.png" alt="ParisEats.com"/></a>
                 <div class="pull-right user-settings">
                     {{#if session.user}}
@@ -33,5 +33,5 @@
 
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </div>
