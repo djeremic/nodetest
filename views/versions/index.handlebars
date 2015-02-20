@@ -1,0 +1,21 @@
+{{#if version}}
+    <h1>Current version: {{version.id}}</h1>
+    <div class="row">
+        <div class="col-lg-4">
+            <b>Version:</b><br/>
+            {{version.id}}
+        </div>
+        <div class="col-lg-4">
+            <b>Description:</b><br/>
+            {{version.description}}
+        </div>
+        <div class="col-lg-4">
+            <b>User:</b><br/>
+            {{version.user.first_name}} {{version.user.last_name}}
+        </div>
+    </div>
+{{/if}}
+
+<div class="row" style="margin-top: 20px;">
+<a href="/versions/add" class="btn btn-default">publish new version</a><br/>
+</div>

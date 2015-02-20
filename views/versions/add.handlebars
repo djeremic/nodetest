@@ -1,0 +1,15 @@
+<h1>Publish new version</h1>
+
+<div class="row">
+    <div class="col-lg-4">
+        <form id="publish" action="/versions/add" method="post" role="form">
+            <input type="hidden" name="version[UserId]" value="{{session.user.id}}">
+            <div class="form-group {{#if errors.description}}has-error error{{/if}}">
+                <label for="description_en" class="control-label">Description: </label>
+                <textarea id="description" name="version[description]" class="form-control" rows="5"></textarea>
+                {{#if errors.description}}<code>{{errors.description.[0]}}</code>{{/if}}
+            </div>
+            <button class="btn btn-default">Publish</button>
+        </form>
+    </div>
+</div>
