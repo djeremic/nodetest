@@ -48,6 +48,7 @@ db.serialize(function() {
             "longitude number NOT NULL, latitude number NOT NULL, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Rates(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, UserId INTEGER, food INTEGER, service INTEGER, fun INTEGER, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Versions(id INTEGER PRIMARY KEY AUTOINCREMENT, UserId INTEGER, description TEXT, createdAt date, updatedAt date)");
         db.close();
     }
 });
@@ -80,8 +81,10 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 passport.use(new FacebookStrategy({
-        clientID: 1506984952881668,
-        clientSecret: '51d5a888fbcffc436288d3f33b09529c',
+        //clientID: 1506984952881668,
+        //clientSecret: '51d5a888fbcffc436288d3f33b09529c',
+        clientID: 1576516315928531,
+        clientSecret: '59d8be3dba33f5a57cf251d3f77959f5',
         callbackURL: "http://a2ss13.a2hosting.com:49555/auth/facebook/callback",
         passReqToCallback: true
     },
