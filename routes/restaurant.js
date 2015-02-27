@@ -9,7 +9,11 @@ exports.addPost = function(req, res) {
     var tags = [];
     var places = [];
     var descriptions = [];
+    var photos = [];
     restaurant.go_for = buildGoForString(req.param('goForArray', null));
+    console.log("\n\n\n\n\nFiles")
+    console.log(req.files)
+    if("")
 
     var errors = db.Restaurant.build(restaurant).validate();
 
@@ -23,6 +27,7 @@ exports.addPost = function(req, res) {
         db.Place.hasMany(db.Restaurant);
 
         db.Restaurant.hasMany(db.Description);
+        db.Restaurant.hasMany(db.Photo);
 
         if (tagIDs) {
             for (var i = 0; i < tagIDs.length; i++) {

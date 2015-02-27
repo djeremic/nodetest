@@ -10,6 +10,7 @@ var favicon = require('static-favicon');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
+var multer  = require('multer');
 
 var fs = require("fs");
 var file = "public/pariseats.db";
@@ -18,6 +19,7 @@ var exists = fs.existsSync(file);
 var app = express(),
     hbs;
 
+app.use(multer({ dest: './public/uploads/'}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.engine('handlebars', exphbs({
@@ -49,6 +51,7 @@ db.serialize(function() {
         db.run("CREATE TABLE Descriptions(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, title TEXT NOT NULL, desc_en TEXT, desc_fr TEXT, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Rates(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, UserId INTEGER, food INTEGER, service INTEGER, fun INTEGER, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Versions(id INTEGER PRIMARY KEY AUTOINCREMENT, UserId INTEGER, description TEXT, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Photos(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, name TEXT, path TEXT, originalname TEXT, createdAt date, updatedAt date)");
         db.close();
     }
 });
