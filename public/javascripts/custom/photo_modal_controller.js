@@ -2,21 +2,35 @@
  * Created by drago.jeremic on 9/4/14.
  */
 $(function(){
-    var modal = $('#modal');
-    var form = $('form#save-desc');
-    var submiButton = $('#submit-photo');
+    var modal = $('#photo-modal');
+    var form = modal.find('form#upload-photo');
+    var submitButton = $('#submit-photo');
+    var files;
 
-    submiButton.click(function(e){
+    function prepareUpload(event)
+    {
+        files = event.target.files;
+    }
+
+    $('input[type=file]').on('change', prepareUpload);
+
+    submitButton.click(function(e){
         e.preventDefault();
         modal.find('div.alert').hide();
 
-        var postData = form.serializeArray();
+        var data = new FormData();
+        $.each(files, function(key, value)
+        {
+            data.append(key, value);
+        });
         var formURL = form.attr("action");
         $.ajax(
             {
                 url : formURL,
                 type: "POST",
-                data : postData,
+                data : data,
+                processData: false,
+                contentType: false,
                 success:function(data, textStatus, jqXHR)
                 {
                     success(data, textStatus, jqXHR);
@@ -31,51 +45,21 @@ $(function(){
             });
     });
 
-    var success = function(data, textStatus, jqXHR){
+    var success = function(data, textStatus, jqXHR) {
         form.find('input').val('');
-        var dataId = + data.photo.id;
-
-        if(editMode == false) {
-            $('a#add-desc').before('<div class="alert alert-success alert-dismissible row" role="alert">' +
-                '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
-                '<div class="row"><a href="#" class="edit-desc" data-id="' + data.description.id + '"><span class="col-lg-2">' + data.description.title + '</span><span class="col-lg-9 ellipsis">' + data.description.desc_en + '</span></a></div>' +
-                '<input type="hidden" name="descriptions[]" value="' + data.description.id + '"/>' +
-                '</div>');
+        for (var i = 0; i < data.photos.length; i++){
+            var photo = data.photos[i];
+            $('#photo-wr table > tbody:last').append('<tr>' +
+                '<td width="50%"><img src="/uploads/'+ photo.name + '" width="150"/></td>' +
+                '<td width="35%">'+ photo.originalname + '<input type="hidden" name="photos[]" value="'+ photo.id + '"/></td>' +
+                '<td width="10%"><a href="#" id="remove-photo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '</tr>');
         }
         modal.modal('hide');
     }
 
-    $('div#desc-wr').on("click","a.edit-desc", function(e){ //user click on remove text
-        e.preventDefault();
-        modal.find('.alert-danger').remove();
-        $.ajax(
-            {
-                url : '/descriptions/find/'+$(this).attr('data-id'),
-                type: "get",
-                success:function(data, textStatus, jqXHR)
-                {
-                    modal.modal('show');
-                    form.find('input#desc-id').val(data.description.id);
-                    form.find('input#title').val(data.description.title);
-                    form.find('textarea#desc_en').jqteVal(data.description.desc_en);
-                },
-                error: function(jqXHR, textStatus, errorThrown)
-                {
-                    modal.modal('show');
-                    form.find('input#desc-id').val('');
-                    form.find('input#title').val('');
-                    form.find('textarea#desc_en').jqteVal('');
-                    $('div.modal-body').prepend('<div class="alert alert-danger alert-dismissible" role="alert">'
-                        + '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'
-                        + ' <strong>Error!</strong> error occuered, please try again'
-                        + '</div>');
-                }
-            });
 
-
-    })
-
-    $('div#desc-wr').on("click","a#add-desc", function(e) { //user click on remove text
+    $('div#photo-wr').on("click","a#add-photo", function(e) { //user click on remove text
         e.preventDefault();
         modal.modal('show');
         form.find('input#desc-id').val('');

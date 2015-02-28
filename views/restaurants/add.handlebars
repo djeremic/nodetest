@@ -162,15 +162,19 @@
             <div class="panel panel-default" id="photo-wr">
                 <div class="panel-heading">Photos</div>
                 <div class="panel-body">
-                    {{#each restaurant.photos}}
-                        <div class="alert alert-success alert-dismissible row" role="alert">
-                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <div class="row"><a href="#" class="edit-desc" data-id="{{id}}"><span class="col-lg-2">{{title}}</span><span class="col-lg-9 ellipsis">{{{desc_en}}}</span></a></div>
-                            <input type="hidden" name="photos[]" value="{{id}}"/>
-                        </div>
-                    {{/each}}
-                    <a class="btn btn-primary btn-sm" id="add-desc">
-                        <span class="glyphicon glyphicon-plus"></span> Add Photo
+                    <table width="100%">
+                        <tbody>
+                        {{#each restaurant.photos}}
+                            <tr>
+                                <td width="50%"><img src="/uploads/{{name}}" width="150"/></td>
+                                <td width="35%">{{originalname}}" <input type="hidden" name="photos[]" value="{{id}}"/></td>
+                                <td width="10%"><a href="#" id="remove-photo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                    <a class="btn btn-primary btn-sm" id="add-photo">
+                        <span class="glyphicon glyphicon-plus"></span> Add Photos
                     </a>
                 </div>
             </div>

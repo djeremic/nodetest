@@ -13,6 +13,7 @@ var users    = require('../routes/user')
     , errors = require('../routes/errors')
     , rates = require('../routes/rate')
     , versions = require('../routes/version')
+    , photos = require('../routes/photo')
 
 
 module.exports = function (app) {
@@ -41,10 +42,10 @@ module.exports = function (app) {
     app.get('/users/logout', users.logout)
     app.get('/restaurants', restaurants.index);
     app.get('/my-restaurants', restaurants.usersRestaurants);
-    app.get('/restaurants/add', users.admin, restaurants.add);
-    app.get('/restaurants/edit/:id', users.admin, restaurants.edit);
+    app.get('/restaurants/add', /*users.admin,*/ restaurants.add);
+    app.get('/restaurants/edit/:id', /*users.admin,*/ restaurants.edit);
     app.get('/restaurants/view/:id', restaurants.find);
-    app.post('/restaurants/add', users.admin, restaurants.addPost);
+    app.post('/restaurants/add', /*users.admin,*/ restaurants.addPost);
     app.delete('/restaurants/delete', users.admin, restaurants.delete);
     app.post('/restaurants/favourites/add', restaurants.addToFavourite);
     app.delete('/restaurants/favourites/remove', restaurants.removeFromFavourite);
@@ -66,6 +67,7 @@ module.exports = function (app) {
     app.get('/versions/add', users.admin, versions.add)
     app.post('/versions/add', users.admin, versions.addPost)
     app.get('/versions/latest', versions.latest)
+    app.post('/photos/upload', photos.uploadPost)
 
     //API
     app.get('/api/restaurants', api.index);

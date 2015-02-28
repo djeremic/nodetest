@@ -6,27 +6,15 @@
                 <h4 class="modal-title">Add Photos</h4>
             </div>
             <div class="modal-body">
-                <form id="save-desc" action="/photos/add" method="post" role="form">
-                    <input type="hidden" name="desc[id]" id="desc-id">
-                    <div class="form-group">
-                        <label for="title" class="control-label">Title: </label>
-                        <input type="text" id="title" name="desc[title]" class="form-control" placeholder="e.g Know, Eat, Drink.."/>
-                    </div>
-                    <div class="form-group">
-                        <label for="desc_en" class="control-label">Description Eng: </label>
-                        <textarea rows="4" cols="50" id="desc_en" name="desc[desc_en]" class="form-control"></textarea>
-                    </div>
-                    <!--<div class="form-group">
-                        <label for="know_fr" class="control-label">Description Fra: </label>
-                        <textarea rows="4" cols="50" id="know_fr" name="desc[desc_fr]" class="form-control"></textarea>
-                    </div>-->
+                <form action="/photos/upload" method="post" enctype="multipart/form-data" style="background:#fff;padding:20px;text-align: center; margin-bottom:50px;" id="upload-photo">
+                    <input type="file" name="photos" style="text-align: center" multiple/>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submit-photo">Save</button>
+                <button type="button" class="btn btn-primary" id="submit-photo">Upload</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
-<script src="/javascripts/custom/desc_modal_controller.js"></script>
+<script src="/javascripts/custom/photo_modal_controller.js"></script>
