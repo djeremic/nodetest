@@ -8,6 +8,7 @@
             <th>Address</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,13 @@
                 </td>-->
                 <td>
                     <a href="#" data-id="{{id}}" data-url="/restaurants/delete" class="delete-link"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+                </td>
+                <td>
+                    {{#if paused}}
+                        PAUSED
+                    {{else}}
+                        <a href="#" data-id="{{id}}" data-url="/restaurants/pause" class="freeze-link"> <span class="glyphicon glyphicon-pause"></span> Pause</a>
+                    {{/if}}
                 </td>
             </tr>
         {{/each}}

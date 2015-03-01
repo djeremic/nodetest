@@ -22,6 +22,10 @@
         {{#each restaurant.places}}
             <p>{{type}} - <strong>{{name}}: </strong>{{address}}</p>
         {{/each}}
+        <h3>Photos: </h3>
+        {{#each restaurant.photos}}
+            <p><strong>{{originalname}}</p>
+        {{/each}}
 
     </div>
 </div>

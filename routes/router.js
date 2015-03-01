@@ -47,6 +47,7 @@ module.exports = function (app) {
     app.get('/restaurants/view/:id', restaurants.find);
     app.post('/restaurants/add', /*users.admin,*/ restaurants.addPost);
     app.delete('/restaurants/delete', users.admin, restaurants.delete);
+    app.post('/restaurants/pause', users.admin, restaurants.pause);
     app.post('/restaurants/favourites/add', restaurants.addToFavourite);
     app.delete('/restaurants/favourites/remove', restaurants.removeFromFavourite);
     app.get('/tags', tags.index);

@@ -6,14 +6,13 @@ exports.addPost = function(req, res) {
     var tagIDs = req.param('tags', null);
     var placeIDs = req.param('places', null);
     var descIDs = req.param('descriptions', null);
+    var photoIDs = req.param('photos', null);
     var tags = [];
     var places = [];
     var descriptions = [];
     var photos = [];
+
     restaurant.go_for = buildGoForString(req.param('goForArray', null));
-    console.log("\n\n\n\n\nFiles")
-    console.log(req.files)
-    if("")
 
     var errors = db.Restaurant.build(restaurant).validate();
 
@@ -47,6 +46,12 @@ exports.addPost = function(req, res) {
             }
         }
 
+        if (photoIDs) {
+            for (var i = 0; i < photoIDs.length; i++) {
+                photos.push(db.Photo.build({id: parseInt(photoIDs[i])}));
+            }
+        }
+
         var cachedRestaurants = getRestauranstFromCash();
 
         if(restaurant.id == null || restaurant.id == '') {
@@ -55,6 +60,7 @@ exports.addPost = function(req, res) {
                 if (tags.length > 0) restaurant.setTags(tags);
                 if (places.length > 0) restaurant.setPlaces(places);
                 if (descriptions.length > 0) restaurant.setDescriptions(descriptions);
+                if (photos.length > 0) restaurant.setPhotoes(photos);
                 if(cachedRestaurants != null){
                     cachedRestaurants.push(restaurant);
                     myCache.del("restaurants")
@@ -72,6 +78,7 @@ exports.addPost = function(req, res) {
                     model.setTags(tags);
                     model.setPlaces(places);
                     model.setDescriptions(descriptions);
+                    model.setPhotoes(photos)
                     if(cachedRestaurants != null){
 
                         cachedRestaurants.forEach(function(cachedRestaurant, index){
@@ -202,8 +209,9 @@ exports.find = function(req, res) {
     db.Place.hasMany(db.Restaurant);
 
     db.Restaurant.hasMany(db.Description);
+    db.Restaurant.hasMany(db.Photo);
 
-    db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
+    db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurant){
         res.render('restaurants/view', {restaurant : restaurant });
     }).error(function (errors) {
         console.log(errors);
@@ -216,6 +224,22 @@ exports.delete = function(req, res) {
 
     db.Restaurant.find({where: {id: id, deleted : 0}}).success(function(restaurant){
         restaurant.updateAttributes({deleted: 1}).success(function(){
+            res.json();
+        }).error(function (errors) {
+            console.log(errors);
+            res.json({errors: errors});
+        });
+    }).error(function (errors) {
+        console.log(errors);
+        res.json({errors: errors});
+    });
+}
+
+exports.pause = function(req, res) {
+    var id = req.param('id', null);
+
+    db.Restaurant.find({where: {id: id, deleted : 0}}).success(function(restaurant){
+        restaurant.updateAttributes({paused: 1}).success(function(){
             res.json();
         }).error(function (errors) {
             console.log(errors);

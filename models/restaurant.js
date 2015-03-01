@@ -31,6 +31,7 @@ module.exports = function(sequelize, DataTypes) {
         booking_en: DataTypes.STRING,
         price_level: DataTypes.INTEGER,
         deleted: DataTypes.INTEGER,
+        paused: DataTypes.INTEGER,
         closed: DataTypes.INTEGER,
         longitude: { type: DataTypes.DECIMAL,
             validate: {

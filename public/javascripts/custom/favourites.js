@@ -4,6 +4,7 @@
 $(function() {
     var remove_link      = $(".remove-restaurant"); //Add button class
     var delete_link = $(".delete-link");
+    var freeze_link = $(".freeze_link");
 
     $('body').on("click",".add-restaurant", function(e){
         e.preventDefault();
@@ -77,6 +78,25 @@ $(function() {
             },
             success: function (datas) {
                 link.parents('tr').first().remove();
+            }
+        });
+    });
+    freeze_link.click(function(e){
+        e.preventDefault();
+        var link = $(this);
+        var url = link.attr('data-url');
+        link.parents('tr').first().remove();
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'POST',
+            data: {
+                id: $(this).attr('data-id')
+            },
+            success: function (datas) {
+                var td = link.closest('td');
+                link.remove();
+                td.text("Paused");
             }
         });
     });

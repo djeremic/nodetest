@@ -52,7 +52,7 @@ $(function(){
             $('#photo-wr table > tbody:last').append('<tr>' +
                 '<td width="50%"><img src="/uploads/'+ photo.name + '" width="150"/></td>' +
                 '<td width="35%">'+ photo.originalname + '<input type="hidden" name="photos[]" value="'+ photo.id + '"/></td>' +
-                '<td width="10%"><a href="#" id="remove-photo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
+                '<td width="10%"><a href="#" class="remove-photo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>' +
                 '</tr>');
         }
         modal.modal('hide');
@@ -67,8 +67,11 @@ $(function(){
         form.find('textarea#desc_en').jqteVal('');
     });
 
+    $('div#photo-wr').on("click","a.remove-photo", function(e) { //user click on remove text
+        e.preventDefault();
+        $(this).closest("tr").closest("tr").remove();
 
-
+    });
 });
 /**
  * Created by drago.jeremic on 2/27/15.
