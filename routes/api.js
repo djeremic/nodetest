@@ -10,7 +10,7 @@ exports.index = function(req, res){
         res.json(cashedRestaurants.restaurants);
     } else {
         fillDependences();
-        db.Restaurant.findAll({where: {deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurants) {
+        db.Restaurant.findAll({where: {deleted: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurants) {
             myCache.set("restaurants", restaurants, 0);
             res.json(restaurants);
         }).error(function (errors) {
@@ -112,4 +112,5 @@ function fillDependences(){
     db.Place.hasMany(db.Restaurant);
 
     db.Restaurant.hasMany(db.Description);
+    db.Restaurant.hasMany(db.Photo);
 }
