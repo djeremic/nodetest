@@ -69,7 +69,7 @@ exports.logout = function(req, res) {
 exports.loginPost = function(req, res) {
     var usr = req.param('user', null);
     db.User.find({
-        where: {email : usr.email}
+        where: {email : usr.email, facebook_id: null}
     }).success(function(user){
         if(user != null){
             if(!passwordHash.verify(usr.password, user.password)){
