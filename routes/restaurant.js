@@ -117,8 +117,9 @@ exports.edit = function(req, res) {
     db.Place.hasMany(db.Restaurant);
 
     db.Restaurant.hasMany(db.Description);
+    db.Restaurant.hasMany(db.Photo);
 
-    db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description], order :[[db.Description, 'id']]}).success(function(restaurant){
+    db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurant){
         res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'}, restaurant : restaurant });
     }).error(function(){
         res.render('restaurants/add', { addRestaurant : true, partials: { desc_modal: 'partials/desc_modal'} });
@@ -202,6 +203,7 @@ function buildGoForString(goForArray){
 
 exports.find = function(req, res) {
     var id = req.params.id;
+    var strip = req.params.strip;
     db.Restaurant.hasMany(db.Tag);
     db.Tag.hasMany(db.Restaurant);
 
@@ -212,7 +214,7 @@ exports.find = function(req, res) {
     db.Restaurant.hasMany(db.Photo);
 
     db.Restaurant.find({where: {id: id, deleted: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurant){
-        res.render('restaurants/view', {restaurant : restaurant });
+        res.render('restaurants/view', {restaurant : restaurant, strip: strip});
     }).error(function (errors) {
         console.log(errors);
         res.render('/', {errors: errors, addRestaurant: true});
@@ -237,10 +239,11 @@ exports.delete = function(req, res) {
 
 exports.pause = function(req, res) {
     var id = req.param('id', null);
+    var value = req.param('value', null);
 
     db.Restaurant.find({where: {id: id, deleted : 0}}).success(function(restaurant){
-        restaurant.updateAttributes({paused: 1}).success(function(){
-            res.json();
+        restaurant.updateAttributes({paused: value}).success(function(){
+            res.json({});
         }).error(function (errors) {
             console.log(errors);
             res.json({errors: errors});

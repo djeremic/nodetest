@@ -9,6 +9,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -27,11 +28,10 @@
                     <a href="#" data-id="{{id}}" data-url="/restaurants/delete" class="delete-link"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
                 </td>
                 <td>
-                    {{#if paused}}
-                        PAUSED
-                    {{else}}
-                        <a href="#" data-id="{{id}}" data-url="/restaurants/pause" class="freeze-link"> <span class="glyphicon glyphicon-pause"></span> Pause</a>
-                    {{/if}}
+                    <a href="#" data-id="{{id}}" data-url="/restaurants/pause" class="{{#if paused}}start-link{{else}}pause-link{{/if}}"> <span class="glyphicon {{#if paused}}glyphicon-play{{else}}glyphicon-pause{{/if}}">{{#if paused}}Start{{else}}Pause{{/if}}</span></a>
+                </td>
+                <td>
+                    <a href="/restaurants/view/{{id}}/true"  target="_blank"> <span class="glyphicon glyphicon-eye-open"></span> View</a>
                 </td>
             </tr>
         {{/each}}

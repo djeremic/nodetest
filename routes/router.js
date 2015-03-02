@@ -40,12 +40,13 @@ module.exports = function (app) {
     app.post('/users/login', users.loginPost)
     app.get('/users/login', users.login)
     app.get('/users/logout', users.logout)
-    app.get('/restaurants', restaurants.index);
+    app.get('/restaurants', users.admin, restaurants.index);
     app.get('/my-restaurants', restaurants.usersRestaurants);
-    app.get('/restaurants/add', /*users.admin,*/ restaurants.add);
-    app.get('/restaurants/edit/:id', /*users.admin,*/ restaurants.edit);
+    app.get('/restaurants/add', users.admin, restaurants.add);
+    app.get('/restaurants/edit/:id', users.admin, restaurants.edit);
     app.get('/restaurants/view/:id', restaurants.find);
-    app.post('/restaurants/add', /*users.admin,*/ restaurants.addPost);
+    app.get('/restaurants/view/:id/:strip', restaurants.find);
+    app.post('/restaurants/add', users.admin, restaurants.addPost);
     app.delete('/restaurants/delete', users.admin, restaurants.delete);
     app.post('/restaurants/pause', users.admin, restaurants.pause);
     app.post('/restaurants/favourites/add', restaurants.addToFavourite);

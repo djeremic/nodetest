@@ -4,7 +4,6 @@
 $(function() {
     var remove_link      = $(".remove-restaurant"); //Add button class
     var delete_link = $(".delete-link");
-    var freeze_link = $(".freeze_link");
 
     $('body').on("click",".add-restaurant", function(e){
         e.preventDefault();
@@ -81,22 +80,41 @@ $(function() {
             }
         });
     });
-    freeze_link.click(function(e){
+
+    $('body').on("click",".pause-link", function(e){
         e.preventDefault();
         var link = $(this);
         var url = link.attr('data-url');
-        link.parents('tr').first().remove();
         $.ajax({
             url: url,
             dataType: "json",
             type: 'POST',
             data: {
-                id: $(this).attr('data-id')
+                id: $(this).attr('data-id'),
+                value: 1
             },
             success: function (datas) {
-                var td = link.closest('td');
-                link.remove();
-                td.text("Paused");
+                link.removeClass('pause-link').addClass('start-link')
+                link.find('span').removeClass('glyphicon-pause').addClass('glyphicon-play').text('Start')
+            }
+        });
+    });
+
+    $('body').on("click",".start-link", function(e){
+        e.preventDefault();
+        var link = $(this);
+        var url = link.attr('data-url');
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'POST',
+            data: {
+                id: $(this).attr('data-id'),
+                value: 0
+            },
+            success: function (datas) {
+                link.removeClass('start-link').addClass('pause-link')
+                link.find('span').removeClass('glyphicon-start').addClass('glyphicon-pause').text('Pause')
             }
         });
     });

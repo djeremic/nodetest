@@ -52,6 +52,7 @@ db.serialize(function() {
         db.run("CREATE TABLE Rates(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, UserId INTEGER, food INTEGER, service INTEGER, fun INTEGER, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Versions(id INTEGER PRIMARY KEY AUTOINCREMENT, UserId INTEGER, description TEXT, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Photoes(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, name TEXT, path TEXT, originalname TEXT, createdAt date, updatedAt date)");
+        db.run("ALTER TABLE Restaurants ADD COLUMN paused INTEGER DEFAULT 0;");
         db.close();
     }
 });
