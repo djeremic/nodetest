@@ -68,3 +68,4 @@ public/users.db
 
 public/uploads
 uploads
+tmp/*.json

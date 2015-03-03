@@ -2,22 +2,25 @@
  * Created by Drago on 24.9.2014.
  */
 var db = require('../models')
-var myCache = require('../routes/cache')
+var jf = require('jsonfile')
+var util = require('util')
 
 exports.index = function(req, res){
-    var cashedRestaurants = myCache.get("restaurants");
-    if(cashedRestaurants != null && cashedRestaurants.restaurants != null){
-        res.json(cashedRestaurants.restaurants);
-    } else {
+    db.Version.find({order: [['id', 'DESC']]}).success(function(version) {
+        var file = 'tmp/version_' + version.id + '.json'
+        jf.readFile(file, function(err, obj) {
+            res.json(obj)
+        })
+    }).error(function(errors){
+        console.log(errors);
         fillDependences();
         db.Restaurant.findAll({where: {deleted: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurants) {
-            myCache.set("restaurants", restaurants, 0);
             res.json(restaurants);
         }).error(function (errors) {
             res.status(500);
             res.json({errors: errors});
         });
-    }
+    })
 }
 
 exports.find = function(req, res) {
