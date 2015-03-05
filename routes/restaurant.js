@@ -1,5 +1,4 @@
 var db = require('../models')
-var myCache = require('../routes/cache')
 
 exports.addPost = function(req, res) {
     var restaurant = req.param('restaurant', null);
@@ -52,8 +51,6 @@ exports.addPost = function(req, res) {
             }
         }
 
-        var cachedRestaurants = getRestauranstFromCash();
-
         if(restaurant.id == null || restaurant.id == '') {
             console.log(restaurant);
             db.Restaurant.create(restaurant).success(function (restaurant) {
@@ -61,11 +58,6 @@ exports.addPost = function(req, res) {
                 if (places.length > 0) restaurant.setPlaces(places);
                 if (descriptions.length > 0) restaurant.setDescriptions(descriptions);
                 if (photos.length > 0) restaurant.setPhotoes(photos);
-                if(cachedRestaurants != null){
-                    cachedRestaurants.push(restaurant);
-                    myCache.del("restaurants")
-                    myCache.set("restaurants", cachedRestaurants, 0);
-                }
                 res.redirect('/restaurants/view/'+restaurant.id)
             }).error(function (errors) {
                 console.log(errors);
@@ -79,16 +71,6 @@ exports.addPost = function(req, res) {
                     model.setPlaces(places);
                     model.setDescriptions(descriptions);
                     model.setPhotoes(photos)
-                    if(cachedRestaurants != null){
-
-                        cachedRestaurants.forEach(function(cachedRestaurant, index){
-                            if(cachedRestaurant.id == restaurant.id){
-                                cachedRestaurants[index] = restaurant;
-                            }
-                        })
-                        myCache.del("restaurants")
-                        myCache.set("restaurants", cachedRestaurants, 0);
-                    }
                     res.redirect('/restaurants/view/'+restaurant.id)
                 }).error(function (errors) {
                     console.log(errors);
@@ -252,13 +234,4 @@ exports.pause = function(req, res) {
         console.log(errors);
         res.json({errors: errors});
     });
-}
-
-function getRestauranstFromCash(){
-    var cashedRestaurants = myCache.get("restaurants");
-    if(cashedRestaurants != null && cashedRestaurants.restaurants != null){
-        return cashedRestaurants.restaurants;
-    } else {
-        return null;
-    }
 }
