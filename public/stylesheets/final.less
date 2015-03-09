@@ -62,9 +62,9 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
     h1,h2,h3,h4{color:#fff; text-align: center;}
     h1{padding: 410px 0 0 0;line-height: 1.2;font-size:36px;}
     h4{padding-bottom: 30px;}
-    a{color: #e64121;text-decoration: none; font-size: 18px;padding-left: 30px; line-height: 20px;
-      &.author{background: url('/images/top/author.png') left center no-repeat transparent;}
-      &.map{background: url('/images/top/map.png') left center no-repeat transparent;}
+    a{color: #e64121;text-decoration: none; font-size: 18px;padding: 10px 10px 10px 40px; line-height: 20px;border-radius: 10px;
+      &.author{background: url('/images/top/author.png') 10px 12px no-repeat #fff;}
+      &.map{background: url('/images/top/map.png') 10px 12px no-repeat #fff;}
     }
     a:hover{color: #000;}
   }
@@ -99,6 +99,8 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
   margin: 0;
 }
 
+.slick-disabled{display: none !important;}
+
 .restaurant-carousel{background:#fff;padding:20px 0;text-align:center;
   h2{color:#e64125;font-size:48px;padding-top:30px;}
   p{margin:20px 80px;text-align: center;font-size: 18px;}
@@ -122,6 +124,11 @@ div.bottom{
   .container, .navbar {
     width: 100% !important;
   }
+}
+
+@media only screen and (max-width: 480px){
+  body{font-size: 16px;}
+  html{font-size: 16px;}
 }
 
 .btn-warning{background: #e64125 !important;opacity: 1 !important;}
