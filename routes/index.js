@@ -118,6 +118,20 @@ exports.tony = function(req, res){
     })
 }
 
+exports.carlo = function(req, res){
+    res.render('routes/carlo', {
+        layout: 'final',
+        scenarious: true
+    })
+}
+
+exports.yak = function(req, res){
+    res.render('routes/yak', {
+        layout: 'final',
+        scenarious: true
+    })
+}
+
 exports.terms = function(req, res){
     res.render('static/terms', {
         layout: 'final'

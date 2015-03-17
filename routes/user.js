@@ -23,7 +23,7 @@ exports.create = function(req, res) {
                 if(isAPIRequests(req)){
                     res.json({errors: errors});
                 } else {
-                    res.render('users/register', {errors: errors, layout: 'friendly'});
+                    res.render('users/register', {errors: errors, layout: 'final'});
                 }
             } else {
                 db.User.create(user).success(function () {
@@ -41,7 +41,7 @@ exports.create = function(req, res) {
                     if (isAPIRequests(req)) {
                         res.json({errors: errors});
                     } else {
-                        res.render('users/register', {errors: errors, layout: 'friendly'});
+                        res.render('users/register', {errors: errors, layout: 'final'});
                     }
                 })
             }
@@ -54,11 +54,11 @@ function isAPIRequests(req){
 }
 
 exports.register = function(req, res) {
-    res.render('users/register', {layout: 'friendly'});
+    res.render('users/register', {layout: 'final'});
 }
 
 exports.login = function(req, res) {
-    res.render('users/login', {layout: 'friendly'});
+    res.render('users/login', {layout: 'final'});
 }
 
 exports.logout = function(req, res) {
@@ -77,7 +77,7 @@ exports.loginPost = function(req, res) {
                 if(isAPIRequests(req)){
                     res.json({errors: errors});
                 } else {
-                    res.render('users/login', {errors: errors});
+                    res.render('users/login', {errors: errors, layout: 'final'});
                 }
             } else {
                 req.session.user = user;
@@ -93,7 +93,7 @@ exports.loginPost = function(req, res) {
             if(isAPIRequests(req)){
                 res.json({errors: errors});
             } else {
-                res.render('users/login', {errors: errors});
+                res.render('users/login', {errors: errors, layout: 'final'});
             }
         }
     }).error(function(err) {

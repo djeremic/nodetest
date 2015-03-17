@@ -4,17 +4,18 @@
 $(function(){
     var loginModal = $('#login-modal');
     var loginForm = loginModal.find('form');
+    console.log(loginForm)
 
     $('body').on("click",".login-modal", function(e){
         e.preventDefault();
         loginForm.find('input').val('');
         loginModal.find('.alert').remove();
-        loginModal.modal();
+        loginModal.modal({keyboard: true});
+        loginForm = loginModal.find('form');
         $('.img-wrapper a[data-toggle="popover"]').popover('hide');
     })
 
-    $('body').on("click","button#submit-modal", function(sb){
-        sb.preventDefault;
+    $(loginForm).submit(function(sb){
         loginModal.find('div.alert').hide();
 
         var postData = loginForm.serializeArray();
@@ -43,6 +44,7 @@ $(function(){
                         + '</div>');
                 }
             });
+        return false;
     });
 });
 

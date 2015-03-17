@@ -1,32 +1,45 @@
-<div class="modal fade" id="login-modal">
+<div class="modal fade" id="login-modal" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body row">
-                <div class="col-lg-2">
-                    <a href="#">Login</a>
-                </div>
-                <div class="col-lg-8" >
-                    <div class="fb-wrapper">
-                        <a href="/auth/facebook" target="_blank" onclick="return windowpop(this.href, 545, 433)" class="btn btn-primary btn-lg">Login with Facebook</a>
-                        <p>or login with your email. Not a user? <a href="/users/register">Register First</a></p>
-                    </div>
-                    <form id="register" action="/api/users/login" role="form">
-                        <div class="form-group {{#if errors.email}}has-error error{{/if}}">
-                            <label class="control-label" for="email">Email: </label>
-                            <input type="email" class="form-control" id="email" name="user[email]" />
-                            {{#if errors.email}}<span class="cos">{{errors.email.[0]}}</span>{{/if}}
-                        </div>
-                        <div class="form-group {{#if errors.password}}has-error error{{/if}}">
-                            <label class="control-label" for="password">Password: </label>
-                            <input type="password" class="form-control" id="password" name="user[password]" />
-                            {{#if errors.password}}<span class="cos">{{errors.password.[0]}}</span>{{/if}}
-                        </div>
-                    </form>
-                    <button type="button" class="btn btn-info btn-lg" id="submit-modal" style="text-align: center">Login</button>
+        <div class="modal-content row">
+            <div class="modal-header">
+                <div class="col-lg-6">
+                    <h3>Please login</h3>
                 </div>
                 <div class="col-lg-2">
+
+                </div>
+                <div class="col-lg-4">
+                    <p>Not a member?<br/>
+                    <a href="/users/register">Signup</a></p>
+                </div>
+                <!--<div class="col-lg-1">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span><span class="sr-only">Close</span></button>
+                </div>-->
+            </div>
+            <div class="modal-body">
+                <div class="fb-wrapper">
+                    <a href="/auth/facebook" target="_blank" onclick="return windowpop(this.href, 545, 433)" class="btn btn-primary btn-lg">Login with Facebook</a>
+                    <p>or login with your email.</p>
                 </div>
+                <form id="login-ajax" action="/api/users/login" role="form" method="post">
+                    <div class="form-group {{#if errors.email}}has-error error{{/if}}">
+                        <div class="input-group input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="email" class="form-control" id="email" name="user[email]" placeholder="Email"/>
+                        </div>
+                        {{#if errors.email}}<span class="cos">{{errors.email.[0]}}</span>{{/if}}
+                    </div>
+                    <div class="form-group {{#if errors.password}}has-error error{{/if}}">
+                        <div class="input-group input-group">
+                            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                            <input type="password" class="form-control" id="password" name="user[password]" placeholder="Password"/>
+                        </div>
+                        {{#if errors.password}}<span class="cos">{{errors.password.[0]}}</span>{{/if}}
+                    </div>
+                    <div style="text-align: center; display: block">
+                        <button type="submit" class="btn btn-warning btn-lg" id="submit-modal" style="text-align: center">Login</button>
+                    </div>
+                </form>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

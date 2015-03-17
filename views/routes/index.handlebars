@@ -18,16 +18,28 @@
     <div class="row carousel-wrapper">
         <div class="slider multiple-items">
             <div><a href="/gregory">
-                <img src="/images/homepage/greg.jpg"/>
+                <img src="/images/homepage/frenchie.png"/>
                 <div class="inner-text">
-                    <h2>GREGORY MARCHAND</h2>
-                    <h4>picks</h4>
+                    <h3>Gregory Marchand</h3>
+                    <h4>Cheaf ate Frenchie<br/>Paris, France</h4>
                 </div>
             </a></div>
-            <div><a href="/tony"><img src="/images/homepage/toni.jpg"/>
+            <div><a href="/tony"><img src="/images/homepage/tony2.png"/>
                 <div class="inner-text">
-                    <h2>TONY CHAMBERS</h2>
-                    <h4>recommends</h4>
+                    <h3>Tony Chambers</h3>
+                    <h4>Wallpaper<br/>Editor in Chief</h4>
+                </div>
+            </a></div>
+            <div><a href="/carlo"><img src="/images/homepage/carlo.png"/>
+                <div class="inner-text">
+                    <h3>Carlo Mirarchi</h3>
+                    <h4>Chef at Roberta's and Blanca<br/>Brooklyn, USA</h4>
+                </div>
+            </a></div>
+            <div><a href="/yak"><img src="/images/homepage/yak.png"/>
+                <div class="inner-text">
+                    <h3>Yacine Aït Kaci aka YAK</h3>
+                    <h4>Artist, creator of Elyx<br/> Paris, France</h4>
                 </div>
             </a></div>
         </div>
@@ -82,17 +94,30 @@
 <link rel='stylesheet' href='/stylesheets/slick.css' />
 <script type="text/javascript">
     //$('form#subscribe').parsley();
-    $('.multiple-items').slick({
-        dots: false,
-        infinite: false,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        onAfterChange: function(sl, index){
-            $(".slick-active a").first().css('margin-right', '5px').css('margin-left', '0px');
-            $(".slick-active a").last().css('margin-left', '5px').css('margin-right', '0px');
-        }
-    });
-    $(".slick-active a").first().css('margin-right', '5px');
-    $(".slick-active a").last().css('margin-left', '5px');
+    if(screen.width < 500){
+        $('.multiple-items').slick({
+            dots: false,
+            infinite: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            onAfterChange: function (sl, index) {
+                $(".slick-active a").first().css('margin-right', '5px').css('margin-left', '0px');
+                $(".slick-active a").last().css('margin-left', '5px').css('margin-right', '0px');
+            }
+        });
+    } else {
+        $('.multiple-items').slick({
+            dots: false,
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            onAfterChange: function (sl, index) {
+                $(".slick-active a").css('margin-right', '5px').css('margin-left', '5px');
+                $(".slick-active a").last().css('margin-left', '5px').css('margin-right', '0px');
+            }
+        });
+    }
+    $(".slick-active a").css('margin-right', '5px');
+    //$(".slick-active a").last().css('margin-left', '5px');
 </script>
 
