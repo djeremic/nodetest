@@ -10,7 +10,8 @@ body{background: #fff;font: 14px FuturaExtended, Helvetica, Arial, sans-serif;
 }
 a{color:#e3412a;}
 
-.navbar{padding:0px;position: absolute; top: 0;z-index:1000;margin:10px 0 0 0;width: 95%;
+.navbar{padding:0px;position: absolute; top: 0;z-index:1000;margin:10px 0 0 0;width: 96%;
+  .row{width: 100%;}
   .container{padding-top:10px;}
   .user-settings{color:#e3412a; line-height: 49px;
     a {
@@ -79,12 +80,12 @@ a{color:#e3412a;}
     img.application{position:absolute;bottom:0;right:-20px;}
     #header-wr {
       padding: 20px 40px 20px 20px;
-      margin-top:220px;
+      margin-top:320px;
       background:rgba(255, 255, 255, .5);
       display: inline-block;
 
       h1 {
-        padding: 0px 0 50px 0;
+        padding: 0px 0 30px 0;
         text-align: left;
         line-height: 1.2;
         font-size: 36px;
@@ -94,16 +95,18 @@ a{color:#e3412a;}
 
   }
   .masters{
-    text-align: center;
-    min-height: 565px;
-    h1,h2,h3,h4{color:#fff; text-align: center;}
-    h1{padding: 410px 0 0 0;line-height: 1.2;font-size:36px;}
-    h4{padding-bottom: 30px;}
-    a{color: #e64121;text-decoration: none; font-size: 18px;padding: 10px 10px 10px 40px; line-height: 20px;border-radius: 10px;
-      &.author{background: url('/images/top/author.png') 10px 12px no-repeat #fff;}
-      &.map{background: url('/images/top/map.png') 10px 12px no-repeat #fff;}
+    overflow: none;
+    display: block;
+    height: 565px;
+    text-align:right;
+    a{color: #e64121;text-decoration: none; font-size: 18px;padding: 10px; line-height: 20px;border-radius: 10px; margin-top: 530px; display: inline-block;opacity: 0;
+      &.author{background: #fff;}
+      &.map{background: #fff;}
     }
     a:hover{color: #000;}
+  }
+  .head-wrapper{text-align:center; position: absolute; top: 385px; left: 30%; right: 30%;
+    h1, h3{color: #fff;}
   }
 
 }

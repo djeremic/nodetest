@@ -4,6 +4,7 @@
 $(function(){
     var authorLink = $('.top a.author');
     var mapLink = $('.top a.map');
+    var headerSection = $('.top .head-wrapper');
 
     authorLink.hide();
 
@@ -11,7 +12,7 @@ $(function(){
         e.preventDefault();
         $(this).hide();
         mapLink.show();
-
+        headerSection.show();
         $('div.top').css('background-image', 'url(' + authorLink.attr('data-img') + ')');
     });
 
@@ -19,7 +20,14 @@ $(function(){
         e.preventDefault();
         $(this).hide();
         authorLink.show();
-        console.log(mapLink.attr('data-img'));
+        headerSection.hide();
         $('div.top').css('background-image', 'url(' + mapLink.attr('data-img') + ')');
+    });
+
+    var link = $('a.emerge');
+    link.animate({
+        'margin-top': '-=60px',
+        opacity: '1'
+    }, 1000, function(){
     });
 });
