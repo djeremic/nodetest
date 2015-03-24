@@ -60,12 +60,17 @@ db.serialize(function() {
 app.use(favicon(__dirname + '/public/favicon.ico'));
 //app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 try {
-    app.use(expressSession({secret: 'sdfjkht45489rfsjfkdjh', maxAge: 3600000}));
+    app.use(expressSession({
+        secret: 'sdfjkht45489rfsjfkdjh',
+        maxAge: 3600000,
+        saveUninitialized: false,
+        resave: false
+    }));
 }catch(err){}
 
 app.use(function(req,res,next){
