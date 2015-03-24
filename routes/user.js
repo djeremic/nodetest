@@ -67,8 +67,6 @@ exports.logout = function(req, res) {
 }
 
 exports.loginPost = function(req, res) {
-    console.log(req.body)
-    console.log(req.body.user)
     var usr = req.body.user;
     db.User.find({
         where: {email : usr.email, facebook_id: null}
