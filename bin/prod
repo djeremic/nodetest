@@ -2,7 +2,6 @@
  * Created by drago.jeremic on 9/5/14.
  */
 var app = require('../app');
-require('daemon')();
 
 app.set('port', process.env.PORT || 49555);
 
