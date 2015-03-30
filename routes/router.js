@@ -43,7 +43,7 @@ module.exports = function (app) {
     app.get('/users/login', users.login)
     app.get('/users/logout', users.logout)
     app.get('/restaurants', users.admin, restaurants.index);
-    app.get('/my-restaurants', restaurants.usersRestaurants);
+    app.get('/my/:id/restaurants', restaurants.usersRestaurants);
     app.get('/restaurants/add', users.admin, restaurants.add);
     app.get('/restaurants/edit/:id', users.admin, restaurants.edit);
     app.get('/restaurants/view/:id', restaurants.find);

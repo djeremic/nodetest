@@ -24,7 +24,15 @@
                 <a href="/"><img src="/images/logo-v2.png" alt="ParisEats.com"/></a>
                 <div class="pull-right user-settings">
                     {{#if session.user}}
-                        Hi {{session.user.first_name}} , <a href="/users/logout">logout</a>
+                        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                            Hi {{session.user.first_name}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                            <li role="presentation"><a href="/my/{{session.user.id}}/restaurants">my restaurants</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a href="/users/logout">logout</a></li>
+                        </ul>
                     {{else}}
                         Hi, <a href="#" class="login-modal">login</a> <span class="glyphicon glyphicon-user"></span>
                     {{/if}}

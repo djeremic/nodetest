@@ -123,19 +123,26 @@ exports.index = function(req, res){
 exports.usersRestaurants = function(req, res){
     db.Restaurant.hasMany(db.User);
     db.User.hasMany(db.Restaurant);
+    var id = req.params.id;
 
-    var usr = db.User.build(req.session.user);
-
-    usr.getRestaurants().success(function(restaurants) {
-        res.render('restaurants/my', {
-            title: 'My List',
-            restaurants: restaurants,
-            layout: 'friendly'
-        })
+    db.User.find({where: {id: id}}).success(function(usr){
+        usr.getRestaurants().success(function(restaurants) {
+            res.render('restaurants/my', {
+                title: 'My List',
+                restaurants: restaurants,
+                userId: id,
+                layout: 'final'
+            })
+        }).error(function (errors) {
+            console.log(errors);
+            res.render('restaurants/my');
+        });
     }).error(function (errors) {
         console.log(errors);
-        res.render('restaurants/my', {errors: errors});
+        res.render('restaurants/my');
     });
+
+
 }
 
 exports.addToFavourite = function(req, res){
