@@ -67,9 +67,9 @@ module.exports = function (app) {
     app.get('/users/fbSuccess', users.fbSuccess);
     app.get('/unauthorized', errors.unauthorized)
     app.post('/subscribe', users.subscribe)
-    app.get('/versions', /*users.admin,*/ versions.index)
-    app.get('/versions/add', /*users.admin,*/ versions.add)
-    app.post('/versions/add', /*users.admin,*/ versions.addPost)
+    app.get('/versions', users.admin, versions.index)
+    app.get('/versions/add', users.admin, versions.add)
+    app.post('/versions/add', users.admin, versions.addPost)
     app.get('/versions/latest', versions.latest)
     app.post('/photos/upload', photos.uploadPost)
 
