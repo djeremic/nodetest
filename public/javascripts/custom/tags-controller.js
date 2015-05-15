@@ -5,6 +5,7 @@ $( document ).ready(function() {
     var ms = $('#magicsuggest').magicSuggest({
         name: 'tags'
         ,data: '/tags/find'
+        ,maxSelection: null
     });
     ms.setSelection(window.$editTags);
 
