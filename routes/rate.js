@@ -6,6 +6,7 @@ var db = require('../models')
 
 exports.add = function(req, res){
     var rate = req.param('rate', null);
+    console.log(req.params);
 
     if(req.header('token')){
         db.User.find({

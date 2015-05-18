@@ -47,7 +47,8 @@ module.exports = function(sequelize, DataTypes) {
         }
     }, {
         associate: function (models) {
-            Restautant.hasMany(models.Tag)
+            Restautant.hasMany(models.Tags)
+            Restautant.hasMany(models.Rates)
         }
     })
 
