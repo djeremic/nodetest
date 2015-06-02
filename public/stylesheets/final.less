@@ -13,10 +13,17 @@ a{color:#e3412a;}
 .navbar{padding:0px;position: absolute; top: 0;z-index:1000;margin:10px 0 0 0;width: 96%;
   .row{width: 100%;}
   .container{padding-top:10px;}
-  .user-settings{color:#e3412a; line-height: 20px;position:relative;padding-top:20px;
+  .user-settings{color:#e3412a; line-height: 20px;position:relative;padding-top:10px;
     a {
       color: #e3412a !important;
       display: inline-block;
+      &.login-modal{
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 0;
+        padding:10px 15px 5px 15px;
+        font-size:20px;
+      }
+      &.login-modal:hover{color: #fff !important;}
     }
     .dropdown-menu li a{display: block;}
   }
@@ -81,15 +88,17 @@ a{color:#e3412a;}
     img.application{position:absolute;bottom:0;right:-20px;}
     #header-wr {
       padding: 20px 40px 20px 20px;
-      margin-top:320px;
-      background:rgba(255, 255, 255, .5);
+      margin-top:440px;
+      margin-left:-150px;
+      text-align: center;
+      //background:rgba(255, 255, 255, .5);
       display: inline-block;
 
       h1 {
         padding: 0px 0 30px 0;
         text-align: left;
         line-height: 1.2;
-        font-size: 36px;
+        font-size: 56px;
         margin: 0;
       }
     }
@@ -165,13 +174,34 @@ div.bottom{
   .container, .navbar {
     width: 100% !important;
   }
+  #header-wr h1{font-size: 46px !important;}
 }
 
 @media only screen and (max-width: 480px){
   body{font-size: 16px;}
   html{font-size: 16px;}
+  #header-wr h1{font-size: 42px !important;}
 }
 
 .btn-warning{background: #e64125 !important;opacity: 1 !important;}
 .btn-warning:hover{background: #e64125 !important;opacity: 1 !important;}
 .btn-warning:visited{background: #e64125 !important;opacity: 1 !important;}
+
+footer{ background: black;padding:20px 0;
+  div.column { text-align: center;font-size: 20px;
+    h5 {
+      font-size: 20px;
+      color: #e64121;
+      a, a:hover, a:visited {
+        text-decoration: none;
+        color: #e64121
+      }
+    }
+    div.white {color: #fff !important;
+      a, a:visited, a:hover{color: #fff !important;text-decoration: none;}
+      p{color: #fff !important;}
+    }
+    div.social a{font-size: 26px;margin-left:10px}
+  }
+
+}
