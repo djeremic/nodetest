@@ -1,46 +1,48 @@
-<div class="navbar" role="navigation">
-    <!--<div class="container">-->
-        <div class="row">
-            <div class="col-xs-2 col-lg-3">
-                <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-                <nav id="sidebar-wrapper">
-                    <ul class="sidebar-nav">
-                        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
-                        <li>
-                            <a href="/">HOME</a>
-                        </li>
-                        <li><a href="/gregory">GREGORY MARCHAND</a></li>
-                        <li><a href="/tony">TONY CHAMBERS</a></li>
-                        <li><a href="/carlo">CARLO MIRARCHI</a></li>
-                        <li><a href="/yak">YAK</a></li>
-                        <!--<li><a href="#">CREATE YOUR MAP</a></li>-->
-                        <hr style="border-top: 1px solid red;margin-left: 20px;margin-right: 20px"/>
-                        <li><a href="/terms">TERMS OF SERVICE</a></li>
-                        <li><a href="/#about-the-app">ABOUT THE APP</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-xs-9 col-lg-8">
-                <a href="/"><img src="/images/logo-v2.png" alt="ParisEats.com"/></a>
-                <div class="pull-right user-settings">
-                    {{#if session.user}}
-                        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                            Hi {{session.user.first_name}}
-                            <span class="caret"></span>
-                        </a>
-                        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                            <li role="presentation"><a href="/my/{{session.user.id}}/restaurants">my restaurants</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a href="/users/logout">logout</a></li>
+<div style="background: #fff; overflow: auto;display: block">
+    <div class="navbar" role="navigation">
+        <!--<div class="container">-->
+            <div class="row">
+                <div class="col-xs-2 col-lg-3">
+                    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+                    <nav id="sidebar-wrapper">
+                        <ul class="sidebar-nav">
+                            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+                            <li><a href="/gregory">GREG MARCHAND</a></li>
+                            <li><a href="/tony">TONY CHAMBERS</a></li>
+                            <li><a href="/carlo">CARLO MIRARCHI</a></li>
+                            <li><a href="/yak">YAK</a></li>
+                            <!--<li><a href="#">CREATE YOUR MAP</a></li>-->
+                            <hr style="border-top: 1px solid red;margin-left: 20px;margin-right: 20px"/>
+                            <li><a href="/terms">TERMS OF SERVICE</a></li>
+                            <li><a href="/#about-the-app">ABOUT THE APP</a></li>
                         </ul>
-                    {{else}}
-                        <a href="#" class="login-modal">LOGIN</a></span>
-                    {{/if}}
+                    </nav>
+                </div>
+                <div class="col-xs-9 col-lg-8">
+                    <a href="/"><img src="/images/logo-v2.png" alt="ParisEats.com"/></a>
+                    <div class="pull-right user-settings">
+                        {{#if session.user}}
+                            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                Hi {{session.user.first_name}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                <li role="presentation"><a href="/my/{{session.user.id}}/restaurants">my restaurants</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a href="/users/logout">logout</a></li>
+                            </ul>
+                        {{else}}
+                            <a href="#" class="login-modal">LOGIN</a></span>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-xs-1">
+
                 </div>
             </div>
-            <div class="col-xs-1">
-
-            </div>
-        </div>
-    <!--</div>-->
+        <!--</div>-->
+    </div>
 </div>

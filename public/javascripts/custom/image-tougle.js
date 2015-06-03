@@ -29,5 +29,6 @@ $(function(){
         'margin-top': '-=60px',
         opacity: '1'
     }, 1000, function(){
+        link.css('box-shadow', 'inset 0 -7px 9px -7px rgba(0,0,0,0.4)')
     });
 });
