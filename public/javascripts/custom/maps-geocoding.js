@@ -63,8 +63,8 @@ $(document).ready(function(){
             $('#phone').val(place.international_phone_number);
             $('#website').val(place.website);
             if(place.geometry){
-                $('#latitude').val(place.geometry.location.k);
-                $('#longitude').val(place.geometry.location.B);
+                $('#latitude').val(place.geometry.location.A);
+                $('#longitude').val(place.geometry.location.F);
             }
 
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);

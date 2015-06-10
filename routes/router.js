@@ -42,9 +42,9 @@ module.exports = function (app) {
     app.post('/users/login', users.loginPost)
     app.get('/users/login', users.login)
     app.get('/users/logout', users.logout)
-    app.get('/restaurants', users.admin, restaurants.index);
+    app.get('/restaurants', restaurants.index);
     app.get('/my/:id/restaurants', restaurants.usersRestaurants);
-    app.get('/restaurants/add', users.admin, restaurants.add);
+    app.get('/restaurants/add', restaurants.add);
     app.get('/restaurants/edit/:id', users.admin, restaurants.edit);
     app.get('/restaurants/view/:id', restaurants.find);
     app.get('/restaurants/view/:id/:strip', restaurants.find);
