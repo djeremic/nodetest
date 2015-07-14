@@ -38,7 +38,6 @@ module.exports = function(sequelize, Sequelize) {
     }, {
         associate: function (models) {
             User.hasMany(models.Restaurants);
-            User.hasMany(models.Rates);
         }
     })
 
