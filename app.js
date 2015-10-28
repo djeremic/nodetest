@@ -90,11 +90,11 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 passport.use(new FacebookStrategy({
-        //clientID: 1506984952881668,
-        //clientSecret: '51d5a888fbcffc436288d3f33b09529c',
-        clientID: 1576516315928531,
-        clientSecret: '59d8be3dba33f5a57cf251d3f77959f5',
-        callbackURL: "http://a2ss13.a2hosting.com:49555/auth/facebook/callback",
+        clientID: 1506984952881668,
+        clientSecret: '51d5a888fbcffc436288d3f33b09529c',
+        //clientID: 1576516315928531,
+        //clientSecret: '59d8be3dba33f5a57cf251d3f77959f5',
+        callbackURL: "http://www.pariseats.com/auth/facebook/callback",
         passReqToCallback: true
     },
     function(req, accessToken, refreshToken, profile, done) {
