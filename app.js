@@ -16,6 +16,8 @@ var fs = require("fs");
 var file = "public/pariseats.db";
 var exists = fs.existsSync(file);
 
+var mailer = require('express-mailer');
+
 var app = express(),
     hbs;
 
@@ -52,6 +54,7 @@ db.serialize(function() {
         db.run("CREATE TABLE Rates(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, UserId INTEGER, food INTEGER, service INTEGER, fun INTEGER, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Versions(id INTEGER PRIMARY KEY AUTOINCREMENT, UserId INTEGER, description TEXT, createdAt date, updatedAt date)");
         db.run("CREATE TABLE Photoes(id INTEGER PRIMARY KEY AUTOINCREMENT, RestaurantId INTEGER, name TEXT, path TEXT, originalname TEXT, createdAt date, updatedAt date)");
+        db.run("CREATE TABLE Passwords(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, value TEXT, valid BOOLEAN, createdAt date, updatedAt date)");
         db.run("ALTER TABLE Restaurants ADD COLUMN paused INTEGER DEFAULT 0;");
         db.close();
     }
@@ -101,6 +104,19 @@ passport.use(new FacebookStrategy({
         users.facebookLogin(accessToken, refreshToken, profile, done, req);
     }
 ));
+
+mailer.extend(app, {
+    from: 'no-reply@pariseats.com',
+    host: 'mail.pariseats.com', // hostname
+    secureConnection: true, // use SSL
+    port: 465, // port for secure SMTP
+    transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+    auth: {
+        user: 'no-reply@pariseats.com',
+        pass: 'no-reply84!'
+    }
+});
+
 
 //router
 require('./routes/router')(app);

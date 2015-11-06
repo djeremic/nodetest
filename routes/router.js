@@ -14,6 +14,7 @@ var users    = require('../routes/user')
     , rates = require('../routes/rate')
     , versions = require('../routes/version')
     , photos = require('../routes/photo')
+    , passwords = require('../routes/passwords')
 
 
 module.exports = function (app) {
@@ -72,6 +73,15 @@ module.exports = function (app) {
     app.post('/versions/add', users.admin, versions.addPost)
     app.get('/versions/latest', versions.latest)
     app.post('/photos/upload', photos.uploadPost)
+
+    app.get('/passwords', passwords.index)
+    app.get('/passwords/sent', passwords.sent)
+    app.post('/passwords/send', passwords.sendMail(app))
+    app.get('/passwords/reset/:hash', passwords.reset)
+    app.post('/passwords/reset', passwords.resetPost)
+    app.get('/magiclink/:hash', passwords.magicLink)
+
+    app.post('/api/passwords/send', passwords.sendMail(app))
 
     //API
     app.get('/api/restaurants', api.index);

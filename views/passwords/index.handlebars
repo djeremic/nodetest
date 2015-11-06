@@ -1,0 +1,31 @@
+<div class="row" style="margin-top: 150px; margin-bottom: 100px;">
+    <div class="col-xs-2 col-lg-3"></div>
+    <div class="col-xs-9 col-lg-8">
+        <h1>Forgot Your Password?</h1>
+
+        <h4>Enter your email bellow and we will send you link to reset your password</h4>
+
+        {{#if errors.general}}
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{{errors.general.[0]}}}
+            </div>
+        {{/if}}
+
+        <div class="row">
+            <div class="col-lg-4">
+                <form id="register" action="/passwords/send" method="post">
+                    <div class="form-group {{#if errors.email}}has-error error{{/if}}">
+                        <label class="control-label" for="email">Email: </label>
+                        <input type="email" class="form-control" id="email" name="email" />
+                        {{#if errors.email}}<span class="cos">{{errors.email.[0]}}</span>{{/if}}
+                    </div>
+                    <button class="btn btn-lg btn-warning">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-1">
+
+        </div>
+    </div>
+</div>
