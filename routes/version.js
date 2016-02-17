@@ -19,7 +19,7 @@ exports.addPost = function(req, res) {
 
             var file = 'tmp/version_' + versionFinal.id + '.json'
             fillDependences();
-            db.Restaurant.findAll({where: {deleted: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurants) {
+            db.Restaurant.findAll({where: {deleted: 0, paused: 0},include: [db.Place, db.Tag, db.Description, db.Photo], order :[[db.Description, 'id']]}).success(function(restaurants) {
                 jf.writeFile(file, restaurants, function(err) {
                     console.log(err)
                 })
