@@ -42,6 +42,9 @@ exports.index = function(req, res){
             title: 'Express',
             version: version
         })
+    }).error(function(errors) {
+        console.log(errors);
+        res.render('versions/index', {errors: errors});
     })
 }
 
